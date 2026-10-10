@@ -1,50 +1,48 @@
 /**
- * Anurag Pandey Portfolio — Cinematic 3D Celestial Cyber Lion Intro
- * Running from right deep background, charging forward, and leaping ("challang")
- * directly out of the screen on initial load.
+ * Anurag Pandey Portfolio — Real Lion Cinematic Intro Animation
+ * 
+ * Features:
+ * - Ultra-high-resolution photorealistic African male lion cutouts (running, leaping, roaring).
+ * - 3D Perspective trajectory: sprints from deep distant right horizon (scale: 0.08),
+ *   gallops forward with realistic stride dynamics, gathers power, takes a massive
+ *   mid-air leap ("challang"), and bursts straight through the screen (scale: 6.5x+).
+ * - Real claw streaks across the lens, radial shockwaves, and whole-page screen shake.
+ * - Multi-layer predatory roar audio synthesis (sub-bass chest rumble, guttural larynx flutter,
+ *   air blast snarl, gallop ground thuds).
+ * - Executes automatically once per session on initial load.
+ * - Replayable anytime via header button ("🦁 Leap"), CLI command ("lion"), or window.replayLionIntro().
+ * - Non-blocking: gracefully dissolves, removes overlay from DOM, and includes instant Skip [Esc].
  */
 
 (function () {
-  // Check if user already saw the intro in this session (optional, but run automatically)
-  // To ensure it happens on load as requested:
-  const HAS_SEEN = sessionStorage.getItem("ap_lion_intro_shown");
+  const SESSION_KEY = "ap_lion_intro_shown";
 
-  // Create Intro Container & Canvas
-  const introWrap = document.createElement("div");
-  introWrap.id = "lion-intro-overlay";
-  introWrap.className = "lion-intro-overlay";
-  introWrap.setAttribute("aria-hidden", "true");
+  // Preload Real Lion Assets
+  const ASSETS = {
+    run: "assets/lion_run.png",       // Real African lion running/striding
+    roar: "assets/lion_roar.png",     // Real ferocious roaring lion face with open fangs & mane
+    front: "assets/lion_front.png",   // Real lion facing forward
+    strike: "assets/lion_strike.png"  // High-res fierce roar strike
+  };
 
-  introWrap.innerHTML = `
-    <canvas id="lion-intro-canvas" class="lion-intro-canvas"></canvas>
-    <div class="lion-shockwave" id="lion-shockwave"></div>
-    <div class="lion-claw-slash" id="lion-claw-slash"></div>
-    <div class="lion-hud-tag" id="lion-hud-tag">
-      <span class="hud-tag-icon">⚡</span>
-      <span class="hud-tag-text">NEURAL BEAST PROTOCOL // INITIALIZING</span>
-    </div>
-    <button type="button" class="lion-skip-btn" id="lion-skip-btn" title="Skip Intro">
-      Skip [Esc] &times;
-    </button>
-  `;
+  const loadedImages = {};
 
-  document.body.prepend(introWrap);
+  function preloadImage(key, src) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        loadedImages[key] = img;
+        resolve(img);
+      };
+      img.onerror = () => {
+        console.warn(`[LionIntro] Could not load image ${src}, fallback enabled.`);
+        resolve(null);
+      };
+      img.src = src;
+    });
+  }
 
-  const canvas = document.getElementById("lion-intro-canvas");
-  const ctx = canvas.getContext("2d");
-  const shockwave = document.getElementById("lion-shockwave");
-  const clawSlash = document.getElementById("lion-claw-slash");
-  const skipBtn = document.getElementById("lion-skip-btn");
-
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
-
-  window.addEventListener("resize", () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  // Zero-latency Web Audio Synthesizer for Roar & Whoosh
+  // Zero-latency Predatory Web Audio Synthesizer
   let audioCtx = null;
   function getAudioCtx() {
     try {
@@ -59,7 +57,7 @@
     }
   }
 
-  function playGallopBeat(pitch = 90) {
+  function playGallopStep(intensity = 1) {
     const actx = getAudioCtx();
     if (!actx) return;
     try {
@@ -67,435 +65,466 @@
       const osc = actx.createOscillator();
       const gain = actx.createGain();
       osc.type = "sine";
-      osc.frequency.setValueAtTime(pitch, now);
-      osc.frequency.exponentialRampToValueAtTime(30, now + 0.08);
-      gain.gain.setValueAtTime(0.04, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.frequency.setValueAtTime(75, now);
+      osc.frequency.exponentialRampToValueAtTime(28, now + 0.09);
+      const vol = Math.min(0.08, 0.012 * intensity);
+      gain.gain.setValueAtTime(vol, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
       osc.connect(gain);
       gain.connect(actx.destination);
       osc.start(now);
-      osc.stop(now + 0.08);
+      osc.stop(now + 0.09);
     } catch {}
   }
 
-  function playLeapRoar() {
+  function playPredatoryRoar() {
     const actx = getAudioCtx();
     if (!actx) return;
     try {
       const now = actx.currentTime;
-      // 1. Bass Energy Roar / Impact
-      const osc1 = actx.createOscillator();
-      const gain1 = actx.createGain();
-      osc1.type = "sawtooth";
-      osc1.frequency.setValueAtTime(120, now);
-      osc1.frequency.linearRampToValueAtTime(260, now + 0.25);
-      osc1.frequency.exponentialRampToValueAtTime(40, now + 0.85);
 
-      gain1.gain.setValueAtTime(0.001, now);
-      gain1.gain.linearRampToValueAtTime(0.12, now + 0.2);
-      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+      // 1. Sub-bass Chest Thump / Ground Impact (40Hz - 90Hz)
+      const subOsc = actx.createOscillator();
+      const subGain = actx.createGain();
+      subOsc.type = "sine";
+      subOsc.frequency.setValueAtTime(115, now);
+      subOsc.frequency.exponentialRampToValueAtTime(36, now + 0.5);
+      subGain.gain.setValueAtTime(0.24, now);
+      subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+      subOsc.connect(subGain);
+      subGain.connect(actx.destination);
+      subOsc.start(now);
+      subOsc.stop(now + 0.9);
 
-      osc1.connect(gain1);
-      gain1.connect(actx.destination);
-      osc1.start(now);
-      osc1.stop(now + 0.85);
+      // 2. Multi-layer Guttural Throat Roar (Cartilage flutter + detuned saw)
+      const roarOsc1 = actx.createOscillator();
+      const roarOsc2 = actx.createOscillator();
+      const roarGain = actx.createGain();
+      const roarFilter = actx.createBiquadFilter();
 
-      // 2. High Cyber Energy Sweep
-      const osc2 = actx.createOscillator();
-      const gain2 = actx.createGain();
-      osc2.type = "sine";
-      osc2.frequency.setValueAtTime(320, now);
-      osc2.frequency.exponentialRampToValueAtTime(1400, now + 0.45);
-      gain2.gain.setValueAtTime(0.04, now);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+      roarOsc1.type = "sawtooth";
+      roarOsc2.type = "sawtooth";
+      roarOsc1.frequency.setValueAtTime(76, now);
+      roarOsc1.frequency.linearRampToValueAtTime(155, now + 0.25);
+      roarOsc1.frequency.exponentialRampToValueAtTime(48, now + 1.1);
 
-      osc2.connect(gain2);
-      gain2.connect(actx.destination);
-      osc2.start(now);
-      osc2.stop(now + 0.45);
+      roarOsc2.frequency.setValueAtTime(79, now);
+      roarOsc2.frequency.linearRampToValueAtTime(162, now + 0.25);
+      roarOsc2.frequency.exponentialRampToValueAtTime(51, now + 1.1);
+
+      // Resonant vocal tract formant filter
+      roarFilter.type = "bandpass";
+      roarFilter.frequency.setValueAtTime(290, now);
+      roarFilter.frequency.linearRampToValueAtTime(560, now + 0.3);
+      roarFilter.frequency.exponentialRampToValueAtTime(150, now + 1.1);
+      roarFilter.Q.setValueAtTime(3.4, now);
+
+      // LFO for throat vibrato / snarling cartilage flutter (28 Hz)
+      const lfo = actx.createOscillator();
+      const lfoGain = actx.createGain();
+      lfo.type = "sine";
+      lfo.frequency.setValueAtTime(28, now);
+      lfoGain.gain.setValueAtTime(0.09, now);
+      lfo.connect(lfoGain.gain);
+
+      roarGain.gain.setValueAtTime(0.01, now);
+      roarGain.gain.linearRampToValueAtTime(0.26, now + 0.2);
+      roarGain.gain.exponentialRampToValueAtTime(0.001, now + 1.1);
+
+      roarOsc1.connect(roarFilter);
+      roarOsc2.connect(roarFilter);
+      roarFilter.connect(roarGain);
+      roarGain.connect(actx.destination);
+
+      roarOsc1.start(now);
+      roarOsc2.start(now);
+      lfo.start(now);
+      roarOsc1.stop(now + 1.1);
+      roarOsc2.stop(now + 1.1);
+      lfo.stop(now + 1.1);
+
+      // 3. High Air Blast / Ferocious Snarl Noise
+      const bufferSize = Math.floor(actx.sampleRate * 0.9);
+      const noiseBuffer = actx.createBuffer(1, bufferSize, actx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      const whiteNoise = actx.createBufferSource();
+      whiteNoise.buffer = noiseBuffer;
+
+      const noiseFilter = actx.createBiquadFilter();
+      noiseFilter.type = "bandpass";
+      noiseFilter.frequency.setValueAtTime(1150, now);
+      noiseFilter.frequency.exponentialRampToValueAtTime(420, now + 0.85);
+      noiseFilter.Q.setValueAtTime(2.0, now);
+
+      const noiseGain = actx.createGain();
+      noiseGain.gain.setValueAtTime(0.001, now);
+      noiseGain.gain.linearRampToValueAtTime(0.14, now + 0.18);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+
+      whiteNoise.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(actx.destination);
+
+      whiteNoise.start(now);
+      whiteNoise.stop(now + 0.85);
     } catch {}
   }
 
-  // Particle System (Embers, Ground Sparks & Mane Hair)
-  const embers = [];
-  function spawnEmbers(x, y, count = 4, scale = 1, vxMod = 0) {
-    for (let i = 0; i < count; i++) {
-      embers.push({
-        x: x + (Math.random() - 0.5) * 30 * scale,
-        y: y + (Math.random() - 0.5) * 20 * scale,
-        vx: (Math.random() * -3 - 1 + vxMod) * scale,
-        vy: (Math.random() - 0.5) * 2.5 * scale,
-        life: 1.0,
-        decay: Math.random() * 0.03 + 0.02,
-        size: (Math.random() * 4 + 1.5) * scale,
-        color: Math.random() > 0.4 ? "#ffb700" : "#00f0ff"
-      });
+  // Master Intro Runner Function
+  function launchRealLionIntro(isForced = false) {
+    if (!isForced && sessionStorage.getItem(SESSION_KEY)) {
+      return; // Already viewed in this session
     }
-  }
 
-  // Animation Timeline Controller
-  let startTime = null;
-  const DURATION = 3800; // 3.8 seconds total cinematic sequence
-  let animationFrameId = null;
-  let hasRoared = false;
-  let lastBeatTime = 0;
+    // Clean up any existing overlay
+    const prev = document.getElementById("lion-intro-overlay");
+    if (prev) prev.remove();
 
-  function render(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const elapsed = timestamp - startTime;
-    const progress = Math.min(1.0, elapsed / DURATION);
+    // Create Intro Container & Canvas
+    const introWrap = document.createElement("div");
+    introWrap.id = "lion-intro-overlay";
+    introWrap.className = "lion-intro-overlay";
+    introWrap.setAttribute("aria-hidden", "true");
 
-    ctx.clearRect(0, 0, width, height);
+    introWrap.innerHTML = `
+      <canvas id="lion-intro-canvas" class="lion-intro-canvas"></canvas>
+      <div class="lion-shockwave" id="lion-shockwave"></div>
+      <div class="lion-claw-slash" id="lion-claw-slash">
+        <svg class="claw-scratch-svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
+          <path class="claw-line line-1" d="M150,80 Q450,280 750,480" />
+          <path class="claw-line line-2" d="M220,50 Q520,260 820,460" />
+          <path class="claw-line line-3" d="M290,20 Q590,240 890,440" />
+        </svg>
+      </div>
+      <div class="lion-hud-tag" id="lion-hud-tag">
+        <span class="hud-tag-icon">🦁</span>
+        <span class="hud-tag-text">ANURAG PANDEY // THE APEX REAL LION</span>
+      </div>
+      <button type="button" class="lion-skip-btn" id="lion-skip-btn" title="Skip Intro">
+        Skip [Esc] &times;
+      </button>
+    `;
 
-    // 1. Calculate Lion 3D Trajectory
-    // Stage 1: Running from right deep background (progress: 0.0 -> 0.6)
-    // Stage 2: Gathering power for leap (progress: 0.6 -> 0.72)
-    // Stage 3: The Massive Leap / Challang (progress: 0.72 -> 1.0)
-    let lionX, lionY, lionScale, lionRotation, runPhase, isLeaping, jawOpen;
+    document.body.prepend(introWrap);
 
-    if (progress < 0.65) {
-      // Galloping in from deep distance on the right
-      const p = progress / 0.65;
-      // Exponential curve bringing it from depth
-      lionScale = 0.16 + Math.pow(p, 1.8) * 0.95; // 0.16 -> 1.11
-      lionX = width * (0.88 - p * 0.45); // 88% width -> 43% width
-      // Gentle running bobbing
-      lionY = height * (0.42 + Math.pow(p, 1.5) * 0.18) + Math.sin(p * 22) * (14 * lionScale);
-      lionRotation = -0.05 + Math.sin(p * 22) * 0.05;
-      runPhase = p * 28;
-      isLeaping = false;
-      jawOpen = 0.15;
+    const canvas = document.getElementById("lion-intro-canvas");
+    const ctx = canvas.getContext("2d");
+    const shockwave = document.getElementById("lion-shockwave");
+    const clawSlash = document.getElementById("lion-claw-slash");
+    const skipBtn = document.getElementById("lion-skip-btn");
 
-      // Gallop sound beat every half stride
-      if (timestamp - lastBeatTime > 180 / (1 + p * 0.5)) {
-        playGallopBeat(70 + p * 40);
-        lastBeatTime = timestamp;
-        // Paws kicking up embers
-        spawnEmbers(lionX + 30 * lionScale, lionY + 45 * lionScale, 3, lionScale, -2);
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    function handleResize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", handleResize);
+
+    // Particle Systems (Dust Clouds, Glowing Embers, Speed Lines)
+    const dustParticles = [];
+    const embers = [];
+    const speedLines = [];
+
+    function spawnDustPuff(x, y, scale = 1) {
+      const count = 6;
+      for (let i = 0; i < count; i++) {
+        dustParticles.push({
+          x: x + (Math.random() - 0.5) * 35 * scale,
+          y: y + (Math.random() - 0.5) * 15 * scale,
+          vx: (Math.random() * 3 + 1) * scale, // drifts back to the right
+          vy: (Math.random() * -1.8 - 0.4) * scale,
+          radius: (Math.random() * 16 + 8) * scale,
+          maxRadius: (Math.random() * 38 + 20) * scale,
+          alpha: 0.55,
+          color: "rgba(220, 195, 160, "
+        });
       }
-    } else {
-      // The Epic Leap ("Challang") Towards & Through Screen!
-      const leapProgress = (progress - 0.65) / 0.35; // 0.0 -> 1.0
-      isLeaping = true;
+    }
 
-      if (!hasRoared) {
-        hasRoared = true;
-        playLeapRoar();
+    function spawnEmbers(x, y, count = 5, scale = 1, vxMod = 0) {
+      for (let i = 0; i < count; i++) {
+        embers.push({
+          x: x + (Math.random() - 0.5) * 40 * scale,
+          y: y + (Math.random() - 0.5) * 30 * scale,
+          vx: (Math.random() * -4 - 1 + vxMod) * scale,
+          vy: (Math.random() - 0.5) * 3.5 * scale,
+          life: 1.0,
+          decay: Math.random() * 0.035 + 0.02,
+          size: (Math.random() * 5 + 2) * scale,
+          color: Math.random() > 0.35 ? "#ffb700" : "#ff5500"
+        });
+      }
+    }
 
-        // Trigger Shockwave & Claw Slash overlay
-        if (shockwave) shockwave.classList.add("active");
-        if (clawSlash) clawSlash.classList.add("active");
-        document.body.classList.add("lion-screen-shake");
-        setTimeout(() => document.body.classList.remove("lion-screen-shake"), 750);
+    function spawnSpeedLines(x, y, scale = 1) {
+      for (let i = 0; i < 4; i++) {
+        speedLines.push({
+          x: x + (Math.random() - 0.5) * 150 * scale,
+          y: y + (Math.random() - 0.5) * 100 * scale,
+          len: (Math.random() * 140 + 80) * scale,
+          angle: -0.3 + (Math.random() - 0.5) * 0.2,
+          alpha: 0.8,
+          decay: 0.07,
+          width: Math.random() * 3 + 1.5
+        });
+      }
+    }
+
+    // Animation Timing & State
+    let startTime = null;
+    const DURATION = 3900; // 3.9 seconds total cinematic experience
+    let animationFrameId = null;
+    let hasRoared = false;
+    let lastStepTime = 0;
+
+    function render(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(1.0, elapsed / DURATION);
+
+      ctx.clearRect(0, 0, width, height);
+
+      // --- CALCULATE REAL LION 3D TRAJECTORY ---
+      // Phase 1 (0.00 -> 0.60): Galloping in from deep right background to midground
+      // Phase 2 (0.60 -> 0.68): Crouching down, coiling muscles for the leap
+      // Phase 3 (0.68 -> 0.88): The Epic Leap ("Challang") upwards through 3D space
+      // Phase 4 (0.88 -> 1.00): Bursting directly through the screen lens!
+      let lionX, lionY, lionScale, lionRotation, lionImg, lionAlpha = 1.0, stretchX = 1.0, stretchY = 1.0;
+
+      if (progress < 0.60) {
+        // --- PHASE 1: SPRINTING IN FROM DEEP RIGHT BACKGROUND ---
+        const p = progress / 0.60; // 0.0 -> 1.0
+        // Exponential scale bringing it smoothly from deep perspective
+        lionScale = 0.09 + Math.pow(p, 1.85) * 0.86; // 0.09 -> 0.95
+        lionX = width * (0.92 - p * 0.46); // 92% screen width -> 46% width
+        // Gallop vertical bobbing & spinal pitch
+        const gallopBob = Math.sin(p * 26) * (14 * lionScale);
+        lionY = height * (0.42 + Math.pow(p, 1.4) * 0.18) + gallopBob;
+        lionRotation = -0.06 + Math.sin(p * 26) * 0.06;
+        // Subtle stride squash/stretch
+        stretchX = 1.0 + Math.sin(p * 26) * 0.04;
+        stretchY = 1.0 - Math.sin(p * 26) * 0.04;
+
+        lionImg = loadedImages.run;
+
+        // Paw ground contact sound & dust plumes
+        if (timestamp - lastStepTime > 160 / (1 + p * 0.6)) {
+          lastStepTime = timestamp;
+          playGallopStep(1 + p * 4);
+          spawnDustPuff(lionX + 35 * lionScale, lionY + 50 * lionScale, lionScale);
+          spawnEmbers(lionX + 30 * lionScale, lionY + 45 * lionScale, 3, lionScale, 2);
+        }
+      } else if (progress < 0.68) {
+        // --- PHASE 2: POWER GATHERING / COILING ---
+        const p = (progress - 0.60) / 0.08; // 0.0 -> 1.0
+        lionScale = 0.95 + p * 0.12; // 0.95 -> 1.07
+        lionX = width * (0.46 - p * 0.04);
+        // Lion dips down into ready-to-pounce crouch
+        lionY = height * 0.60 + Math.sin(p * Math.PI) * 12;
+        lionRotation = -0.02 + p * -0.15; // tilts backwards slightly preparing to spring
+        stretchX = 1.08;
+        stretchY = 0.90; // squashes down like a coiled spring!
+
+        lionImg = loadedImages.run;
+        spawnDustPuff(lionX + 20 * lionScale, lionY + 60 * lionScale, lionScale * 1.2);
+      } else {
+        // --- PHASES 3 & 4: THE MASSIVE LEAP ("CHALLANG") & SCREEN BURST ---
+        const leapProgress = (progress - 0.68) / 0.32; // 0.0 -> 1.0
+        const jumpArc = Math.sin(Math.min(1.0, leapProgress * 1.3) * Math.PI * 0.85);
+
+        // Exponential surge bursting right out of the screen
+        lionScale = 1.07 + Math.pow(leapProgress, 2.4) * 6.2; // 1.07 -> 7.27!
+        lionX = width * (0.42 - leapProgress * 0.15); // surges forward and slightly left
+        lionY = height * (0.60 - jumpArc * 0.36); // launches high into the air!
+        lionRotation = -0.28 + leapProgress * 0.38; // tilts up on jump, levels out
+
+        // Use the ferocious roaring lion image for the mid-air leap and climax
+        lionImg = loadedImages.roar || loadedImages.run;
+
+        // Trigger Climax Effects once as the leap reaches peak velocity
+        if (!hasRoared && leapProgress > 0.40) {
+          hasRoared = true;
+          playPredatoryRoar();
+
+          if (shockwave) shockwave.classList.add("active");
+          if (clawSlash) clawSlash.classList.add("active");
+          document.body.classList.add("lion-screen-shake");
+          setTimeout(() => document.body.classList.remove("lion-screen-shake"), 800);
+        }
+
+        // Mid-air speed lines & flaming mane embers
+        spawnEmbers(lionX, lionY, 8, Math.min(lionScale, 3.5), -5);
+        if (leapProgress > 0.25 && leapProgress < 0.85) {
+          spawnSpeedLines(lionX, lionY, lionScale);
+        }
+
+        // Dissolve as it passes through the camera plane
+        if (leapProgress > 0.82) {
+          lionAlpha = Math.max(0, 1.0 - (leapProgress - 0.82) / 0.18);
+        }
       }
 
-      // Parabolic jump arc: surges upwards, then dives forward out of screen
-      const jumpArc = Math.sin(leapProgress * Math.PI);
-      // Exponential 3D scale bursting through camera
-      lionScale = 1.11 + Math.pow(leapProgress, 2.5) * 5.2; // 1.11 -> 6.31!
-
-      lionX = width * (0.43 - leapProgress * 0.18); // drifts to center-left
-      lionY = height * (0.6 - jumpArc * 0.32); // launches up and arcs forward
-      lionRotation = -0.28 + leapProgress * 0.35; // tilts up on jump, levels out
-      runPhase = 0; // frozen in glorious dynamic leap pose
-      jawOpen = Math.min(1.0, leapProgress * 1.6); // Roars wide open!
-
-      // Explosive flame embers flaring from mane & claws
-      spawnEmbers(lionX, lionY, 8, lionScale * 0.8, -4);
-    }
-
-    // 2. Draw Embers & Energy Trail
-    for (let i = embers.length - 1; i >= 0; i--) {
-      const e = embers[i];
-      e.x += e.vx;
-      e.y += e.vy;
-      e.life -= e.decay;
-      if (e.life <= 0) {
-        embers.splice(i, 1);
-        continue;
+      // 1. Draw Dust Particle Clouds
+      for (let i = dustParticles.length - 1; i >= 0; i--) {
+        const d = dustParticles[i];
+        d.x += d.vx;
+        d.y += d.vy;
+        d.radius += 0.4;
+        d.alpha -= 0.016;
+        if (d.alpha <= 0) {
+          dustParticles.splice(i, 1);
+          continue;
+        }
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
+        ctx.fillStyle = d.color + d.alpha + ")";
+        ctx.fill();
       }
-      ctx.beginPath();
-      ctx.arc(e.x, e.y, e.size * e.life, 0, Math.PI * 2);
-      ctx.fillStyle = e.color;
-      ctx.globalAlpha = e.life * 0.8;
-      ctx.shadowBlur = 12 * e.life;
-      ctx.shadowColor = e.color;
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1.0;
-    ctx.shadowBlur = 0;
 
-    // 3. Draw The Celestial Cyber Lion
-    drawCyberLion(ctx, lionX, lionY, lionScale, lionRotation, runPhase, isLeaping, jawOpen);
+      // 2. Draw Speed Lines
+      for (let i = speedLines.length - 1; i >= 0; i--) {
+        const sl = speedLines[i];
+        sl.alpha -= sl.decay;
+        if (sl.alpha <= 0) {
+          speedLines.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(sl.x, sl.y);
+        ctx.lineTo(sl.x + Math.cos(sl.angle) * sl.len, sl.y + Math.sin(sl.angle) * sl.len);
+        ctx.strokeStyle = `rgba(255, 220, 130, ${sl.alpha})`;
+        ctx.lineWidth = sl.width;
+        ctx.lineCap = "round";
+        ctx.stroke();
+        ctx.restore();
+      }
 
-    // Fade out towards the end
-    if (progress > 0.86) {
-      const fadeOut = (progress - 0.86) / 0.14;
-      introWrap.style.opacity = String(1 - fadeOut);
+      // 3. Draw Dynamic Ground Shadow
+      if (progress < 0.82) {
+        ctx.save();
+        const shadowOpacity = Math.max(0, 0.45 * (1 - (progress > 0.68 ? (progress - 0.68) / 0.14 : 0)));
+        ctx.beginPath();
+        const groundY = height * (0.42 + Math.min(1.0, progress / 0.65) * 0.22);
+        ctx.ellipse(lionX, groundY + 45 * lionScale, 65 * lionScale, 18 * lionScale, 0, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 0, 0, ${shadowOpacity})`;
+        ctx.filter = `blur(${Math.max(2, lionScale * 6)}px)`;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // 4. Draw The Real Lion Photographic Cutout
+      if (lionImg && lionImg.complete && lionImg.naturalWidth > 0) {
+        ctx.save();
+        ctx.globalAlpha = lionAlpha;
+        ctx.translate(lionX, lionY);
+        ctx.rotate(lionRotation);
+        ctx.scale(stretchX, stretchY);
+
+        // lion_run.png faces right natively; flip horizontally (-1) so it runs right-to-left!
+        // lion_roar.png faces right/up; flip horizontally (-1) so it attacks towards viewer's left!
+        ctx.scale(-lionScale, lionScale);
+
+        // Center normalized dimensions
+        const baseW = 420;
+        const aspect = lionImg.naturalHeight / lionImg.naturalWidth;
+        const baseH = baseW * aspect;
+
+        // Subtle motion blur in deep distance
+        if (lionScale < 0.25) {
+          ctx.filter = `blur(${Math.max(0, (0.25 - lionScale) * 6)}px)`;
+        } else {
+          ctx.filter = "none";
+        }
+
+        ctx.drawImage(lionImg, -baseW / 2, -baseH / 2, baseW, baseH);
+        ctx.restore();
+      }
+
+      // 5. Draw Embers & Claw Sparks
+      for (let i = embers.length - 1; i >= 0; i--) {
+        const e = embers[i];
+        e.x += e.vx;
+        e.y += e.vy;
+        e.life -= e.decay;
+        if (e.life <= 0) {
+          embers.splice(i, 1);
+          continue;
+        }
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, e.size * e.life, 0, Math.PI * 2);
+        ctx.fillStyle = e.color;
+        ctx.globalAlpha = e.life * 0.9;
+        ctx.shadowBlur = 14 * e.life;
+        ctx.shadowColor = e.color;
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1.0;
+      ctx.shadowBlur = 0;
+
+      // Overlay dissolve towards completion
+      if (progress > 0.88) {
+        const fadeOut = (progress - 0.88) / 0.12;
+        introWrap.style.opacity = String(Math.max(0, 1 - fadeOut));
+      }
+
+      if (progress < 1.0) {
+        animationFrameId = requestAnimationFrame(render);
+      } else {
+        finishIntro();
+      }
     }
 
-    if (progress < 1.0) {
-      animationFrameId = requestAnimationFrame(render);
-    } else {
-      finishIntro();
+    function finishIntro() {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+      sessionStorage.setItem(SESSION_KEY, "true");
+      introWrap.style.transition = "opacity 0.45s ease-out";
+      introWrap.style.opacity = "0";
+      setTimeout(() => {
+        if (introWrap && introWrap.parentNode) {
+          introWrap.remove();
+        }
+      }, 480);
     }
+
+    // Skip Handlers
+    if (skipBtn) {
+      skipBtn.addEventListener("click", finishIntro);
+    }
+
+    function handleKeyDown(e) {
+      if (e.key === "Escape") {
+        window.removeEventListener("keydown", handleKeyDown);
+        finishIntro();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Start Animation Frame Loop
+    requestAnimationFrame(render);
   }
 
-  /**
-   * Anatomical Celestial Cyber Lion Vector Renderer
-   * Renders body, muscular limbs, head, roaring jaw, piercing eyes, and fiery particle mane.
-   */
-  function drawCyberLion(ctx, x, y, scale, rot, phase, leaping, jawOpen) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(rot);
-    ctx.scale(scale, scale);
-
-    // Dynamic Colors: Blazing Gold Core with Neon Cyan Bio-Luminescence
-    const goldGrad = ctx.createLinearGradient(-100, -50, 100, 50);
-    goldGrad.addColorStop(0, "#fff5cc");
-    goldGrad.addColorStop(0.3, "#ffb700");
-    goldGrad.addColorStop(0.7, "#ff7700");
-    goldGrad.addColorStop(1, "#00f0ff");
-
-    ctx.shadowColor = "rgba(0, 240, 255, 0.7)";
-    ctx.shadowBlur = 25;
-
-    // --- LEGS CALCULATION ---
-    let flAngle, frAngle, hlAngle, hrAngle;
-    if (!leaping) {
-      // Quadruped rotary gallop cycle
-      flAngle = Math.sin(phase) * 0.85;
-      frAngle = Math.sin(phase + 0.4) * 0.85;
-      hlAngle = Math.sin(phase + Math.PI * 0.9) * 0.9;
-      hrAngle = Math.sin(phase + Math.PI * 1.3) * 0.9;
-    } else {
-      // LEAP POSE: Front legs fully extended forward with claws out, hind legs extended back
-      flAngle = -0.95;
-      frAngle = -1.15;
-      hlAngle = 1.1;
-      hrAngle = 0.95;
-    }
-
-    // --- HIND LEGS (Back layer) ---
-    drawLeg(ctx, 45, 15, hrAngle, false, true);
-
-    // --- FRONT LEGS (Back layer) ---
-    drawLeg(ctx, -55, 10, frAngle, true, true);
-
-    // --- TAIL ---
-    ctx.beginPath();
-    ctx.moveTo(65, 0);
-    const tailWiggle = Math.sin(phase * 1.4) * 20;
-    ctx.bezierCurveTo(95, -20 + tailWiggle * 0.5, 125, 15 + tailWiggle, 140, -10 + tailWiggle * 1.2);
-    ctx.strokeStyle = goldGrad;
-    ctx.lineWidth = 6;
-    ctx.lineCap = "round";
-    ctx.stroke();
-
-    // Tail tuft
-    ctx.beginPath();
-    ctx.arc(142, -10 + tailWiggle * 1.2, 9, 0, Math.PI * 2);
-    ctx.fillStyle = "#ffb700";
-    ctx.fill();
-
-    // --- MUSCULAR TORSO & CHEST ---
-    ctx.beginPath();
-    // Spine
-    ctx.moveTo(-60, -25);
-    ctx.bezierCurveTo(-20, -32, 20, -25, 60, -15);
-    // Rump
-    ctx.bezierCurveTo(75, -5, 75, 15, 60, 22);
-    // Flank & Belly
-    ctx.bezierCurveTo(35, 12, 0, 18, -25, 26);
-    // Powerful Deep Chest
-    ctx.bezierCurveTo(-55, 34, -75, 20, -70, -10);
-    ctx.closePath();
-
-    ctx.fillStyle = goldGrad;
-    ctx.fill();
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.7)";
-    ctx.lineWidth = 2.5;
-    ctx.stroke();
-
-    // Cyber Bio-circuit lines on torso
-    ctx.beginPath();
-    ctx.moveTo(-45, -5);
-    ctx.lineTo(-20, 8);
-    ctx.lineTo(15, -4);
-    ctx.lineTo(40, 5);
-    ctx.strokeStyle = "#00f0ff";
-    ctx.lineWidth = 2;
-    ctx.shadowColor = "#00f0ff";
-    ctx.shadowBlur = 15;
-    ctx.stroke();
-
-    // --- HIND LEGS (Front layer) ---
-    drawLeg(ctx, 35, 18, hlAngle, false, false);
-
-    // --- FRONT LEGS (Front layer) ---
-    drawLeg(ctx, -65, 15, flAngle, true, false);
-
-    // --- MASSIVE ROARING LION HEAD & MANE ---
-    ctx.save();
-    ctx.translate(-82, -26);
-
-    // Blazing Fiery Mane (Multi-layer spiky energy tendrils)
-    const maneSpikes = [
-      [-10, -50], [15, -48], [35, -35], [45, -15], [50, 10], [42, 32],
-      [25, 48], [5, 52], [-18, 45], [-35, 30], [-42, 10], [-35, -15], [-25, -38]
-    ];
-
-    ctx.beginPath();
-    ctx.moveTo(-10, -50);
-    for (let i = 0; i < maneSpikes.length; i++) {
-      const p = maneSpikes[i];
-      const flutter = Math.sin(phase * 2 + i) * 6;
-      ctx.lineTo(p[0] + flutter, p[1]);
-    }
-    ctx.closePath();
-    ctx.fillStyle = "rgba(255, 120, 0, 0.85)";
-    ctx.shadowColor = "#ff7700";
-    ctx.shadowBlur = 35;
-    ctx.fill();
-
-    // Inner Radiant Mane Layer
-    ctx.beginPath();
-    ctx.arc(0, 0, 32, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255, 200, 0, 0.9)";
-    ctx.shadowColor = "#ffb700";
-    ctx.shadowBlur = 20;
-    ctx.fill();
-
-    // Snout / Upper Jaw
-    ctx.beginPath();
-    ctx.moveTo(-15, -15);
-    ctx.lineTo(-44, -12); // Nose bridge
-    ctx.lineTo(-48, -2);  // Nose tip
-    ctx.lineTo(-32, 5);   // Upper lip
-    ctx.lineTo(-12, 5);
-    ctx.closePath();
-    ctx.fillStyle = "#fff5cc";
-    ctx.fill();
-
-    // Piercing Laser Eye
-    ctx.beginPath();
-    ctx.arc(-22, -10, 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = "#00f0ff";
-    ctx.shadowColor = "#00f0ff";
-    ctx.shadowBlur = 20;
-    ctx.fill();
-    // Pupil
-    ctx.beginPath();
-    ctx.arc(-22, -10, 1.8, 0, Math.PI * 2);
-    ctx.fillStyle = "#ffffff";
-    ctx.fill();
-
-    // Roaring Lower Jaw & Fangs
-    const jawDrop = jawOpen * 22; // Opens up to 22px
-    ctx.beginPath();
-    ctx.moveTo(-32, 5);
-    ctx.lineTo(-44, 8 + jawDrop);
-    ctx.lineTo(-24, 18 + jawDrop);
-    ctx.lineTo(-10, 12 + jawDrop);
-    ctx.closePath();
-    ctx.fillStyle = "#e07a16";
-    ctx.fill();
-
-    // Fangs (Upper & Lower)
-    if (jawOpen > 0.3) {
-      ctx.fillStyle = "#ffffff";
-      ctx.shadowColor = "#00f0ff";
-      ctx.shadowBlur = 10;
-      // Upper fang
-      ctx.beginPath();
-      ctx.moveTo(-42, -2);
-      ctx.lineTo(-40, 10);
-      ctx.lineTo(-37, -2);
-      ctx.fill();
-      // Lower fang
-      ctx.beginPath();
-      ctx.moveTo(-41, 7 + jawDrop);
-      ctx.lineTo(-39, -3 + jawDrop * 0.3);
-      ctx.lineTo(-36, 7 + jawDrop);
-      ctx.fill();
-    }
-
-    ctx.restore(); // restore head
-    ctx.restore(); // restore lion
-  }
-
-  /**
-   * Anatomical Limb Drawer (Humerus/Femur, Radius/Tibia, Metatarsals & Claws)
-   */
-  function drawLeg(ctx, hipX, hipY, angle, isFront, isFar) {
-    ctx.save();
-    ctx.translate(hipX, hipY);
-    ctx.rotate(angle);
-
-    const length1 = isFront ? 32 : 36;
-    const length2 = isFront ? 30 : 28;
-    const alpha = isFar ? 0.6 : 1.0;
-
-    ctx.globalAlpha = alpha;
-    ctx.strokeStyle = isFar ? "rgba(255, 140, 0, 0.8)" : "rgba(255, 200, 0, 0.95)";
-    ctx.lineWidth = isFar ? 7 : 9;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-
-    // Upper Segment (Thigh / Shoulder)
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    const kneeX = isFront ? -12 : 14;
-    const kneeY = length1;
-    ctx.lineTo(kneeX, kneeY);
-    ctx.stroke();
-
-    // Lower Segment (Shin / Forearm)
-    ctx.beginPath();
-    ctx.moveTo(kneeX, kneeY);
-    const pawX = isFront ? -22 : 6;
-    const pawY = kneeY + length2;
-    ctx.lineTo(pawX, pawY);
-    ctx.stroke();
-
-    // Paw & Glowing Claws
-    ctx.beginPath();
-    ctx.arc(pawX, pawY, 6, 0, Math.PI * 2);
-    ctx.fillStyle = "#00f0ff";
-    ctx.shadowColor = "#00f0ff";
-    ctx.shadowBlur = 12;
-    ctx.fill();
-
-    ctx.restore();
-  }
-
-  // Finish and dismiss cleanly
-  function finishIntro() {
-    if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    sessionStorage.setItem("ap_lion_intro_shown", "true");
-    introWrap.style.transition = "opacity 0.5s ease-out";
-    introWrap.style.opacity = "0";
-    setTimeout(() => {
-      introWrap.remove();
-    }, 550);
-  }
-
-  // Skip handlers
-  if (skipBtn) {
-    skipBtn.addEventListener("click", finishIntro);
-  }
-
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") finishIntro();
+  // Preload assets, then trigger launch
+  Promise.all([
+    preloadImage("run", ASSETS.run),
+    preloadImage("roar", ASSETS.roar),
+    preloadImage("front", ASSETS.front),
+    preloadImage("strike", ASSETS.strike)
+  ]).then(() => {
+    // Assets ready; launch intro if not previously seen
+    launchRealLionIntro(false);
   });
 
-  // Start sequence
-  requestAnimationFrame(render);
-
-  // Expose Replay method globally for testing or replay buttons
+  // Global Replay Trigger
   window.replayLionIntro = function () {
-    sessionStorage.removeItem("ap_lion_intro_shown");
-    location.reload();
+    sessionStorage.removeItem(SESSION_KEY);
+    // Directly launch real lion intro immediately with zero page-reload lag!
+    launchRealLionIntro(true);
   };
 })();

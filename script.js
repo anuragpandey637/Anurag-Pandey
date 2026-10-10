@@ -1316,7 +1316,7 @@ Type <span class="term-hl">live</span> to view deployed apps, or use the UI sear
     case "leap":
       if (typeof window.replayLionIntro === "function") {
         window.replayLionIntro();
-        out = `[STATUS] Unleashing 3D Celestial Lion leap sequence...`;
+        out = `[STATUS] Unleashing Real African Lion running & leaping intro sequence...`;
       } else {
         out = `Lion intro sequence not initialized.`;
       }
@@ -1361,7 +1361,7 @@ let activePaletteIdx = 0;
 
 function buildPaletteCatalog() {
   const list = [
-    { type: "action", icon: "🦁", title: "Replay 3D Lion Leap Sequence", desc: "Watch celestial cyber lion leap out of screen", run: () => { if (typeof window.replayLionIntro === "function") window.replayLionIntro(); } },
+    { type: "action", icon: "🦁", title: "Replay Real Lion Leap Intro", desc: "Watch real African male lion sprint from depth & leap out of screen", run: () => { if (typeof window.replayLionIntro === "function") window.replayLionIntro(); } },
     { type: "action", icon: "📄", title: "View Printable Resume", desc: "Open modal with full education & credentials", run: () => openResume() },
     { type: "action", icon: "💻", title: "Open Interactive CLI Terminal", desc: "Launch bash emulator terminal", run: () => openTerminal() },
     { type: "action", icon: "🎨", title: "Cycle Color Theme", desc: "Toggle between Nebula, Matrix, Tokyo, and OLED", run: () => cycleTheme() },

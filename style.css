@@ -2834,22 +2834,67 @@ mark.search-highlight {
   100% { transform: translate(-50%, -50%) scale(90); opacity: 0; border-width: 1px; }
 }
 
-/* Claw Slash Light Streak */
+/* Claw Slash Light Streak & Glass Scratch Marks */
 .lion-claw-slash {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 45% 45%, rgba(0, 240, 255, 0.45) 0%, transparent 65%);
+  background: radial-gradient(circle at 45% 45%, rgba(255, 170, 0, 0.45) 0%, transparent 65%);
   opacity: 0;
 }
 
 .lion-claw-slash.active {
-  animation: clawFlash 0.6s ease-out forwards;
+  animation: clawFlash 0.75s ease-out forwards;
+}
+
+.claw-scratch-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.claw-line {
+  fill: none;
+  stroke: #ffb700;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 10px #ff7700) drop-shadow(0 0 25px #ffcc00);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.lion-claw-slash.active .claw-line {
+  animation: clawDraw 0.65s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+.lion-claw-slash.active .line-1 { animation-delay: 0.0s; }
+.lion-claw-slash.active .line-2 { animation-delay: 0.04s; }
+.lion-claw-slash.active .line-3 { animation-delay: 0.08s; }
+
+@keyframes clawDraw {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  65% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes clawFlash {
   0% { opacity: 0; transform: scale(0.9); }
-  25% { opacity: 1; transform: scale(1.05); }
+  25% { opacity: 1; transform: scale(1.04); }
   100% { opacity: 0; transform: scale(1.15); }
 }
 
