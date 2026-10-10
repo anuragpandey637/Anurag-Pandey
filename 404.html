@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | Anurag Pandey</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;800;900&family=Fira+Code:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .error-page-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+      }
+      .error-code {
+        font-family: var(--font-heading);
+        font-size: clamp(5rem, 15vw, 10rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+      }
+      .error-title {
+        font-family: var(--font-heading);
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .error-desc {
+        color: var(--text-muted);
+        max-width: 500px;
+        margin-bottom: 2rem;
+        font-size: 1.05rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
+    <div class="error-page-container">
+      <div class="brand-badge" style="margin-bottom: 2rem; width: 50px; height: 50px; font-size: 1.4rem;">AP</div>
+      <div class="error-code">404</div>
+      <h1 class="error-title">Coordinate Not Found in Neural Net</h1>
+      <p class="error-desc">
+        The destination you are trying to reach does not exist or has been relocated to another dimension.
+      </p>
+      <div class="cta-row" style="justify-content: center;">
+        <a href="index.html" class="btn btn-primary btn-lg">
+          &larr; Return to Portfolio
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

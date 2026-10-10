@@ -1,0 +1,17 @@
+{
+  "name": "Anurag Pandey | Portfolio & Engineering Hub",
+  "short_name": "Anurag Pandey",
+  "description": "AI & Machine Learning Engineer Portfolio showcasing 33+ projects, live applications, and engineering skills.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#060913",
+  "theme_color": "#090e1c",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
