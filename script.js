@@ -1255,7 +1255,6 @@ function executeTerminalCommand(rawCmd) {
  • <span class="term-hl">cat resume</span>   : Complete education & milestones
  • <span class="term-hl">theme [name]</span> : Switch theme (nebula, matrix, tokyo, oled)
  • <span class="term-hl">matrix</span>       : Instant green matrix hacker mode
- • <span class="term-hl">lion</span>         : Launch 3D Celestial Lion leap sequence
  • <span class="term-hl">contact</span>      : Email, GitHub & LinkedIn coordinates
  • <span class="term-hl">github</span>       : Open GitHub profile in new tab
  • <span class="term-hl">clear</span>        : Clear terminal log screen`;
@@ -1312,15 +1311,6 @@ Type <span class="term-hl">live</span> to view deployed apps, or use the UI sear
       out = `[STATUS] Matrix theme activated. Cyber green terminal mode enabled.`;
       break;
 
-    case "lion":
-    case "leap":
-      if (typeof window.replayLionIntro === "function") {
-        window.replayLionIntro();
-        out = `[STATUS] Unleashing Real African Lion running & leaping intro sequence...`;
-      } else {
-        out = `Lion intro sequence not initialized.`;
-      }
-      break;
 
     case "theme":
       if (THEMES.includes(arg)) {
@@ -1361,7 +1351,6 @@ let activePaletteIdx = 0;
 
 function buildPaletteCatalog() {
   const list = [
-    { type: "action", icon: "🦁", title: "Replay Real Lion Leap Intro", desc: "Watch real African male lion sprint from depth & leap out of screen", run: () => { if (typeof window.replayLionIntro === "function") window.replayLionIntro(); } },
     { type: "action", icon: "📄", title: "View Printable Resume", desc: "Open modal with full education & credentials", run: () => openResume() },
     { type: "action", icon: "💻", title: "Open Interactive CLI Terminal", desc: "Launch bash emulator terminal", run: () => openTerminal() },
     { type: "action", icon: "🎨", title: "Cycle Color Theme", desc: "Toggle between Nebula, Matrix, Tokyo, and OLED", run: () => cycleTheme() },
@@ -1547,15 +1536,6 @@ function initEventListeners() {
     soundToggleBtn.classList.toggle("sound-active", soundEnabled);
   }
 
-  // Replay Lion Intro Button
-  const replayLionBtn = document.getElementById("replay-lion-btn");
-  if (replayLionBtn) {
-    replayLionBtn.addEventListener("click", () => {
-      if (typeof window.replayLionIntro === "function") {
-        window.replayLionIntro();
-      }
-    });
-  }
 
   // Open Terminal Buttons
   if (openTerminalBtn) {
