@@ -3,67 +3,756 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 - Page Not Found | Anurag Pandey</title>
+    <title>404: Neural Coordinate Not Found | Anurag Pandey</title>
+    <meta name="description" content="The requested destination does not exist in the neural cluster. Re-anchor to Anurag Pandey's portfolio." />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;800;900&family=Fira+Code:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;800;900&family=Fira+Code:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
     <style>
-      .error-page-container {
+      /* ==========================================================================
+         HIGH-LEVEL SCI-FI 404 ANIMATION STYLESHEET
+         ========================================================================== */
+      :root {
+        --glitch-cyan: #00f0ff;
+        --glitch-magenta: #ff007f;
+        --glitch-lime: #00ff66;
+      }
+
+      body {
         min-height: 100vh;
+        background: #030611;
+        overflow-x: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 60FPS Neural Canvas */
+      .matrix-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* CRT Scanline & Laser Sweep Overlay */
+      .scanline-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 10;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.25) 50%,
+          rgba(0, 0, 0, 0.25)
+        );
+        background-size: 100% 4px;
+        opacity: 0.6;
+      }
+
+      .laser-sweep {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--glitch-cyan), var(--glitch-magenta), transparent);
+        box-shadow: 0 0 15px var(--glitch-cyan), 0 0 30px var(--glitch-cyan);
+        z-index: 11;
+        pointer-events: none;
+        animation: laserScan 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+
+      @keyframes laserScan {
+        0% { transform: translateY(-10vh); opacity: 0; }
+        15% { opacity: 0.9; }
+        85% { opacity: 0.9; }
+        100% { transform: translateY(110vh); opacity: 0; }
+      }
+
+      /* HUD Telemetry Corner Elements */
+      .hud-frame {
+        position: fixed;
+        inset: 1.5rem;
+        pointer-events: none;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: rgba(0, 240, 255, 0.6);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .hud-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hud-bracket {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(4, 11, 28, 0.7);
+        padding: 0.35rem 0.8rem;
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        border-radius: 4px;
+        backdrop-filter: blur(8px);
+      }
+
+      .hud-blink-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #ff0055;
+        box-shadow: 0 0 8px #ff0055;
+        animation: hudBlink 1s infinite alternate;
+      }
+
+      @keyframes hudBlink {
+        from { opacity: 0.2; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1.2); }
+      }
+
+      /* Central 404 Stage Card */
+      .error-page-container {
+        position: relative;
+        z-index: 4;
+        width: 90vw;
+        max-width: 780px;
+        padding: 3rem 2.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         text-align: center;
-        padding: 2rem;
+        background: rgba(9, 14, 28, 0.82);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 24px;
+        box-shadow:
+          0 30px 90px rgba(0, 0, 0, 0.9),
+          0 0 40px rgba(0, 240, 255, 0.12),
+          inset 0 0 30px rgba(0, 240, 255, 0.05);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        transition: transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+      }
+
+      /* Quantum Radar Rings */
+      .quantum-core-wrapper {
+        position: relative;
+        width: 130px;
+        height: 130px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .radar-ring {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .ring-1 {
+        width: 100%;
+        height: 100%;
+        border: 1px dashed rgba(0, 240, 255, 0.5);
+        animation: radarSpinCW 16s linear infinite;
+      }
+
+      .ring-2 {
+        width: 82%;
+        height: 82%;
+        border: 1px solid rgba(168, 85, 247, 0.4);
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        animation: radarSpinCCW 10s linear infinite;
+      }
+
+      .ring-3 {
+        width: 64%;
+        height: 64%;
+        border: 1px dotted rgba(0, 255, 102, 0.6);
+        animation: radarSpinCW 6s linear infinite;
+      }
+
+      .orbital-node {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--glitch-cyan);
+        box-shadow: 0 0 10px var(--glitch-cyan);
+        top: -4px;
+        left: calc(50% - 4px);
+      }
+
+      @keyframes radarSpinCW {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes radarSpinCCW {
+        from { transform: rotate(360deg); }
+        to { transform: rotate(-360deg); }
+      }
+
+      .core-badge {
         position: relative;
         z-index: 2;
-      }
-      .error-code {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #6366f1, #00f0ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-family: var(--font-heading);
-        font-size: clamp(5rem, 15vw, 10rem);
+        font-size: 1.4rem;
         font-weight: 900;
-        line-height: 1;
-        letter-spacing: -0.05em;
-        background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+        color: #fff;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+        animation: corePulse 3s ease-in-out infinite alternate;
       }
+
+      @keyframes corePulse {
+        from { transform: scale(0.96); box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
+        to { transform: scale(1.04); box-shadow: 0 0 35px rgba(0, 240, 255, 0.8), 0 0 50px rgba(168, 85, 247, 0.5); }
+      }
+
+      /* TRUE CYBERPUNK 3D GLITCH 404 */
+      .glitch-code-wrap {
+        position: relative;
+        user-select: none;
+        margin-bottom: 0.5rem;
+      }
+
+      .error-code-glitch {
+        font-family: var(--font-heading);
+        font-size: clamp(6rem, 16vw, 11rem);
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        color: #ffffff;
+        position: relative;
+        display: inline-block;
+        text-shadow:
+          0 0 20px rgba(0, 240, 255, 0.6),
+          0 0 60px rgba(99, 102, 241, 0.4);
+      }
+
+      /* Glitch pseudo elements */
+      .error-code-glitch::before,
+      .error-code-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .error-code-glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 var(--glitch-magenta);
+        clip-path: inset(24% 0 58% 0);
+        animation: glitchAnim1 2.5s infinite linear alternate-reverse;
+      }
+
+      .error-code-glitch::after {
+        left: -2px;
+        text-shadow: 2px 0 var(--glitch-cyan);
+        clip-path: inset(62% 0 18% 0);
+        animation: glitchAnim2 3.2s infinite linear alternate-reverse;
+      }
+
+      @keyframes glitchAnim1 {
+        0% { clip-path: inset(40% 0 45% 0); transform: translate(-3px, -1px); }
+        20% { clip-path: inset(10% 0 70% 0); transform: translate(3px, 1px); }
+        40% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 2px); }
+        60% { clip-path: inset(25% 0 50% 0); transform: translate(2px, -2px); }
+        80% { clip-path: inset(80% 0 5% 0); transform: translate(-1px, 1px); }
+        100% { clip-path: inset(5% 0 85% 0); transform: translate(1px, -1px); }
+      }
+
+      @keyframes glitchAnim2 {
+        0% { clip-path: inset(60% 0 15% 0); transform: translate(3px, 2px); }
+        25% { clip-path: inset(15% 0 65% 0); transform: translate(-3px, -1px); }
+        50% { clip-path: inset(85% 0 5% 0); transform: translate(2px, -2px); }
+        75% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 1px); }
+        100% { clip-path: inset(50% 0 30% 0); transform: translate(1px, 2px); }
+      }
+
+      /* Titles and Shimmer */
       .error-title {
         font-family: var(--font-heading);
-        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-size: clamp(1.4rem, 2.8vw, 2.1rem);
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, #ffffff 0%, #00f0ff 50%, #a855f7 100%);
+        background-size: 200% 200%;
+        animation: titleShimmer 6s ease infinite alternate;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
+
+      @keyframes titleShimmer {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+      }
+
       .error-desc {
-        color: var(--text-muted);
-        max-width: 500px;
+        color: #94a3b8;
+        max-width: 520px;
+        margin-bottom: 1.6rem;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* Live Diagnostic Console */
+      .diagnostic-box {
+        width: 100%;
+        max-width: 560px;
+        background: rgba(3, 8, 20, 0.9);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        text-align: left;
         margin-bottom: 2rem;
-        font-size: 1.05rem;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+      }
+
+      .diagnostic-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.72rem;
+      }
+
+      .diagnostic-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        color: #38bdf8;
+      }
+
+      .diag-err {
+        color: #ff3366;
+        font-weight: 600;
+      }
+
+      .diag-ok {
+        color: #10b981;
+      }
+
+      .diag-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 14px;
+        background: var(--glitch-cyan);
+        vertical-align: middle;
+        margin-left: 4px;
+        animation: cursorBlink 0.8s infinite;
+      }
+
+      @keyframes cursorBlink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+
+      /* Buttons & Actions */
+      .action-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .btn-glow-cyber {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-glow-cyber::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .btn-glow-cyber:hover::before {
+        left: 100%;
+      }
+
+      .countdown-pill {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-top: 1.2rem;
+        font-family: var(--font-mono);
+      }
+
+      .countdown-num {
+        color: var(--glitch-cyan);
+        font-weight: 700;
+      }
+
+      .cancel-countdown-btn {
+        background: none;
+        border: none;
+        color: #94a3b8;
+        text-decoration: underline;
+        font-size: 0.78rem;
+        cursor: pointer;
+        margin-left: 0.5rem;
+      }
+
+      .cancel-countdown-btn:hover {
+        color: #fff;
+      }
+
+      @media (max-width: 640px) {
+        .hud-frame {
+          inset: 0.75rem;
+          font-size: 0.65rem;
+        }
+        .error-page-container {
+          padding: 2rem 1.25rem;
+          width: 95vw;
+        }
+        .action-row {
+          flex-direction: column;
+          width: 100%;
+        }
+        .action-row .btn {
+          width: 100%;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
-    <div class="error-page-container">
-      <div class="brand-badge" style="margin-bottom: 2rem; width: 50px; height: 50px; font-size: 1.4rem;">AP</div>
-      <div class="error-code">404</div>
-      <h1 class="error-title">Coordinate Not Found in Neural Net</h1>
-      <p class="error-desc">
-        The destination you are trying to reach does not exist or has been relocated to another dimension.
-      </p>
-      <div class="cta-row" style="justify-content: center;">
-        <a href="index.html" class="btn btn-primary btn-lg">
-          &larr; Return to Portfolio
-        </a>
+    <!-- 60FPS Interactive Neural Background Canvas -->
+    <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+
+    <!-- Scanline & Laser Overlay -->
+    <div class="scanline-overlay" aria-hidden="true"></div>
+    <div class="laser-sweep" aria-hidden="true"></div>
+
+    <!-- Sci-Fi Telemetry HUD Frame -->
+    <div class="hud-frame" aria-hidden="true">
+      <div class="hud-row">
+        <div class="hud-bracket">
+          <span class="hud-blink-dot"></span>
+          <span>CLUSTER_ERR: 0x404_NULL_POINTER</span>
+        </div>
+        <div class="hud-bracket">
+          <span>LATENCY: 1.2ms</span>
+        </div>
+      </div>
+      <div class="hud-row">
+        <div class="hud-bracket">
+          <span>NODE: AP-NEURAL-GATEWAY</span>
+        </div>
+        <div class="hud-bracket">
+          <span>STATUS: ISOLATED</span>
+        </div>
       </div>
     </div>
+
+    <!-- Ambient Follower Glow -->
+    <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
+
+    <!-- Main 3D Card Stage -->
+    <main class="error-page-container" id="card-stage" role="main">
+      <!-- Quantum Radar Core -->
+      <div class="quantum-core-wrapper" aria-hidden="true">
+        <div class="radar-ring ring-1">
+          <span class="orbital-node"></span>
+        </div>
+        <div class="radar-ring ring-2"></div>
+        <div class="radar-ring ring-3"></div>
+        <div class="core-badge">AP</div>
+      </div>
+
+      <!-- Glitch 404 Heading -->
+      <div class="glitch-code-wrap">
+        <div class="error-code-glitch" data-text="404" aria-label="Error 404">404</div>
+      </div>
+
+      <h1 class="error-title">Coordinate Not Found in Neural Net</h1>
+      <p class="error-desc">
+        The destination vector you requested does not exist or has drifted into another manifold. All 33 active project clusters remain online at base.
+      </p>
+
+      <!-- Live Diagnostics Terminal -->
+      <div class="diagnostic-box" aria-live="polite">
+        <div class="diagnostic-header">
+          <span>DIAGNOSTIC_TELEMETRY // LOG</span>
+          <span id="sys-time">00:00:00 IST</span>
+        </div>
+        <div class="diagnostic-lines" id="diag-lines">
+          <div>&gt; traceroute(target_url) ... <span class="diag-err">[404 UNRESOLVED]</span></div>
+          <div>&gt; neural_cluster_scan() ... <span class="diag-ok">[33 REPOS ONLINE]</span></div>
+          <div>&gt; recovery_protocol ... <span class="diag-ok">READY</span><span class="diag-cursor"></span></div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-row">
+        <a href="index.html" class="btn btn-primary btn-lg btn-glow-cyber" id="return-btn">
+          &larr; Re-anchor to Portfolio Nexus
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="play-sound-btn" title="Toggle audio feedback">
+          🔊 Sound FX
+        </button>
+      </div>
+
+      <!-- Auto-Redirect Countdown -->
+      <div class="countdown-pill" id="countdown-wrap">
+        Auto-returning to portfolio in <span class="countdown-num" id="countdown-val">12</span>s
+        <button type="button" class="cancel-countdown-btn" id="cancel-countdown-btn">Cancel</button>
+      </div>
+    </main>
+
+    <script>
+      // ==========================================================================
+      // HIGH-LEVEL CANVAS & INTERACTIVE 3D PARALLAX CONTROLLER
+      // ==========================================================================
+      (function () {
+        const canvas = document.getElementById("matrix-canvas");
+        const ctx = canvas.getContext("2d");
+        const cardStage = document.getElementById("card-stage");
+        const ambientGlow = document.getElementById("ambient-glow");
+        const sysTime = document.getElementById("sys-time");
+        const countdownVal = document.getElementById("countdown-val");
+        const cancelCountdownBtn = document.getElementById("cancel-countdown-btn");
+        const countdownWrap = document.getElementById("countdown-wrap");
+        const soundBtn = document.getElementById("play-sound-btn");
+
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+        let mouseX = width / 2;
+        let mouseY = height / 2;
+        let soundEnabled = true;
+
+        window.addEventListener("resize", () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        // 1. Web Audio Synthesizer for 404 Interaction
+        let audioCtx = null;
+        function playChime(freq1 = 440, freq2 = 880, duration = 0.08) {
+          if (!soundEnabled) return;
+          try {
+            if (!audioCtx) {
+              const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+              if (AudioCtxClass) audioCtx = new AudioCtxClass();
+            }
+            if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(freq1, now);
+            osc.frequency.exponentialRampToValueAtTime(freq2, now + duration);
+
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+            osc.start(now);
+            osc.stop(now + duration);
+          } catch (e) {}
+        }
+
+        if (soundBtn) {
+          soundBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            soundBtn.textContent = soundEnabled ? "🔊 Sound FX" : "🔇 Sound Muted";
+            if (soundEnabled) playChime(520, 880, 0.1);
+          });
+        }
+
+        // 2. Interactive 3D Card Tilt on Mouse Move
+        window.addEventListener("pointermove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+
+          // Ambient Glow follower
+          if (ambientGlow) {
+            ambientGlow.style.transform = `translate3d(${mouseX - 300}px, ${mouseY - 300}px, 0)`;
+            ambientGlow.style.opacity = "0.75";
+          }
+
+          // Card 3D tilt calculation
+          if (cardStage && window.innerWidth > 768) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const deltaX = (mouseX - centerX) / centerX;
+            const deltaY = (mouseY - centerY) / centerY;
+
+            const rotateY = deltaX * 8; // degrees
+            const rotateX = -deltaY * 8;
+
+            cardStage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          }
+        });
+
+        // Reset card tilt on leave
+        window.addEventListener("mouseleave", () => {
+          if (cardStage) {
+            cardStage.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+          }
+        });
+
+        // 3. High-Performance Particle Nebula Vortex Canvas
+        const particles = [];
+        const particleCount = Math.min(80, Math.floor((width * height) / 16000));
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+            size: Math.random() * 1.8 + 0.6,
+            hue: Math.random() > 0.5 ? 186 : 280, // cyan or magenta
+            alpha: Math.random() * 0.5 + 0.2
+          });
+        }
+
+        function drawCanvas() {
+          ctx.clearRect(0, 0, width, height);
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+
+            // Draw particle
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${p.alpha})`;
+            ctx.fill();
+
+            // Connect nearby particles
+            for (let j = i + 1; j < particles.length; j++) {
+              const p2 = particles[j];
+              const dx = p.x - p2.x;
+              const dy = p.y - p2.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+
+              if (dist < 110) {
+                const alpha = (1 - dist / 110) * 0.25;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+              }
+            }
+
+            // Mouse interaction lines
+            const mdx = p.x - mouseX;
+            const mdy = p.y - mouseY;
+            const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mdist < 140) {
+              const malpha = (1 - mdist / 140) * 0.45;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(mouseX, mouseY);
+              ctx.strokeStyle = `rgba(255, 0, 128, ${malpha})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+
+          requestAnimationFrame(drawCanvas);
+        }
+        requestAnimationFrame(drawCanvas);
+
+        // 4. Clock & Telemetry Updates
+        function updateClock() {
+          if (!sysTime) return;
+          const now = new Date();
+          const opts = { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
+          try {
+            sysTime.textContent = `${new Intl.DateTimeFormat("en-US", opts).format(now)} IST`;
+          } catch {
+            sysTime.textContent = now.toLocaleTimeString();
+          }
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // 5. Auto-Redirect Countdown (12 seconds)
+        let secondsLeft = 12;
+        let countdownTimer = setInterval(() => {
+          secondsLeft--;
+          if (countdownVal) countdownVal.textContent = String(secondsLeft);
+          if (secondsLeft <= 0) {
+            clearInterval(countdownTimer);
+            window.location.href = "index.html";
+          }
+        }, 1000);
+
+        if (cancelCountdownBtn) {
+          cancelCountdownBtn.addEventListener("click", () => {
+            clearInterval(countdownTimer);
+            if (countdownWrap) {
+              countdownWrap.innerHTML = `<span>Auto-return cancelled. Re-anchor manually when ready.</span>`;
+            }
+            playChime(320, 240, 0.08);
+          });
+        }
+
+        // Return button audio chime
+        const returnBtn = document.getElementById("return-btn");
+        if (returnBtn) {
+          returnBtn.addEventListener("mouseenter", () => playChime(440, 660, 0.05));
+        }
+      })();
+    </script>
   </body>
 </html>

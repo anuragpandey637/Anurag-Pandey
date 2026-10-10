@@ -1709,7 +1709,8 @@ function initEventListeners() {
     });
   }
 
-  // Sticky Header Blur Elevation
+  // Sticky Header Blur Elevation & Scroll Progress Bar
+  const scrollProgressBar = document.getElementById("scroll-progress-bar");
   window.addEventListener("scroll", () => {
     if (siteHeader) {
       if (window.scrollY > 40) {
@@ -1717,6 +1718,11 @@ function initEventListeners() {
       } else {
         siteHeader.classList.remove("header-scrolled");
       }
+    }
+    if (scrollProgressBar) {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTotal > 0 ? (window.scrollY / scrollTotal) * 100 : 0;
+      scrollProgressBar.style.width = `${progress}%`;
     }
   });
 
