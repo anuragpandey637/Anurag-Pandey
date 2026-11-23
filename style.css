@@ -6421,3 +6421,401 @@ mark.search-highlight {
     bottom: 1.5rem;
   }
 }
+
+
+/* ==========================================================================
+   ==========================================================================
+   THE 500X CYBERPUNK / HIGH-TECH SCI-FI LAB VISUAL OVERHAUL
+   Aesthetic Engine: Awwwards-Level Cyberpunk â€¢ Holographic Glassmorphism â€¢
+   Conic Gradient Laser Borders â€¢ Sci-Fi HUD Accents â€¢ Quantum Mesh Auras
+   ==========================================================================
+   ========================================================================== */
+
+@property --neon-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes neonRotate {
+  0% { --neon-angle: 0deg; }
+  100% { --neon-angle: 360deg; }
+}
+
+@keyframes textShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes laserSweep {
+  0% { left: -30%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { left: 130%; opacity: 0; }
+}
+
+@keyframes auroraFloat1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(80px, 60px) scale(1.15); }
+}
+
+@keyframes auroraFloat2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1.1); }
+  50% { transform: translate(-70px, -50px) scale(0.95); }
+}
+
+@keyframes radarPulseRing {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  70% { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes hologramScan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+/* 1. ATMOSPHERIC CYBER BACKGROUND WITH RADIAL AURORA MESH & RETRO-GRID */
+body {
+  position: relative;
+  background-color: #030712 !important;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 35%, rgba(56, 189, 248, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 50% 75%, rgba(168, 85, 247, 0.16) 0%, transparent 50%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px !important;
+  background-attachment: fixed !important;
+}
+
+/* Ambient Floating Aurora Mesh Layers */
+body::before {
+  content: "";
+  position: fixed;
+  top: -15vw;
+  left: -10vw;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(99, 102, 241, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: auroraFloat1 18s ease-in-out infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 5vw;
+  right: -10vw;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(168, 85, 247, 0.14) 40%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: auroraFloat2 22s ease-in-out infinite;
+}
+
+/* 2. HYPER-FUTURISTIC KINETIC TYPOGRAPHY WITH GLOW */
+.section-title, .hero-title, h1, h2, h3 {
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
+}
+
+.gradient-text, h3 span.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 25%, #38bdf8 55%, #c084fc 80%, #ffffff 100%) !important;
+  background-size: 250% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: textShine 5s linear infinite !important;
+  display: inline-block;
+  filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.45));
+}
+
+.eyebrow {
+  color: #38bdf8 !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.6) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #38bdf8;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
+  animation: radarPulseRing 2s infinite ease-out;
+}
+
+/* 3. CONIC GRADIENT ROTATING LASER BORDERS ON CARDS */
+.flagship-spotlight,
+.architecture-simulator-card,
+.telemetry-card,
+.project-card,
+.edu-card,
+.cert-card,
+.achievement-highlight-card,
+.timeline-card,
+.contact-card {
+  position: relative;
+  background: rgba(13, 20, 36, 0.82) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 10px 30px -5px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.15) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden;
+}
+
+/* Animated Rotating Conic Laser Edge on Hover */
+.flagship-spotlight:hover,
+.architecture-simulator-card:hover,
+.project-card:hover,
+.telemetry-card:hover,
+.edu-card:hover {
+  border-color: rgba(99, 102, 241, 0.6) !important;
+  box-shadow: 
+    0 22px 55px -10px rgba(99, 102, 241, 0.35),
+    0 0 25px rgba(56, 189, 248, 0.25),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Specular Light Sweep Animation on Card Hover */
+.flagship-spotlight::before,
+.project-card::before,
+.architecture-simulator-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: left 0.75s ease;
+  z-index: 1;
+}
+
+.flagship-spotlight:hover::before,
+.project-card:hover::before,
+.architecture-simulator-card:hover::before {
+  left: 150%;
+}
+
+/* 4. SCI-FI CORNER HUD BRACKETS [ ] */
+.flagship-spotlight::after,
+.architecture-simulator-card::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid #38bdf8;
+  border-right: 2px solid #38bdf8;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* 5. ULTRA-CHARGED NEON BUTTONS */
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #38bdf8 100%) !important;
+  background-size: 200% 200% !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 
+    0 0 20px rgba(99, 102, 241, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background-position: 100% 100% !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 
+    0 0 35px rgba(99, 102, 241, 0.75),
+    0 0 15px rgba(56, 189, 248, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn-secondary {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(99, 102, 241, 0.2) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 6. HOLOGRAPHIC SHIMMER BADGES & PILLS */
+.badge, .status-indicator, .tag, .count-pill, .flagship-star-tag {
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.badge-glow {
+  background: rgba(99, 102, 241, 0.15) !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.35) !important;
+}
+
+.flagship-star-tag {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(234, 179, 8, 0.1) 100%) !important;
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  color: #fbbf24 !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.3) !important;
+  font-weight: 700 !important;
+}
+
+/* 7. NEURAL TIMELINE NODES WITH CONCENTRIC RADAR PULSE */
+.timeline-dot {
+  box-shadow: 0 0 18px var(--primary), 0 0 35px var(--primary) !important;
+  position: relative;
+}
+
+.timeline-dot::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  animation: radarPulseRing 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* 8. SKILLS MATRIX GLOW MATRIX */
+.skill-pill {
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.skill-pill:hover {
+  background: rgba(99, 102, 241, 0.22) !important;
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45) !important;
+}
+
+.skill-pill.highlight {
+  background: rgba(56, 189, 248, 0.15) !important;
+  border-color: #38bdf8 !important;
+  color: #38bdf8 !important;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.3) !important;
+}
+
+/* 9. PROOF METRICS HUD ACCENTS */
+.proof-card {
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  position: relative;
+}
+
+.proof-card:hover {
+  border-color: rgba(56, 189, 248, 0.5) !important;
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.2) !important;
+  transform: translateY(-3px) !important;
+}
+
+.proof-val {
+  font-family: var(--font-mono) !important;
+  background: linear-gradient(135deg, #fff 0%, #38bdf8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4)) !important;
+}
+
+/* 10. DYNAMIC LASER SECTION SEPARATORS */
+.section::after {
+  content: "";
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  height: 1px;
+  margin: 5rem auto 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.3) 25%,
+    rgba(56, 189, 248, 0.8) 50%,
+    rgba(168, 85, 247, 0.3) 75%,
+    transparent 100%
+  );
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* 11. CYBER HUD FLOATING DOCK */
+.cyber-hud-dock {
+  background: rgba(10, 15, 30, 0.88) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(99, 102, 241, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 12. FUTURISTIC NEON SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1 0%, #38bdf8 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4f46e5 0%, #06b6d4 100%);
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+  text-shadow: 0 0 8px #38bdf8;
+}
