@@ -3,7 +3,7 @@
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Live%20Website-black?logo=vercel)](https://anurag-pandey.vercel.app/)
 [![Flagship API](https://img.shields.io/badge/Render-Flagship%20Solver%20API-46E3B7?logo=render)](https://screensolver-api.onrender.com/)
 [![GitHub Profile](https://img.shields.io/badge/GitHub-Anurag637-181717?logo=github)](https://github.com/Anurag637)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin)](https://www.linkedin.com/in/anurag-pandey-connect/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin)](https://www.linkedin.com/in/anurag637/)
 [![LeetCode](https://img.shields.io/badge/LeetCode-Anurag637-FFA116?logo=leetcode)](https://leetcode.com/u/Anurag637/)
 [![Email](https://img.shields.io/badge/Email-anurag637%40zohomail.in-0072C6?logo=mail.ru)](mailto:anurag637@zohomail.in)
 
@@ -78,5 +78,5 @@ AI & Machine Learning Engineer with hands-on experience in developing and deploy
 
 - **Email:** [anurag637@zohomail.in](mailto:anurag637@zohomail.in)
 - **GitHub:** [@Anurag637](https://github.com/Anurag637)
-- **LinkedIn:** [/in/anurag-pandey-connect](https://www.linkedin.com/in/anurag-pandey-connect/)
+- **LinkedIn:** [/in/anurag637](https://www.linkedin.com/in/anurag637/)
 - **LeetCode:** [@Anurag637](https://leetcode.com/u/Anurag637/)
