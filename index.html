@@ -63,6 +63,8 @@
     </script>
   </head>
   <body>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
     <!-- Top Viewport Scroll Progress Indicator -->
     <div class="scroll-progress-bar" id="scroll-progress-bar" aria-hidden="true"></div>
 
@@ -827,6 +829,12 @@
               <button type="button" class="lab-nav-btn active" data-lab="qchat">
                 🤖 QChat Vector Cache Sandbox
               </button>
+              <button type="button" class="lab-nav-btn" data-lab="topology">
+                🌐 Live System Topology Graph
+              </button>
+              <button type="button" class="lab-nav-btn" data-lab="flamegraph">
+                ⚡ Latency Flamegraph Diff
+              </button>
               <button type="button" class="lab-nav-btn" data-lab="deepfake">
                 🛡️ Deepfake Forensic Inspector
               </button>
@@ -993,6 +1001,47 @@
                   <div class="modal-decision-card" style="margin: 0;">
                     <strong>Vectorized Pathway Optimization:</strong> Real-time supply-demand elasticity curves computed without black-box ML delay.
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lab Panel 4: Live Microservice Topology Graph -->
+            <div class="lab-panel" id="lab-panel-topology">
+              <div class="topology-graph-wrap">
+                <div class="topology-header-bar">
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="telemetry-beacon"></span>
+                    <strong style="color: #e2e8f0;">LIVE MICROSERVICE TOPOLOGY & PACKET FLOW ENGINE</strong>
+                  </div>
+                  <div class="topology-controls-hint">
+                    <span>• Hover node to inspect telemetry</span>
+                    <span>• Drag nodes to rearrange topology</span>
+                  </div>
+                </div>
+
+                <div style="position: relative;">
+                  <canvas id="topology-canvas"></canvas>
+                  <div class="topology-node-tooltip" id="topology-tooltip"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lab Panel 5: Architecture Optimization Diff & Latency Flamegraph -->
+            <div class="lab-panel" id="lab-panel-flamegraph">
+              <div class="diff-flamegraph-wrap">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+                  <div>
+                    <h4 style="font-size: 1.2rem; margin-bottom: 0.2rem;">Empirical Latency Breakdown & Optimization Diff</h4>
+                    <p style="font-size: 0.84rem; color: var(--text-dim); margin: 0;">Compare synchronous un-optimized baselines vs. Anurag's async vector-cached architecture.</p>
+                  </div>
+                  <div class="diff-toggle-bar">
+                    <button type="button" class="diff-toggle-btn active" id="diff-btn-optimized">⚡ Anurag's Architecture (312ms / 42ms)</button>
+                    <button type="button" class="diff-toggle-btn" id="diff-btn-naive">⚠️ Naive Baseline (1,620ms)</button>
+                  </div>
+                </div>
+
+                <div class="flamegraph-timeline" id="flamegraph-timeline">
+                  <!-- Dynamically populated flamegraph bars -->
                 </div>
               </div>
             </div>

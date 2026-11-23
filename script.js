@@ -693,13 +693,34 @@ function renderProjects() {
     card.setAttribute("data-id", project.id);
     card.style.animationDelay = `${(idx % 6) * 0.04}s`;
 
-    // Interactive 3D Cursor Spotlight Glare
+    // 3D Perspective Tilt with Specular Glare Dynamics
+    const maxTilt = 10;
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
+      const centerX = x / rect.width - 0.5;
+      const centerY = y / rect.height - 0.5;
+      const rotX = -centerY * maxTilt * 2;
+      const rotY = centerX * maxTilt * 2;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(8px)`;
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
+
+      const glare = card.querySelector(".card-glare");
+      if (glare) {
+        const glareX = (x / rect.width) * 100;
+        const glareY = (y / rect.height) * 100;
+        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.03) 50%, transparent 80%)`;
+        glare.style.opacity = "1";
+      }
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+      const glare = card.querySelector(".card-glare");
+      if (glare) glare.style.opacity = "0";
     });
 
     // Category Icon
@@ -757,6 +778,7 @@ function renderProjects() {
     }
 
     card.innerHTML = `
+      <div class="card-glare"></div>
       <div class="card-top-bar">
         <div class="card-category-indicator">
           <span class="category-icon" aria-hidden="true">${categoryIcon}</span>
@@ -2110,3 +2132,290 @@ if (spOccSlider && spTrafficSlider) {
   spOccSlider.addEventListener("input", updateSmartParkCalculation);
   spTrafficSlider.addEventListener("input", updateSmartParkCalculation);
 }
+
+
+// ==============================================================================
+// 15. INTERACTIVE SYSTEM TOPOLOGY GRAPH & FLAMEGRAPH ENGINES
+// ==============================================================================
+
+// 15.1. Interactive Microservice Topology Graph Canvas
+function initTopologyGraph() {
+  const canvas = document.getElementById("topology-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const tooltip = document.getElementById("topology-tooltip");
+
+  let dpr = window.devicePixelRatio || 1;
+  function resizeCanvas() {
+    dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  // Topology Nodes
+  const rect = canvas.getBoundingClientRect();
+  const W = rect.width || 800;
+  const H = rect.height || 340;
+
+  const nodes = [
+    { id: 1, label: "Client Ingestion", role: "Screen & API Payloads", x: W * 0.12, y: H * 0.5, radius: 22, color: "#38bdf8", latency: "<10ms", rps: "1,200 RPS" },
+    { id: 2, label: "FastAPI Gateway", role: "Async Non-blocking Proxy", x: W * 0.36, y: H * 0.32, radius: 26, color: "#6366f1", latency: "18ms", rps: "850+ RPS" },
+    { id: 3, label: "Redis Vector Cache", role: "Cosine Similarity 0.85", x: W * 0.62, y: H * 0.22, radius: 24, color: "#10b981", latency: "42ms (Cache Hit)", rps: "62% Cost Cut" },
+    { id: 4, label: "PyTorch Vision Workers", role: "EfficientNet & OCR", x: W * 0.62, y: H * 0.68, radius: 24, color: "#a855f7", latency: "120ms (DFDC)", rps: "Concurrent Pool" },
+    { id: 5, label: "Pathway Dynamic Pricing", role: "Vectorized Stream Engine", x: W * 0.88, y: H * 0.5, radius: 22, color: "#f59e0b", latency: "25ms", rps: "Real-time Update" }
+  ];
+
+  const edges = [
+    { from: 1, to: 2, label: "HTTP/REST" },
+    { from: 2, to: 3, label: "Redis Socket" },
+    { from: 2, to: 4, label: "Async Task Queue" },
+    { from: 4, to: 5, label: "Feature Stream" },
+    { from: 3, to: 5, label: "Cache Passthrough" }
+  ];
+
+  // Animated Traveling Packets
+  const packets = [
+    { from: 1, to: 2, progress: 0.1, speed: 0.008, color: "#38bdf8" },
+    { from: 2, to: 3, progress: 0.5, speed: 0.012, color: "#10b981" },
+    { from: 2, to: 4, progress: 0.3, speed: 0.007, color: "#a855f7" },
+    { from: 4, to: 5, progress: 0.7, speed: 0.009, color: "#f59e0b" }
+  ];
+
+  let draggedNode = null;
+  let hoveredNode = null;
+
+  function getMousePos(e) {
+    const r = canvas.getBoundingClientRect();
+    return {
+      x: e.clientX - r.left,
+      y: e.clientY - r.top
+    };
+  }
+
+  canvas.addEventListener("mousedown", (e) => {
+    const pos = getMousePos(e);
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      const n = nodes[i];
+      const dx = pos.x - n.x;
+      const dy = pos.y - n.y;
+      if (dx * dx + dy * dy <= n.radius * n.radius) {
+        draggedNode = n;
+        return;
+      }
+    }
+  });
+
+  canvas.addEventListener("mousemove", (e) => {
+    const pos = getMousePos(e);
+    if (draggedNode) {
+      draggedNode.x = pos.x;
+      draggedNode.y = pos.y;
+    }
+
+    // Check hover for tooltip
+    hoveredNode = null;
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      const n = nodes[i];
+      const dx = pos.x - n.x;
+      const dy = pos.y - n.y;
+      if (dx * dx + dy * dy <= n.radius * n.radius) {
+        hoveredNode = n;
+        break;
+      }
+    }
+
+    if (hoveredNode && tooltip) {
+      tooltip.style.left = `${pos.x + 15}px`;
+      tooltip.style.top = `${pos.y - 15}px`;
+      tooltip.innerHTML = `
+        <strong style="color: ${hoveredNode.color};">${escapeHtml(hoveredNode.label)}</strong><br>
+        Role: ${escapeHtml(hoveredNode.role)}<br>
+        Measured Latency: <strong>${escapeHtml(hoveredNode.latency)}</strong><br>
+        Throughput Metric: <strong>${escapeHtml(hoveredNode.rps)}</strong>
+      `;
+      tooltip.style.opacity = "1";
+    } else if (tooltip) {
+      tooltip.style.opacity = "0";
+    }
+  });
+
+  window.addEventListener("mouseup", () => {
+    draggedNode = null;
+  });
+
+  function renderTopology() {
+    const rect = canvas.getBoundingClientRect();
+    ctx.clearRect(0, 0, rect.width, rect.height);
+
+    // 1. Draw Edges
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+    edges.forEach((edge) => {
+      const s = nodes.find((n) => n.id === edge.from);
+      const t = nodes.find((n) => n.id === edge.to);
+      if (s && t) {
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(t.x, t.y);
+        ctx.stroke();
+      }
+    });
+
+    // 2. Animate and Draw Packets
+    packets.forEach((pkt) => {
+      pkt.progress += pkt.speed;
+      if (pkt.progress > 1) pkt.progress = 0;
+
+      const s = nodes.find((n) => n.id === pkt.from);
+      const t = nodes.find((n) => n.id === pkt.to);
+      if (s && t) {
+        const px = s.x + (t.x - s.x) * pkt.progress;
+        const py = s.y + (t.y - s.y) * pkt.progress;
+
+        ctx.beginPath();
+        ctx.arc(px, py, 4, 0, Math.PI * 2);
+        ctx.fillStyle = pkt.color;
+        ctx.shadowColor = pkt.color;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    });
+
+    // 3. Draw Nodes
+    nodes.forEach((n) => {
+      // Glow
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius + 3, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+      ctx.fill();
+      ctx.lineWidth = hoveredNode === n ? 3 : 1.8;
+      ctx.strokeStyle = n.color;
+      ctx.stroke();
+
+      // Inner fill
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius - 3, 0, Math.PI * 2);
+      ctx.fillStyle = n.color;
+      ctx.fill();
+
+      // Node label
+      ctx.font = "bold 11px Inter, sans-serif";
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "center";
+      ctx.fillText(n.label, n.x, n.y + n.radius + 15);
+    });
+
+    requestAnimationFrame(renderTopology);
+  }
+
+  requestAnimationFrame(renderTopology);
+}
+
+// 15.2. Architecture Optimization Flamegraph Diff Controller
+function initFlamegraphDiff() {
+  const timelineEl = document.getElementById("flamegraph-timeline");
+  const btnOptimized = document.getElementById("diff-btn-optimized");
+  const btnNaive = document.getElementById("diff-btn-naive");
+  if (!timelineEl || !btnOptimized || !btnNaive) return;
+
+  const dataOptimized = [
+    {
+      title: "1. Screen Capture & SIMD Preprocessing",
+      total: "35ms",
+      segments: [
+        { label: "Capture (10ms)", width: "28%", color: "#38bdf8" },
+        { label: "libjpeg SIMD (25ms)", width: "72%", color: "#6366f1" }
+      ]
+    },
+    {
+      title: "2. Vector Cache Lookup (Redis)",
+      total: "42ms (Cache Hit)",
+      segments: [
+        { label: "Embedding (8ms)", width: "20%", color: "#a855f7" },
+        { label: "Cosine Match (34ms)", width: "80%", color: "#10b981" }
+      ]
+    },
+    {
+      title: "3. Uncached Vision Reasoning (Worst-case Miss)",
+      total: "312ms (Target P99)",
+      segments: [
+        { label: "OCR AST (72ms)", width: "23%", color: "#6366f1" },
+        { label: "Vision LLM (180ms)", width: "58%", color: "#38bdf8" },
+        { label: "JSON Parse (60ms)", width: "19%", color: "#10b981" }
+      ]
+    }
+  ];
+
+  const dataNaive = [
+    {
+      title: "1. Naive Screen Capture & Synchronous PIL",
+      total: "420ms (Blocking Event Loop)",
+      segments: [
+        { label: "Raw Uncompressed Buffer (120ms)", width: "28%", color: "#ef4444" },
+        { label: "Blocking Python PIL (300ms)", width: "72%", color: "#f97316" }
+      ]
+    },
+    {
+      title: "2. Monolithic Uncached LLM Request",
+      total: "1,200ms (High Token Billing)",
+      segments: [
+        { label: "No Cache (0ms)", width: "0%", color: "#64748b" },
+        { label: "Full Prompt Token Generation (1,200ms)", width: "100%", color: "#ef4444" }
+      ]
+    },
+    {
+      title: "3. Total Cumulative Latency",
+      total: "1,620ms (Failed User Experience)",
+      segments: [
+        { label: "Server I/O Lag (1,620ms)", width: "100%", color: "#dc2626" }
+      ]
+    }
+  ];
+
+  function renderFlamegraph(dataset) {
+    timelineEl.innerHTML = dataset.map((row) => `
+      <div class="flame-row">
+        <div class="flame-label-row">
+          <strong style="color: #e2e8f0;">${escapeHtml(row.title)}</strong>
+          <span style="color: #38bdf8; font-weight: 700;">${escapeHtml(row.total)}</span>
+        </div>
+        <div class="flame-bar-track">
+          ${row.segments.map(seg => `
+            <div class="flame-segment" style="width: ${seg.width}; background: ${seg.color};">
+              ${escapeHtml(seg.label)}
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  renderFlamegraph(dataOptimized);
+
+  btnOptimized.addEventListener("click", () => {
+    btnOptimized.classList.add("active");
+    btnNaive.classList.remove("active");
+    renderFlamegraph(dataOptimized);
+    playUiSound("success");
+  });
+
+  btnNaive.addEventListener("click", () => {
+    btnNaive.classList.add("active");
+    btnOptimized.classList.remove("active");
+    renderFlamegraph(dataNaive);
+    playUiSound("cmd");
+  });
+}
+
+// Initialize on DOM ready
+document.addEventListener("DOMContentLoaded", () => {
+  initTopologyGraph();
+  initFlamegraphDiff();
+});
