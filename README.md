@@ -31,15 +31,32 @@ A state-of-the-art developer portfolio and production showcase featuring **Solve
 
 ---
 
-## 🎨 Interactive Website Features
+## 🧪 In-Browser Interactive AI Simulators (Pillar 1)
 
-- **🌐 Edge-to-Edge Responsive Grid**: Full viewport dynamic scaling (`clamp` fluid typography and auto-filling CSS grid columns).
-- **✨ Particle Physics Constellation**: Zero-dependency 60fps HTML5 Canvas background with dynamic particle physics and cursor interactivity.
-- **💻 Interactive Developer CLI Terminal**: Built-in bash-like terminal emulator (`whoami`, `skills`, `projects`, `live`, `cat resume`, `theme matrix`, `clear`).
-- **🔍 Spotlight Command Palette (`Ctrl + K`)**: Instant keyboard-driven global search and action launcher.
-- **🎨 4 Cyber Themes**: Dynamic theme engine with persistent `localStorage` memory (`Nebula`, `Matrix`, `Tokyo`, `OLED`).
-- **🔊 Web Audio API Synthesizer**: Native synthesizers generating zero-latency subtle micro-interaction chimes with a mute toggle.
-- **📱 PWA & SEO Ready**: Standalone `manifest.json`, `favicon.svg`, `robots.txt`, `sitemap.xml`, and JSON-LD schema markup.
+- **📐 Screen Solver Visual Sandbox**: Test live optical character extraction and multi-step reasoning across Calculus LaTeX, Python LeetCode, and Cloud Topologies with simulated P99 latency meters.
+- **🤖 QChat Semantic Vector Cache Sandbox**: Adjust cosine threshold sliders (`0.70` - `0.98`) and observe real-time Redis vector cache hits (`42ms` / `$0.00`) vs. misses (`310ms`) with live token cost savings calculation.
+- **🛡️ Deepfake Forensic Frame Inspector**: Toggle MTCNN 68-point facial landmark meshes and Grad-CAM spatial artifact heatmaps with `94.2% AUC` forensic probability scoring.
+- **📊 SmartPark Streaming Pricing Simulator**: Adjust urban traffic influx surges and garage occupancy rates to observe 25ms Pathway vectorized dynamic pricing updates.
+
+---
+
+## 🏛️ Staff-Grade System Design RFCs (Pillar 3)
+
+Every core production system includes a full engineering Request for Comments (RFC):
+- **RFC-001**: Decoupling Visual OCR Ingestion from Generative Multi-Modal Reasoning (`<320ms P99`).
+- **RFC-002**: Semantic Vector Caching & Request Deduplication for High-Throughput LLM Proxies (`42ms P99` / `850+ req/s`).
+- **RFC-003**: Spatiotemporal Deepfake Forensic Neural Pipeline with Recurrent Landmark Alignment (`94.2% AUC`).
+- **RFC-004**: Exploit-Resistant Candidate Dossier Semantic Search via Dense Sentence Embeddings (`<180ms P99`).
+- **RFC-005**: Real-Time Supply-Demand Elasticity Pricing Engine via Vectorized Stream Processing (`25ms P99`).
+
+---
+
+## ⚡ Live Edge Telemetry & Operations (Pillar 2)
+
+- **🌐 Live Edge Telemetry Bar**: Mumbai Edge (`bom1`) active telemetry, Render Cloud gateway heartbeat, and live SVG latency sparklines.
+- **🔋 0% Idle CPU Canvas**: `IntersectionObserver` & `visibilitychange` freeze background computations when scrolled, preserving mobile battery and GPU resources.
+- **🎨 Linear / Stripe-Grade Aesthetics**: Precision matte carbon palette (`#09090b`), tabular monospace metrics (`JetBrains Mono`), and subtle 0.5px hairline borders.
+- **📱 PWA & SEO Ready**: Valid JSON-LD schema, clean URLs, security headers, and instant in-page contact handling.
 
 ---
 

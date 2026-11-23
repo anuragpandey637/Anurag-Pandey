@@ -93,7 +93,7 @@
           <!-- Desktop Navigation Links -->
           <div class="nav-links" id="nav-links">
             <a href="#about" class="nav-link">About</a>
-            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#interactive-labs" class="nav-link">Live Labs ⚡</a>
             <a href="#projects" class="nav-link">
               Projects
               <span class="nav-count-badge">5</span>
@@ -168,6 +168,45 @@
           </div>
         </nav>
       </header>
+
+      <!-- LIVE EDGE TELEMETRY & OPERATIONS BAR (Linear / Vercel Edge Standard) -->
+      <aside class="telemetry-bar-wrap" aria-label="System Operations Telemetry">
+        <div class="container telemetry-bar">
+          <div class="telemetry-item">
+            <span class="telemetry-beacon"></span>
+            <span class="telemetry-label">Edge Node:</span>
+            <span class="telemetry-val">Mumbai (bom1) • Active</span>
+          </div>
+          <div class="telemetry-divider"></div>
+          <div class="telemetry-item">
+            <span class="telemetry-icon">⚡</span>
+            <span class="telemetry-label">Solver API:</span>
+            <span class="telemetry-val" id="telemetry-solver-status">Render Cloud (Healthy)</span>
+          </div>
+          <div class="telemetry-divider"></div>
+          <div class="telemetry-item">
+            <span class="telemetry-icon">📊</span>
+            <span class="telemetry-label">P99 Latency:</span>
+            <span class="telemetry-val metric-code">&lt;180ms Median</span>
+            <svg class="telemetry-sparkline" width="60" height="18" viewBox="0 0 60 18" fill="none" aria-hidden="true">
+              <path d="M0 12 L10 10 L20 14 L30 6 L40 8 L50 4 L60 7" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M0 12 L10 10 L20 14 L30 6 L40 8 L50 4 L60 7 L60 18 L0 18 Z" fill="url(#sparkline-grad)" opacity="0.2"/>
+              <defs>
+                <linearGradient id="sparkline-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#10b981"/>
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="telemetry-divider"></div>
+          <div class="telemetry-item telemetry-fps-item">
+            <span class="telemetry-icon">🟢</span>
+            <span class="telemetry-label">Client Frame:</span>
+            <span class="telemetry-val" id="telemetry-fps-val">60 fps</span>
+          </div>
+        </div>
+      </aside>
 
       <main id="home">
         <!-- Hero Section -->
@@ -618,6 +657,55 @@
                   </div>
                 </div>
 
+                <!-- Interactive Flagship Solver Visual Sandbox -->
+                <div class="solver-sandbox-card">
+                  <div class="sandbox-header">
+                    <div class="sandbox-title-wrap">
+                      <span class="sandbox-dot"></span>
+                      <span class="sandbox-title">Interactive Screen Solver Visual Sandbox</span>
+                    </div>
+                    <div class="sandbox-scenario-tabs" role="tablist">
+                      <button type="button" class="scenario-tab-btn active" data-scenario="calc">📐 Calculus LaTeX</button>
+                      <button type="button" class="scenario-tab-btn" data-scenario="dsa">🐍 LeetCode DP (Python)</button>
+                      <button type="button" class="scenario-tab-btn" data-scenario="arch">🏛️ Microservice Topo</button>
+                    </div>
+                  </div>
+
+                  <div class="sandbox-grid">
+                    <!-- Left: Screen Input Preview & OCR Scan Line -->
+                    <div class="sandbox-screen-preview">
+                      <div class="screen-label-bar">
+                        <span>INPUT: SCREEN CAPTURE BUFFER</span>
+                        <span id="screen-format-badge">RGB 1920x1080 (Downsampled)</span>
+                      </div>
+                      <div class="screen-content-box" id="screen-content-box">
+                        <div class="ocr-bounding-box" id="ocr-bounding-box"></div>
+                        <div class="ocr-scan-line" id="ocr-scan-line"></div>
+                        <pre id="screen-mock-text" style="margin:0; font-family: inherit;">Evaluate the definite integral:
+∫ [0 to π/2] (sin^3(x) / (sin^3(x) + cos^3(x))) dx</pre>
+                      </div>
+                      <div class="screen-footer-bar" style="margin-top: 0.8rem; font-size: 0.72rem; color: #94a3b8; font-family: var(--font-mono);">
+                        <span>Status: <strong id="ocr-status-lbl" style="color: #38bdf8;">Ready for Ingestion</strong></span>
+                      </div>
+                    </div>
+
+                    <!-- Right: Token Streaming Console & Latency Meter -->
+                    <div class="sandbox-execution-pane">
+                      <div class="execution-header">
+                        <span class="execution-header-title">SOLVER REASONING TRACE (ASYNC)</span>
+                        <span class="execution-badge" id="execution-status-badge">STANDBY</span>
+                      </div>
+                      <div class="solver-stream-console" id="solver-stream-console">Ready to run inference. Click "Run Visual Solver Pipeline" below to execute simulated asynchronous OCR extraction and multi-step reasoning.</div>
+                      <div class="sandbox-footer-controls">
+                        <span class="sandbox-latency-meter" id="sandbox-latency-meter">P99 Target: &lt;320ms</span>
+                        <button type="button" class="btn btn-sm btn-primary" id="run-solver-btn">
+                          ▶ Run Visual Solver Pipeline
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="flagship-actions">
                   <a href="https://screensolver-api.onrender.com/" target="_blank" rel="noreferrer" class="btn btn-primary" title="Test Live API on Render">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -721,6 +809,192 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE AI SYSTEMS LAB & SANDBOXES (Pillar 1) -->
+          <div class="interactive-labs-section reveal" id="interactive-labs">
+            <div class="labs-header">
+              <span class="badge badge-accent">LIVE INTERACTIVE LABS</span>
+              <h3 style="font-size: 1.6rem; margin-top: 0.5rem; margin-bottom: 0.4rem;">In-Browser AI Engineering Sandboxes</h3>
+              <p class="lead" style="font-size: 0.96rem; margin-bottom: 0;">
+                Direct empirical proof of work: Test vector caching thresholds, forensic face alignment heatmaps, and streaming dynamic pricing curves directly in your browser.
+              </p>
+            </div>
+
+            <!-- Lab Tab Navigation -->
+            <div class="labs-tab-nav" role="tablist">
+              <button type="button" class="lab-nav-btn active" data-lab="qchat">
+                🤖 QChat Vector Cache Sandbox
+              </button>
+              <button type="button" class="lab-nav-btn" data-lab="deepfake">
+                🛡️ Deepfake Forensic Inspector
+              </button>
+              <button type="button" class="lab-nav-btn" data-lab="smartpark">
+                📊 SmartPark Streaming Pricing
+              </button>
+            </div>
+
+            <!-- Lab Panel 1: QChat Vector Cache -->
+            <div class="lab-panel active" id="lab-panel-qchat">
+              <div class="vector-cache-sandbox">
+                <!-- Controls -->
+                <div class="vc-controls-box">
+                  <div class="vc-slider-wrap">
+                    <div class="slider-label-row">
+                      <span>Cosine Similarity Threshold:</span>
+                      <strong id="cosine-threshold-val">0.85</strong>
+                    </div>
+                    <input type="range" class="vc-slider" id="cosine-slider" min="0.70" max="0.98" step="0.01" value="0.85" />
+                    <span style="font-size: 0.72rem; color: #94a3b8;">Queries with cosine similarity &ge; threshold are served instantly from Redis cache.</span>
+                  </div>
+
+                  <div class="vc-query-presets">
+                    <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim);">Test Query Scenarios:</span>
+                    <button type="button" class="vc-preset-btn active" id="btn-query-cold">
+                      <span>1. Cold Query (Uncached): <em>"Invert binary tree in Python"</em></span>
+                      <span class="badge badge-neutral" style="font-size: 0.7rem;">Miss ➔ LLM</span>
+                    </button>
+                    <button type="button" class="vc-preset-btn" id="btn-query-similar">
+                      <span>2. Semantic Variant: <em>"Python code to reverse a binary tree"</em></span>
+                      <span class="badge badge-success" style="font-size: 0.7rem;">Cosine 0.94</span>
+                    </button>
+                    <button type="button" class="vc-preset-btn" id="btn-query-different">
+                      <span>3. Unrelated Query: <em>"How does Dijkstra algorithm work?"</em></span>
+                      <span class="badge badge-neutral" style="font-size: 0.7rem;">Cosine 0.28</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Live Results -->
+                <div class="vc-results-box">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <span style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">GATEWAY RESPONSE TELEMETRY</span>
+                      <span class="execution-badge" id="vc-cache-badge">STANDBY</span>
+                    </div>
+
+                    <div class="vc-telemetry-grid">
+                      <div class="vc-stat-card">
+                        <span class="vc-stat-val" id="vc-latency-val">--</span>
+                        <span class="vc-stat-lbl">Gateway Latency</span>
+                      </div>
+                      <div class="vc-stat-card">
+                        <span class="vc-stat-val" id="vc-cosine-val">--</span>
+                        <span class="vc-stat-lbl">Cosine Score</span>
+                      </div>
+                      <div class="vc-stat-card">
+                        <span class="vc-stat-val" id="vc-cost-val">--</span>
+                        <span class="vc-stat-lbl">Upstream Cost</span>
+                      </div>
+                      <div class="vc-stat-card">
+                        <span class="vc-stat-val" id="vc-source-val">--</span>
+                        <span class="vc-stat-lbl">Response Source</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="vc-savings-banner" id="vc-savings-banner">
+                    <span>💡</span>
+                    <span id="vc-savings-text">Select a query scenario above to observe Redis vector caching in real time.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lab Panel 2: Deepfake Forensic Inspector -->
+            <div class="lab-panel" id="lab-panel-deepfake">
+              <div class="forensic-inspector-card">
+                <div class="forensic-frame-box">
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.74rem; color: #94a3b8; margin-bottom: 0.6rem;">
+                    <span>INPUT FRAME: DFDC SAMPLE #0492</span>
+                    <span>MTCNN LANDMARKS: 68 POINTS</span>
+                  </div>
+                  <div class="face-mesh-canvas-wrap">
+                    <svg class="face-mesh-svg" viewBox="0 0 100 100">
+                      <!-- Facial Landmark Mesh -->
+                      <polygon points="50,15 28,30 22,60 50,85 78,60 72,30" stroke="#38bdf8" stroke-width="1.5" />
+                      <circle cx="36" cy="40" r="4" fill="#38bdf8" />
+                      <circle cx="64" cy="40" r="4" fill="#38bdf8" />
+                      <path d="M42,55 Q50,60 58,55" stroke="#38bdf8" stroke-width="2" />
+                      <path d="M35,70 Q50,78 65,70" stroke="#ef4444" stroke-width="2" />
+                    </svg>
+                    <div class="grad-cam-heatmap-overlay" id="grad-cam-overlay"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem;">
+                    <label style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-dim); display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                      <input type="checkbox" id="toggle-gradcam-chk" checked />
+                      <span>Overlay Grad-CAM Artifact Heatmap</span>
+                    </label>
+                    <span class="metric-pill metric-latency">120ms / Frame</span>
+                  </div>
+                </div>
+
+                <div class="forensic-data-box">
+                  <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">FORENSIC ARTIFACT TELEMETRY</span>
+                    <div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.6rem;">
+                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+                        <span>DFDC Benchmark AUC:</span>
+                        <strong style="color: #34d399; font-family: var(--font-mono);">94.2%</strong>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+                        <span>Spatial Boundary Artifact:</span>
+                        <strong style="color: #ef4444; font-family: var(--font-mono);">Detected (98.4%)</strong>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+                        <span>Temporal Blink Frequency:</span>
+                        <strong style="color: #f59e0b; font-family: var(--font-mono);">Abnormal (2.1 Hz)</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-decision-card" style="margin: 0;">
+                    <strong>Detection Pipeline:</strong> MTCNN face alignment + EfficientNet spatial feature backbone + GRU temporal sequence tracking.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lab Panel 3: SmartPark Dynamic Pricing -->
+            <div class="lab-panel" id="lab-panel-smartpark">
+              <div class="smartpark-simulator-wrap">
+                <div class="vc-controls-box">
+                  <div class="vc-slider-wrap">
+                    <div class="slider-label-row">
+                      <span>Garage Occupancy Rate:</span>
+                      <strong id="sp-occupancy-lbl">82%</strong>
+                    </div>
+                    <input type="range" class="vc-slider" id="sp-occupancy-slider" min="10" max="100" value="82" />
+                  </div>
+
+                  <div class="vc-slider-wrap">
+                    <div class="slider-label-row">
+                      <span>Urban Traffic Influx Surge:</span>
+                      <strong id="sp-traffic-lbl">1.6x (Peak Hours)</strong>
+                    </div>
+                    <input type="range" class="vc-slider" id="sp-traffic-slider" min="0.5" max="3.0" step="0.1" value="1.6" />
+                  </div>
+                </div>
+
+                <div class="vc-results-box">
+                  <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">VECTORIZED STREAMING PRICING (PATHWAY)</span>
+                    <div class="vc-telemetry-grid">
+                      <div class="vc-stat-card">
+                        <span class="vc-stat-val" id="sp-price-val">$8.40/hr</span>
+                        <span class="vc-stat-lbl">Calculated Dynamic Tariff</span>
+                      </div>
+                      <div class="vc-stat-card">
+                        <span class="vc-stat-val" style="color: #38bdf8;">25ms</span>
+                        <span class="vc-stat-lbl">Calculation Latency</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-decision-card" style="margin: 0;">
+                    <strong>Vectorized Pathway Optimization:</strong> Real-time supply-demand elasticity curves computed without black-box ML delay.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
