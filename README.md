@@ -86,9 +86,6 @@ npx serve .
 
 ```
 .
-├── .github/
-│   └── workflows/
-│       └── deploy.yml      # Automated GitHub Pages CI/CD workflow
 ├── index.html              # Main semantic HTML structure & modals
 ├── style.css               # Fluid CSS3 design system, themes & animations
 ├── script.js               # 33 Projects catalog & interactive controllers
@@ -98,6 +95,7 @@ npx serve .
 ├── robots.txt              # Search engine crawler directives
 ├── sitemap.xml             # XML sitemap for SEO discovery
 ├── vercel.json             # Vercel deployment routing & headers
+├── .gitignore              # Git ignore rules
 └── README.md               # Documentation & deployment guide
 ```
 

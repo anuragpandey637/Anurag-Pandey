@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://anurag637.github.io/sitemap.xml
