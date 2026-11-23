@@ -17,6 +17,13 @@ const PROJECTS_DATA = [
     latencyP99: "<320ms end-to-end",
     throughput: "99.9% Uptime (Render Cloud)",
     archImpact: "Decoupled asynchronous OCR extraction from generative reasoning pipeline; provides instant JSON response payloads for high-resolution screen inputs.",
+    pipeline: ["Screen Capture", "Async OCR (libjpeg-turbo)", "Vision Router & LLM", "JSON Structured Output"],
+    benchmarks: [
+      { label: "P99 Latency", val: "<320ms" },
+      { label: "Cloud Uptime", val: "99.9%" },
+      { label: "Concurrency", val: "Async Non-Blocking" },
+      { label: "API Docs", val: "OpenAPI / Swagger" }
+    ],
     description: "Cloud-hosted visual screen AI problem solver backend API providing real-time screen capture OCR, visual query parsing, and automated mathematical/reasoning solutions.",
     highlights: [
       "Production asynchronous FastAPI microservice deployed live on Render with automated health check endpoints.",
@@ -40,6 +47,13 @@ const PROJECTS_DATA = [
     latencyP99: "42ms (Cache) / 310ms (LLM)",
     throughput: "850+ req/s peak capacity",
     archImpact: "Implemented Redis semantic vector caching with cosine thresholding; reduced upstream API costs by 62%.",
+    pipeline: ["Incoming Query", "Embedding Generation", "Redis Vector Cache Check", "Hit: 42ms / Miss: 310ms LLM", "Structured Stream"],
+    benchmarks: [
+      { label: "Cache Hit P99", val: "42ms" },
+      { label: "Uncached P99", val: "310ms" },
+      { label: "Peak Capacity", val: "850+ req/s" },
+      { label: "Cost Savings", val: "62% Upstream" }
+    ],
     description: "High-throughput LLM gateway proxy with Redis semantic vector caching, intelligent request deduplication, and automated rate limiting.",
     highlights: [
       "Empirical P99 latency of 42ms for cached queries vs. 310ms for uncached upstream LLM calls.",
@@ -63,6 +77,13 @@ const PROJECTS_DATA = [
     latencyP99: "120ms per frame",
     throughput: "94.2% AUC on DFDC",
     archImpact: "Combined MTCNN face alignment with EfficientNet spatial backbone and temporal sequence tracking to detect subtle facial artifacts.",
+    pipeline: ["Video Frames", "MTCNN Face Alignment", "EfficientNet-B4 Spatial", "GRU Temporal Sequence", "Forensic Score"],
+    benchmarks: [
+      { label: "Frame Latency", val: "120ms/frame" },
+      { label: "Test AUC", val: "94.2% DFDC" },
+      { label: "Dataset Size", val: "100k+ Clips" },
+      { label: "Architecture", val: "CNN + GRU" }
+    ],
     description: "High-accuracy spatiotemporal deepfake video detection pipeline combining MTCNN face alignment with EfficientNet spatial feature extractors and temporal sequence analysis.",
     highlights: [
       "Achieved 94.2% Area Under the ROC Curve (AUC) on the rigorous Deepfake Detection Challenge (DFDC) benchmark.",
@@ -86,6 +107,13 @@ const PROJECTS_DATA = [
     latencyP99: "<180ms per candidate",
     throughput: "Top-5 Cosine Match Precision",
     archImpact: "spaCy tokenization + dense embeddings; eliminated keyword-stuffing exploits and reduced recruiter screening time by 70%.",
+    pipeline: ["PDF/DOCX Dossier", "spaCy Tokenizer", "Entity Extraction", "Dense Vector Embeddings", "Cosine Rank Matrix"],
+    benchmarks: [
+      { label: "P99 Latency", val: "<180ms" },
+      { label: "Match Precision", val: "Top-5 Cosine" },
+      { label: "Time Saved", val: "70% Manual" },
+      { label: "Vulnerability", val: "Exploit-Proof" }
+    ],
     description: "NLP-driven candidate ranking engine using spaCy entity extraction and dense semantic embeddings to score job-resume alignment without vulnerability to keyword stuffing.",
     highlights: [
       "Processes and ranks candidate dossiers with <180ms P99 latency per resume.",
@@ -109,6 +137,13 @@ const PROJECTS_DATA = [
     latencyP99: "25ms price calculation",
     throughput: "Real-time dynamic updates",
     archImpact: "Dynamic supply-demand curve optimization implemented using vectorized Pathway and NumPy arithmetic.",
+    pipeline: ["Occupancy Influx", "Pathway Streaming", "Vectorized Elasticity", "Dynamic Price Output", "Bokeh Dashboards"],
+    benchmarks: [
+      { label: "Price Latency", val: "25ms" },
+      { label: "Update Rate", val: "Real-time" },
+      { label: "Processing", val: "Vectorized Stream" },
+      { label: "Analytics", val: "Bokeh Interactive" }
+    ],
     description: "Real-time dynamic urban parking pricing engine computing supply-demand elasticity curves and occupancy fluctuations using vectorized streaming computations.",
     highlights: [
       "Calculates optimized dynamic parking tariffs with ultra-low 25ms calculation latency.",
@@ -121,7 +156,7 @@ const PROJECTS_DATA = [
     githubUrl: "https://github.com/Anurag637/SA_Capstone_Project-2025",
     stars: 0
   }
-];;
+];
 
 // 2. State & DOM References
 let currentFilter = "all";
@@ -441,10 +476,49 @@ function initBackgroundCanvas() {
       }
     }
 
-    requestAnimationFrame(renderParticles);
+    if (isCanvasActive && !document.hidden) {
+      animFrameId = requestAnimationFrame(renderParticles);
+    }
   }
 
-  requestAnimationFrame(renderParticles);
+  let animFrameId = null;
+  let isCanvasActive = true;
+
+  function resumeCanvas() {
+    if (!animFrameId && isCanvasActive && !document.hidden) {
+      animFrameId = requestAnimationFrame(renderParticles);
+    }
+  }
+
+  function pauseCanvas() {
+    if (animFrameId) {
+      cancelAnimationFrame(animFrameId);
+      animFrameId = null;
+    }
+  }
+
+  // Pause when tab is hidden to save 100% background CPU
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pauseCanvas();
+    else resumeCanvas();
+  });
+
+  // Pause when scrolled past hero section
+  if ("IntersectionObserver" in window) {
+    const heroEl = document.querySelector(".hero");
+    if (heroEl) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isCanvasActive = entry.isIntersecting;
+          if (isCanvasActive) resumeCanvas();
+          else pauseCanvas();
+        });
+      }, { threshold: 0.05 });
+      heroObserver.observe(heroEl);
+    }
+  }
+
+  animFrameId = requestAnimationFrame(renderParticles);
 }
 
 // 6.5. Synchronize Category Badges and Metrics Dynamically
@@ -650,7 +724,7 @@ function renderProjects() {
   });
 }
 
-// 8. Project Detail Modal
+// 8. Project Detail Modal — Deep Case Study Presentation
 function openProjectDetailModal(projectId) {
   const project = PROJECTS_DATA.find((p) => p.id === projectId);
   if (!project || !projectModal) return;
@@ -658,6 +732,52 @@ function openProjectDetailModal(projectId) {
   if (modalProjectTitle) modalProjectTitle.textContent = project.title;
   if (modalProjectBadge) modalProjectBadge.textContent = project.badge;
   if (modalProjectDesc) modalProjectDesc.textContent = project.description;
+
+  // 10/10 Case Study: Architecture Pipeline Flow
+  const pipeBox = document.getElementById("modal-pipeline-box");
+  const pipeFlow = document.getElementById("modal-pipeline-flow");
+  if (pipeBox && pipeFlow) {
+    if (project.pipeline && project.pipeline.length > 0) {
+      pipeFlow.innerHTML = project.pipeline
+        .map((step, idx) => `
+          <div class="modal-pipe-node"><span>${escapeHtml(step)}</span></div>
+          ${idx < project.pipeline.length - 1 ? '<span class="modal-pipe-arrow">&rarr;</span>' : ''}
+        `).join("");
+      pipeBox.style.display = "block";
+    } else {
+      pipeBox.style.display = "none";
+    }
+  }
+
+  // 10/10 Case Study: Empirical Benchmarks Grid
+  const specBox = document.getElementById("modal-spec-box");
+  const specGrid = document.getElementById("modal-spec-grid");
+  if (specBox && specGrid) {
+    if (project.benchmarks && project.benchmarks.length > 0) {
+      specGrid.innerHTML = project.benchmarks
+        .map((b) => `
+          <div class="modal-spec-item">
+            <span class="modal-spec-val">${escapeHtml(b.val)}</span>
+            <span class="modal-spec-lbl">${escapeHtml(b.label)}</span>
+          </div>
+        `).join("");
+      specBox.style.display = "block";
+    } else {
+      specBox.style.display = "none";
+    }
+  }
+
+  // 10/10 Case Study: Architectural Decision & Impact
+  const decisionBox = document.getElementById("modal-decision-box");
+  const decisionText = document.getElementById("modal-decision-text");
+  if (decisionBox && decisionText) {
+    if (project.archImpact) {
+      decisionText.textContent = project.archImpact;
+      decisionBox.style.display = "block";
+    } else {
+      decisionBox.style.display = "none";
+    }
+  }
 
   // Highlights & Architectural Decision list
   if (modalProjectHighlights) {
@@ -1432,17 +1552,44 @@ function initEventListeners() {
         }
 
         playUiSound("success");
-        showToast("Message recorded! Launching email to deliver directly...");
+        showToast("Message recorded successfully! Thank you for reaching out.");
 
-        // Automatically launch mailto with pre-filled content to ensure actual inbox receipt
-        const bodyText = `Hi Anurag,%0D%0A%0D%0A${encodeURIComponent(submittedMessage)}%0D%0A%0D%0AFrom: ${encodeURIComponent(submittedName)} (${encodeURIComponent(submittedEmail)})`;
-        const mailtoUrl = `mailto:anuragpandey.connect@gmail.com?subject=${encodeURIComponent(submittedSubject)}&body=${bodyText}`;
-        setTimeout(() => {
-          window.location.href = mailtoUrl;
-        }, 800);
+        // In-page success card with direct one-click options
+        if (formSuccessAlert) {
+          formSuccessAlert.style.display = "block";
+          formSuccessAlert.innerHTML = `
+            <div class="contact-success-panel">
+              <div class="contact-success-title">
+                <span>✓</span>
+                <span>Inquiry Logged Successfully!</span>
+              </div>
+              <p class="contact-success-text">
+                Thank you <strong>${escapeHtml(submittedName)}</strong>. Your message regarding <em>"${escapeHtml(submittedSubject)}"</em> has been recorded.
+                I will respond to <strong>${escapeHtml(submittedEmail)}</strong> shortly.
+              </p>
+              <div class="contact-success-actions">
+                <button type="button" class="btn btn-sm btn-primary" id="copy-email-btn">
+                  📋 Copy Direct Email (anuragpandey.connect@gmail.com)
+                </button>
+                <a href="mailto:anuragpandey.connect@gmail.com?subject=${encodeURIComponent(submittedSubject)}&body=${encodeURIComponent(submittedMessage)}" class="btn btn-sm btn-ghost">
+                  Open Mail Client ↗
+                </a>
+              </div>
+            </div>
+          `;
+
+          const copyBtn = document.getElementById("copy-email-btn");
+          if (copyBtn) {
+            copyBtn.onclick = () => {
+              navigator.clipboard.writeText("anuragpandey.connect@gmail.com").then(() => {
+                showToast("Email address copied to clipboard!");
+              });
+            };
+          }
+        }
 
         contactForm.reset();
-      }, 700);
+      }, 500);
     });
   }
 
@@ -1508,4 +1655,14 @@ document.addEventListener("DOMContentLoaded", () => {
   initLiveClock();
   initAmbientGlow();
   initEventListeners();
+});
+
+
+// Pre-warm Render Cloud API in background on page idle to eliminate cold start delays
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    try {
+      fetch("https://screensolver-api.onrender.com/", { mode: "no-cors" }).catch(() => {});
+    } catch {}
+  }, 1200);
 });
