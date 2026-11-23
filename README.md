@@ -28,41 +28,33 @@ Designed with an edge-to-edge full-screen fluid architecture, modern cyberpunk g
 
 This website is built with vanilla HTML5, CSS3, and JavaScript — requiring **no build step, no npm install, and zero complex bundler setups**. You can deploy it to any static hosting service in under 60 seconds.
 
-### Option 1: GitHub Pages (Recommended)
-1. Initialize a git repository in this folder (if not done already):
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: initial commit of comprehensive portfolio"
-   git branch -M main
-   ```
-2. Create a repository on GitHub named either:
-   - `Anurag637.github.io` (for deployment directly to `https://anurag637.github.io`)
-   - Or any repository name like `portfolio`
-3. Add remote and push:
-   ```bash
-   git remote add origin https://github.com/Anurag637/Anurag637.github.io.git
-   git push -u origin main
-   ```
-4. In your GitHub repository:
-   - Navigate to **Settings** → **Pages**.
-   - Under **Build and deployment** > **Source**, select **GitHub Actions** (the included `.github/workflows/deploy.yml` will automatically build and publish).
+### Option 1: Vercel (Recommended)
+Deploy instantly with zero cold starts, global Edge CDN caching, and automated HTTPS:
 
----
-
-### Option 2: Vercel
-Deploy instantly using Vercel CLI or the Vercel Dashboard:
+**Via Vercel Dashboard (Easiest):**
+1. Push this repository to your GitHub account (`git push origin main`).
+2. Go to [vercel.com](https://vercel.com) and log in with GitHub.
+3. Click **"Add New"** → **"Project"**.
+4. Import this repository and click **Deploy**.
+5. The included `vercel.json` automatically configures clean URLs (`cleanUrls: true`), modern security headers, and edge asset caching.
 
 **Via Vercel CLI:**
 ```bash
 npx vercel
 ```
 
-**Via Vercel Dashboard:**
-1. Push this folder to GitHub.
-2. Go to [vercel.com](https://vercel.com) and click **"Add New Project"**.
-3. Import your repository and click **Deploy**.
-4. The included `vercel.json` will configure clean URLs, security headers, and asset caching automatically.
+---
+
+### Option 2: GitHub Pages
+1. Push to your GitHub repository:
+   ```bash
+   git add .
+   git commit -m "feat: portfolio ready for deployment"
+   git push -u origin main
+   ```
+2. In your GitHub repository:
+   - Navigate to **Settings** → **Pages**.
+   - Under **Build and deployment** > **Source**, select **GitHub Actions** (the included `.github/workflows/deploy.yml` will automatically build and publish).
 
 ---
 

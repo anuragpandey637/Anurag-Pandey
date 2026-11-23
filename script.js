@@ -324,7 +324,7 @@ const PROJECTS_DATA = [
     id: "methodic-configurator",
     title: "MethodicConfigurator (ArduPilot Tuner)",
     category: "web",
-    categories: ["web"],
+    categories: ["web", "live"],
     isLive: true,
     isFeatured: false,
     badge: "Live Docs / Tool",
@@ -791,9 +791,13 @@ function playUiSound(type = "click") {
 function toggleSound() {
   soundEnabled = !soundEnabled;
   localStorage.setItem("ap_sound_enabled", String(soundEnabled));
+  const soundIconEl = document.getElementById("sound-icon");
   if (soundToggleBtn) {
     soundToggleBtn.classList.toggle("sound-active", soundEnabled);
     soundToggleBtn.title = soundEnabled ? "UI sound effects: Enabled" : "UI sound effects: Muted";
+  }
+  if (soundIconEl) {
+    soundIconEl.textContent = soundEnabled ? "🔊" : "🔇";
   }
   if (soundEnabled) {
     playUiSound("success");
@@ -805,6 +809,13 @@ function toggleSound() {
 
 // 4. Color Theme Management
 const THEMES = ["nebula", "matrix", "tokyo", "oled"];
+const THEME_METADATA = {
+  nebula: { icon: "🌌", label: "Nebula" },
+  matrix: { icon: "🟢", label: "Matrix" },
+  tokyo: { icon: "🌸", label: "Tokyo" },
+  oled: { icon: "⚫", label: "OLED" }
+};
+
 function applyTheme(themeName, silent = false) {
   if (!THEMES.includes(themeName)) themeName = "nebula";
   activeTheme = themeName;
@@ -814,6 +825,14 @@ function applyTheme(themeName, silent = false) {
     document.documentElement.setAttribute("data-theme", themeName);
   }
   localStorage.setItem("ap_theme", themeName);
+
+  // Update header theme toggle button visual state
+  const themeIconEl = document.getElementById("theme-icon");
+  const themeLabelEl = document.getElementById("theme-label");
+  const meta = THEME_METADATA[themeName] || THEME_METADATA.nebula;
+  if (themeIconEl) themeIconEl.textContent = meta.icon;
+  if (themeLabelEl) themeLabelEl.textContent = meta.label;
+
   if (!silent) {
     playUiSound("success");
     showToast(`Cyber Theme: ${themeName.toUpperCase()}`);
@@ -950,9 +969,35 @@ function initBackgroundCanvas() {
   requestAnimationFrame(renderParticles);
 }
 
+// 6.5. Synchronize Category Badges and Metrics Dynamically
+function syncFilterBadgeCounts() {
+  const liveCount = PROJECTS_DATA.filter((p) => p.isLive).length;
+  const statAppsEl = document.getElementById("stat-apps-count");
+  if (statAppsEl) statAppsEl.textContent = String(liveCount);
+
+  filterPills.forEach((pill) => {
+    const f = pill.getAttribute("data-filter") || "all";
+    const badge = pill.querySelector(".filter-badge");
+    if (!badge) return;
+    let count = 0;
+    if (f === "all") {
+      count = PROJECTS_DATA.length;
+    } else if (f === "live") {
+      count = liveCount;
+    } else {
+      count = PROJECTS_DATA.filter(
+        (p) => p.categories.includes(f) || p.category === f
+      ).length;
+    }
+    badge.textContent = String(count);
+  });
+}
+
 // 7. Render Projects Function
 function renderProjects() {
   if (!projectsContainer) return;
+
+  syncFilterBadgeCounts();
 
   // Filter projects based on currentFilter, currentSearch & currentSkillFilter
   let filtered = PROJECTS_DATA.filter((project) => {
@@ -1251,7 +1296,7 @@ function executeTerminalCommand(rawCmd) {
  • <span class="term-hl">whoami</span>       : Architect credentials & background
  • <span class="term-hl">skills</span>       : Full technical stack & competencies
  • <span class="term-hl">projects</span>     : 33 open-source repository catalog
- • <span class="term-hl">live</span>         : 7 production deployed apps & APIs
+ • <span class="term-hl">live</span>         : 8 production deployed apps & APIs
  • <span class="term-hl">cat resume</span>   : Complete education & milestones
  • <span class="term-hl">theme [name]</span> : Switch theme (nebula, matrix, tokyo, oled)
  • <span class="term-hl">matrix</span>       : Instant green matrix hacker mode
@@ -1260,13 +1305,15 @@ function executeTerminalCommand(rawCmd) {
  • <span class="term-hl">clear</span>        : Clear terminal log screen`;
       break;
 
-    case "whoami":
+    case "whoami": {
+      const liveCount = PROJECTS_DATA.filter((p) => p.isLive).length;
       out = `<strong>Anurag Pandey</strong> — Full-Stack AI & Machine Learning Systems Engineer
 • Education: B.Tech CSE (AIML), Galgotias University (CGPA: 8.65)
 • Location: Greater Noida / Delhi NCR, India (IST)
 • Focus: Autonomous LLM Agents, Real-time Computer Vision, High-throughput APIs, PyTorch
-• Open-Source: 33 Public Repositories | 7 Production Deployed Applications`;
+• Open-Source: ${PROJECTS_DATA.length} Public Repositories | ${liveCount} Production Deployed Applications`;
       break;
+    }
 
     case "skills":
       out = `Core Technical Stack:
@@ -1277,29 +1324,39 @@ function executeTerminalCommand(rawCmd) {
 • <strong>DevOps & Tools:</strong> Docker, Git, GitHub Actions CI/CD, Linux CLI`;
       break;
 
-    case "live":
-      out = `7 Live Deployed Production Applications:
-1. <a href="https://screensolver-api.onrender.com/" target="_blank">Solver-Standalone API</a> [Render - FastAPI/CV]
-2. <a href="https://veridian-it-agent-pi.vercel.app" target="_blank">Veridian-IT-Agent</a> [Vercel - LLM Support Agent]
-3. <a href="https://a-ion-os-pro.vercel.app" target="_blank">AIonOS-Pro</a> [Vercel - Workspace OS Layer]
-4. <a href="https://ai-business-workflow-architect.vercel.app" target="_blank">AIBusinessWorkflowArchitect</a> [Vercel - Enterprise Pipeline Agent]
-5. <a href="https://mini-mechanic-service-backend-1.onrender.com/swagger/" target="_blank">Mini-Mechanic API</a> [Render - Django/Swagger]
-6. <a href="https://agent-zero-flame.vercel.app" target="_blank">Agent-Zero</a> [Vercel - Autonomous Agent Sandbox]
-7. <a href="https://social-proof-engine.vercel.app" target="_blank">Social-Proof-Engine</a> [Vercel - Growth Engine]`;
+    case "live": {
+      const liveProjects = PROJECTS_DATA.filter((p) => p.isLive);
+      const items = liveProjects
+        .map(
+          (p, idx) =>
+            `${idx + 1}. <a href="${p.demoUrl}" target="_blank" rel="noreferrer">${escapeHtml(
+              p.title
+            )}</a> [${escapeHtml(p.badge)}]`
+        )
+        .join("<br>");
+      out = `<strong>${liveProjects.length} Live Deployed Production Applications:</strong><br>${items}`;
       break;
+    }
 
-    case "projects":
-      out = `Catalog includes 33 repositories across AI Agents, Computer Vision, APIs, and Data Science.
-Type <span class="term-hl">live</span> to view deployed apps, or use the UI search bar to query any project in real-time.`;
+    case "projects": {
+      const liveCount = PROJECTS_DATA.filter((p) => p.isLive).length;
+      out = `<strong>${PROJECTS_DATA.length} Total Projects Cataloged (${liveCount} Live Deployed):</strong><br>
+• <strong>AI Agents & LLMs:</strong> Veridian-IT-Agent, AIonOS-Pro, AIBusinessWorkflowArchitect, QChat...<br>
+• <strong>Computer Vision & DL:</strong> Deepfake Detection, TrOCR Transformers, Solver API, Pet Classification...<br>
+• <strong>APIs & Backends:</strong> Mini-Mechanic API, Solver API, SHL Assessment Recommender...<br>
+• <strong>Data Science & NLP:</strong> Resume Screening, Urban Parking Pricing (Pathway), Spam Detector...<br>
+<em>Tip: Type <span class="term-hl">live</span> to view active cloud apps or query using the UI search bar.</em>`;
       break;
+    }
 
     case "cat":
       if (arg === "resume" || arg === "resume.md") {
+        const liveCount = PROJECTS_DATA.filter((p) => p.isLive).length;
         out = `<strong>RESUME SUMMARY — Anurag Pandey</strong>
 --------------------------------------------------
 🎓 Education: Galgotias University (2022 - 2026) | B.Tech CSE (AIML) | CGPA: 8.65
 🚀 Specialization: End-to-End AI Engineering & Distributed Python Systems
-🏆 Selected Works: 33 GitHub Projects | 7 Live Cloud Deployments (Vercel, Render)
+🏆 Selected Works: ${PROJECTS_DATA.length} GitHub Projects | ${liveCount} Live Cloud Deployments (Vercel, Render)
 ✉️ Contact: anuragpandey.connect@gmail.com | github.com/Anurag637`;
       } else {
         out = `cat: file not found: '${escapeHtml(arg)}'. Try <span class="term-hl">cat resume</span>`;
@@ -1534,6 +1591,8 @@ function initEventListeners() {
       toggleSound();
     });
     soundToggleBtn.classList.toggle("sound-active", soundEnabled);
+    const soundIconEl = document.getElementById("sound-icon");
+    if (soundIconEl) soundIconEl.textContent = soundEnabled ? "🔊" : "🔇";
   }
 
 
@@ -1770,6 +1829,9 @@ function initEventListeners() {
   // Light dismiss on backdrop click for native <dialog>
   [resumeModal, projectModal, terminalModal, commandPaletteModal].forEach((modal) => {
     if (modal) {
+      modal.addEventListener("cancel", () => {
+        playUiSound("close");
+      });
       modal.addEventListener("click", (e) => {
         const rect = modal.getBoundingClientRect();
         const isInDialog =
@@ -1832,6 +1894,12 @@ function initEventListeners() {
 
       if (!isValid) return;
 
+      // Capture values before reset
+      const submittedName = nameInput.value.trim();
+      const submittedEmail = emailInput.value.trim();
+      const submittedSubject = subjectInput.value.trim();
+      const submittedMessage = messageInput.value.trim();
+
       // Simulate sending with loading state
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -1843,10 +1911,10 @@ function initEventListeners() {
         try {
           const storedMessages = JSON.parse(localStorage.getItem("ap_contact_messages") || "[]");
           storedMessages.push({
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            subject: subjectInput.value.trim(),
-            message: messageInput.value.trim(),
+            name: submittedName,
+            email: submittedEmail,
+            subject: submittedSubject,
+            message: submittedMessage,
             date: new Date().toISOString()
           });
           localStorage.setItem("ap_contact_messages", JSON.stringify(storedMessages));
@@ -1864,7 +1932,14 @@ function initEventListeners() {
         }
 
         playUiSound("success");
-        showToast("Message sent successfully! Thank you for reaching out.");
+        showToast("Message recorded! Launching email to deliver directly...");
+
+        // Automatically launch mailto with pre-filled content to ensure actual inbox receipt
+        const bodyText = `Hi Anurag,%0D%0A%0D%0A${encodeURIComponent(submittedMessage)}%0D%0A%0D%0AFrom: ${encodeURIComponent(submittedName)} (${encodeURIComponent(submittedEmail)})`;
+        const mailtoUrl = `mailto:anuragpandey.connect@gmail.com?subject=${encodeURIComponent(submittedSubject)}&body=${bodyText}`;
+        setTimeout(() => {
+          window.location.href = mailtoUrl;
+        }, 800);
 
         contactForm.reset();
       }, 700);
@@ -1925,10 +2000,8 @@ function initEventListeners() {
 
 // 16. Application Initialization
 document.addEventListener("DOMContentLoaded", () => {
-  // Restore saved theme
-  if (activeTheme && activeTheme !== "nebula") {
-    applyTheme(activeTheme, true);
-  }
+  // Restore saved theme and initialize visual badges
+  applyTheme(activeTheme, true);
 
   initBackgroundCanvas();
   renderProjects();

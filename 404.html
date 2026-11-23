@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404: Neural Coordinate Not Found | Anurag Pandey</title>
     <meta name="description" content="The requested destination does not exist in the neural cluster. Re-anchor to Anurag Pandey's portfolio." />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;800;900&family=Fira+Code:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style.css" />
     <style>
       /* ==========================================================================
          HIGH-LEVEL SCI-FI 404 ANIMATION STYLESHEET
@@ -21,6 +21,8 @@
         --glitch-cyan: #00f0ff;
         --glitch-magenta: #ff007f;
         --glitch-lime: #00ff66;
+        --font-heading: "Outfit", "Inter", -apple-system, sans-serif;
+        --font-mono: "Fira Code", monospace;
       }
 
       body {
@@ -312,8 +314,10 @@
         background: linear-gradient(135deg, #ffffff 0%, #00f0ff 50%, #a855f7 100%);
         background-size: 200% 200%;
         animation: titleShimmer 6s ease infinite alternate;
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        color: transparent;
       }
 
       @keyframes titleShimmer {
@@ -529,7 +533,7 @@
 
       <!-- Action Buttons -->
       <div class="action-row">
-        <a href="index.html" class="btn btn-primary btn-lg btn-glow-cyber" id="return-btn">
+        <a href="/" class="btn btn-primary btn-lg btn-glow-cyber" id="return-btn">
           &larr; Re-anchor to Portfolio Nexus
         </a>
         <button type="button" class="btn btn-secondary btn-lg" id="play-sound-btn" title="Toggle audio feedback">
@@ -733,7 +737,7 @@
           if (countdownVal) countdownVal.textContent = String(secondsLeft);
           if (secondsLeft <= 0) {
             clearInterval(countdownTimer);
-            window.location.href = "index.html";
+            window.location.href = "/";
           }
         }, 1000);
 
