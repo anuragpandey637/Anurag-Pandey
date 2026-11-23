@@ -72,17 +72,6 @@
     <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
     <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
 
-    <!-- Announcement Bar -->
-    <aside class="announcement-bar" aria-label="Status banner">
-      <div class="container announcement-inner">
-        <span class="status-dot"></span>
-        <span class="announcement-text">
-          <strong>Available for Opportunities:</strong> AI/ML Engineering & GenAI Roles • Open to Remote & Global Relocation
-        </span>
-        <a href="#contact" class="announcement-link">Get In Touch &rarr;</a>
-      </div>
-    </aside>
-
     <div class="page-shell">
       <!-- Site Header & Navigation -->
       <header class="site-header" id="site-header">
@@ -95,10 +84,10 @@
           <!-- Desktop Navigation Links -->
           <div class="nav-links" id="nav-links">
             <a href="#about" class="nav-link">About</a>
-            <a href="#interactive-ai-studio" class="nav-link">Neural Studio 🧠</a>
-            <a href="#interactive-labs" class="nav-link">Live Labs ⚡</a>
+            <a href="#interactive-ai-studio" class="nav-link">AI Studio 🧠</a>
+            <a href="#flagship-spotlight" class="nav-link">Flagship API ⚡</a>
             <a href="#projects" class="nav-link">
-              Projects
+              Systems
               <span class="nav-count-badge">5</span>
             </a>
             <a href="#skills" class="nav-link">Skills</a>
@@ -111,32 +100,6 @@
             <button class="btn-icon" id="theme-toggle-btn" title="Switch Theme (Nebula, Matrix, Tokyo, OLED)" aria-label="Toggle Theme">
               <span id="theme-icon">🌌</span>
               <span class="kbd-hint" id="theme-label">Nebula</span>
-            </button>
-
-            <!-- Futuristic UI Audio FX Toggle -->
-            <button class="btn-icon" id="sound-toggle-btn" title="Toggle Futuristic UI Audio Effects" aria-label="Toggle UI Audio">
-              <span id="sound-icon">🔇</span>
-            </button>
-
-            <!-- Interactive CLI Terminal Trigger -->
-            <button class="btn-icon" id="open-terminal-btn" title="Open Interactive Developer CLI Terminal (>_)" aria-label="Open Interactive CLI Terminal">
-              <span class="terminal-sym" style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan);">&gt;_</span>
-              <span class="kbd-hint">CLI</span>
-            </button>
-
-
-            <!-- Search / Command Palette Trigger -->
-            <button
-              class="btn-icon"
-              id="search-trigger"
-              aria-label="Command Palette (Ctrl+K)"
-              title="Command Palette (Ctrl+K)"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <span class="kbd-hint">Ctrl K</span>
             </button>
 
             <!-- Quick Resume Button -->
@@ -171,45 +134,6 @@
           </div>
         </nav>
       </header>
-
-      <!-- LIVE EDGE TELEMETRY & OPERATIONS BAR (Linear / Vercel Edge Standard) -->
-      <aside class="telemetry-bar-wrap" aria-label="System Operations Telemetry">
-        <div class="container telemetry-bar">
-          <div class="telemetry-item">
-            <span class="telemetry-beacon"></span>
-            <span class="telemetry-label">Edge Node:</span>
-            <span class="telemetry-val">Mumbai (bom1) • Active</span>
-          </div>
-          <div class="telemetry-divider"></div>
-          <div class="telemetry-item">
-            <span class="telemetry-icon">⚡</span>
-            <span class="telemetry-label">Solver API:</span>
-            <span class="telemetry-val" id="telemetry-solver-status">Render Cloud (Healthy)</span>
-          </div>
-          <div class="telemetry-divider"></div>
-          <div class="telemetry-item">
-            <span class="telemetry-icon">📊</span>
-            <span class="telemetry-label">P99 Latency:</span>
-            <span class="telemetry-val metric-code">&lt;180ms Median</span>
-            <svg class="telemetry-sparkline" width="60" height="18" viewBox="0 0 60 18" fill="none" aria-hidden="true">
-              <path d="M0 12 L10 10 L20 14 L30 6 L40 8 L50 4 L60 7" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M0 12 L10 10 L20 14 L30 6 L40 8 L50 4 L60 7 L60 18 L0 18 Z" fill="url(#sparkline-grad)" opacity="0.2"/>
-              <defs>
-                <linearGradient id="sparkline-grad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#10b981"/>
-                  <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div class="telemetry-divider"></div>
-          <div class="telemetry-item telemetry-fps-item">
-            <span class="telemetry-icon">🟢</span>
-            <span class="telemetry-label">Client Frame:</span>
-            <span class="telemetry-val" id="telemetry-fps-val">60 fps</span>
-          </div>
-        </div>
-      </aside>
 
       <main id="home">
         <!-- Hero Section -->
@@ -269,11 +193,7 @@
                 </svg>
                 Live Neural Studio
               </a>
-              <button class="btn btn-secondary btn-lg magnetic-btn" id="hero-terminal-btn" title="Open Architect CLI Terminal">
-                <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan);">&gt;_</span>
-                CLI (⌘K)
-              </button>
-            </div>
+              </div>
 
             <!-- Find Me Hub (Social Channels + Direct Contacts) -->
             <div class="find-me-bar">
@@ -384,38 +304,6 @@
                   <span>TRIGGER NEURAL SHOCKWAVE</span>
                 </button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Highlights & Metrics Ribbon -->
-        <section class="metrics-ribbon container" aria-label="Quick Highlights">
-          <div class="metric-item">
-            <div class="metric-icon">🚀</div>
-            <div>
-              <h4>Flagship Solver API</h4>
-              <p>Live Screen Solver API on Render</p>
-            </div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-icon">🤖</div>
-            <div>
-              <h4>Agentic AI & LLMs</h4>
-              <p>Routing, Tool-Calling & Prompt Gateways</p>
-            </div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-icon">🧠</div>
-            <div>
-              <h4>Vision & NLP Systems</h4>
-              <p>CNNs, TrOCR, FaceForensics & SpaCy</p>
-            </div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-icon">⚡</div>
-            <div>
-              <h4>Production Backends</h4>
-              <p>FastAPI, Django REST & Docker</p>
             </div>
           </div>
         </section>
@@ -1096,300 +984,6 @@
             </div>
           </div>
 
-          <!-- INTERACTIVE AI SYSTEMS LAB & SANDBOXES (Pillar 1) -->
-          <div class="interactive-labs-section reveal" id="interactive-labs">
-            <div class="labs-header">
-              <span class="badge badge-accent">LIVE INTERACTIVE LABS</span>
-              <h3 style="font-size: 1.6rem; margin-top: 0.5rem; margin-bottom: 0.4rem;">In-Browser AI Engineering Sandboxes</h3>
-              <p class="lead" style="font-size: 0.96rem; margin-bottom: 0;">
-                Direct empirical proof of work: Test vector caching thresholds, forensic face alignment heatmaps, and streaming dynamic pricing curves directly in your browser.
-              </p>
-            </div>
-
-            <!-- Lab Tab Navigation -->
-            <div class="labs-tab-nav" role="tablist">
-              <button type="button" class="lab-nav-btn active" data-lab="qchat">
-                🤖 QChat Vector Cache Sandbox
-              </button>
-              <button type="button" class="lab-nav-btn" data-lab="topology">
-                🌐 Live System Topology Graph
-              </button>
-              <button type="button" class="lab-nav-btn" data-lab="flamegraph">
-                ⚡ Latency Flamegraph Diff
-              </button>
-              <button type="button" class="lab-nav-btn" data-lab="deepfake">
-                🛡️ Deepfake Forensic Inspector
-              </button>
-              <button type="button" class="lab-nav-btn" data-lab="smartpark">
-                📊 SmartPark Streaming Pricing
-              </button>
-            </div>
-
-            <!-- Lab Panel 1: QChat Vector Cache -->
-            <div class="lab-panel active" id="lab-panel-qchat">
-              <div class="vector-cache-sandbox">
-                <!-- Controls -->
-                <div class="vc-controls-box">
-                  <div class="vc-slider-wrap">
-                    <div class="slider-label-row">
-                      <span>Cosine Similarity Threshold:</span>
-                      <strong id="cosine-threshold-val">0.85</strong>
-                    </div>
-                    <input type="range" class="vc-slider" id="cosine-slider" min="0.70" max="0.98" step="0.01" value="0.85" />
-                    <span style="font-size: 0.72rem; color: #94a3b8;">Queries with cosine similarity &ge; threshold are served instantly from Redis cache.</span>
-                  </div>
-
-                  <div class="vc-query-presets">
-                    <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim);">Test Query Scenarios:</span>
-                    <button type="button" class="vc-preset-btn active" id="btn-query-cold">
-                      <span>1. Cold Query (Uncached): <em>"Invert binary tree in Python"</em></span>
-                      <span class="badge badge-neutral" style="font-size: 0.7rem;">Miss ➔ LLM</span>
-                    </button>
-                    <button type="button" class="vc-preset-btn" id="btn-query-similar">
-                      <span>2. Semantic Variant: <em>"Python code to reverse a binary tree"</em></span>
-                      <span class="badge badge-success" style="font-size: 0.7rem;">Cosine 0.94</span>
-                    </button>
-                    <button type="button" class="vc-preset-btn" id="btn-query-different">
-                      <span>3. Unrelated Query: <em>"How does Dijkstra algorithm work?"</em></span>
-                      <span class="badge badge-neutral" style="font-size: 0.7rem;">Cosine 0.28</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Live Results -->
-                <div class="vc-results-box">
-                  <div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">GATEWAY RESPONSE TELEMETRY</span>
-                      <span class="execution-badge" id="vc-cache-badge">STANDBY</span>
-                    </div>
-
-                    <div class="vc-telemetry-grid">
-                      <div class="vc-stat-card">
-                        <span class="vc-stat-val" id="vc-latency-val">--</span>
-                        <span class="vc-stat-lbl">Gateway Latency</span>
-                      </div>
-                      <div class="vc-stat-card">
-                        <span class="vc-stat-val" id="vc-cosine-val">--</span>
-                        <span class="vc-stat-lbl">Cosine Score</span>
-                      </div>
-                      <div class="vc-stat-card">
-                        <span class="vc-stat-val" id="vc-cost-val">--</span>
-                        <span class="vc-stat-lbl">Upstream Cost</span>
-                      </div>
-                      <div class="vc-stat-card">
-                        <span class="vc-stat-val" id="vc-source-val">--</span>
-                        <span class="vc-stat-lbl">Response Source</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="vc-savings-banner" id="vc-savings-banner">
-                    <span>💡</span>
-                    <span id="vc-savings-text">Select a query scenario above to observe Redis vector caching in real time.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lab Panel 2: Deepfake Forensic Inspector -->
-            <div class="lab-panel" id="lab-panel-deepfake">
-              <div class="forensic-inspector-card">
-                <div class="forensic-frame-box">
-                  <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.74rem; color: #94a3b8; margin-bottom: 0.6rem;">
-                    <span>INPUT FRAME: DFDC SAMPLE #0492</span>
-                    <span>MTCNN LANDMARKS: 68 POINTS</span>
-                  </div>
-                  <div class="face-mesh-canvas-wrap">
-                    <svg class="face-mesh-svg" viewBox="0 0 100 100">
-                      <!-- Facial Landmark Mesh -->
-                      <polygon points="50,15 28,30 22,60 50,85 78,60 72,30" stroke="#38bdf8" stroke-width="1.5" />
-                      <circle cx="36" cy="40" r="4" fill="#38bdf8" />
-                      <circle cx="64" cy="40" r="4" fill="#38bdf8" />
-                      <path d="M42,55 Q50,60 58,55" stroke="#38bdf8" stroke-width="2" />
-                      <path d="M35,70 Q50,78 65,70" stroke="#ef4444" stroke-width="2" />
-                    </svg>
-                    <div class="grad-cam-heatmap-overlay" id="grad-cam-overlay"></div>
-                  </div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem;">
-                    <label style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-dim); display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;">
-                      <input type="checkbox" id="toggle-gradcam-chk" checked />
-                      <span>Overlay Grad-CAM Artifact Heatmap</span>
-                    </label>
-                    <span class="metric-pill metric-latency">120ms / Frame</span>
-                  </div>
-                </div>
-
-                <div class="forensic-data-box">
-                  <div>
-                    <span style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">FORENSIC ARTIFACT TELEMETRY</span>
-                    <div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.6rem;">
-                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
-                        <span>DFDC Benchmark AUC:</span>
-                        <strong style="color: #34d399; font-family: var(--font-mono);">94.2%</strong>
-                      </div>
-                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
-                        <span>Spatial Boundary Artifact:</span>
-                        <strong style="color: #ef4444; font-family: var(--font-mono);">Detected (98.4%)</strong>
-                      </div>
-                      <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
-                        <span>Temporal Blink Frequency:</span>
-                        <strong style="color: #f59e0b; font-family: var(--font-mono);">Abnormal (2.1 Hz)</strong>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-decision-card" style="margin: 0;">
-                    <strong>Detection Pipeline:</strong> MTCNN face alignment + EfficientNet spatial feature backbone + GRU temporal sequence tracking.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lab Panel 3: SmartPark Dynamic Pricing -->
-            <div class="lab-panel" id="lab-panel-smartpark">
-              <div class="smartpark-simulator-wrap">
-                <div class="vc-controls-box">
-                  <div class="vc-slider-wrap">
-                    <div class="slider-label-row">
-                      <span>Garage Occupancy Rate:</span>
-                      <strong id="sp-occupancy-lbl">82%</strong>
-                    </div>
-                    <input type="range" class="vc-slider" id="sp-occupancy-slider" min="10" max="100" value="82" />
-                  </div>
-
-                  <div class="vc-slider-wrap">
-                    <div class="slider-label-row">
-                      <span>Urban Traffic Influx Surge:</span>
-                      <strong id="sp-traffic-lbl">1.6x (Peak Hours)</strong>
-                    </div>
-                    <input type="range" class="vc-slider" id="sp-traffic-slider" min="0.5" max="3.0" step="0.1" value="1.6" />
-                  </div>
-                </div>
-
-                <div class="vc-results-box">
-                  <div>
-                    <span style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">VECTORIZED STREAMING PRICING (PATHWAY)</span>
-                    <div class="vc-telemetry-grid">
-                      <div class="vc-stat-card">
-                        <span class="vc-stat-val" id="sp-price-val">$8.40/hr</span>
-                        <span class="vc-stat-lbl">Calculated Dynamic Tariff</span>
-                      </div>
-                      <div class="vc-stat-card">
-                        <span class="vc-stat-val" style="color: #38bdf8;">25ms</span>
-                        <span class="vc-stat-lbl">Calculation Latency</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-decision-card" style="margin: 0;">
-                    <strong>Vectorized Pathway Optimization:</strong> Real-time supply-demand elasticity curves computed without black-box ML delay.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lab Panel 4: Live Microservice Topology Graph -->
-            <div class="lab-panel" id="lab-panel-topology">
-              <div class="topology-graph-wrap">
-                <div class="topology-header-bar">
-                  <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span class="telemetry-beacon"></span>
-                    <strong style="color: #e2e8f0;">LIVE MICROSERVICE TOPOLOGY & PACKET FLOW ENGINE</strong>
-                  </div>
-                  <div class="topology-controls-hint">
-                    <span>• Hover node to inspect telemetry</span>
-                    <span>• Drag nodes to rearrange topology</span>
-                  </div>
-                </div>
-
-                <div style="position: relative;">
-                  <canvas id="topology-canvas"></canvas>
-                  <div class="topology-node-tooltip" id="topology-tooltip"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lab Panel 5: Architecture Optimization Diff & Latency Flamegraph -->
-            <div class="lab-panel" id="lab-panel-flamegraph">
-              <div class="diff-flamegraph-wrap">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
-                  <div>
-                    <h4 style="font-size: 1.2rem; margin-bottom: 0.2rem;">Empirical Latency Breakdown & Optimization Diff</h4>
-                    <p style="font-size: 0.84rem; color: var(--text-dim); margin: 0;">Compare synchronous un-optimized baselines vs. Anurag's async vector-cached architecture.</p>
-                  </div>
-                  <div class="diff-toggle-bar">
-                    <button type="button" class="diff-toggle-btn active" id="diff-btn-optimized">⚡ Anurag's Architecture (312ms / 42ms)</button>
-                    <button type="button" class="diff-toggle-btn" id="diff-btn-naive">⚠️ Naive Baseline (1,620ms)</button>
-                  </div>
-                </div>
-
-                <div class="flamegraph-timeline" id="flamegraph-timeline">
-                  <!-- Dynamically populated flamegraph bars -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project Filter & Search Toolbar -->
-          <div class="project-toolbar reveal">
-            <!-- Active Skill Filter Banner -->
-            <div class="active-skill-banner" id="active-skill-banner" style="display: none;">
-              <span class="banner-text">⚡ Filtering projects by skill: <strong id="active-skill-name"></strong></span>
-              <button class="clear-skill-btn" id="clear-skill-btn" title="Clear skill filter">&times; Clear Filter</button>
-            </div>
-
-            <!-- Search Input -->
-            <div class="search-box-wrap">
-              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input
-                type="text"
-                id="project-search-input"
-                class="project-search-input"
-                placeholder="Search by title, technology (e.g. Python, Agent, Vision, FastAPI), or keyword..."
-                aria-label="Search all projects"
-              />
-              <button class="clear-search-btn" id="clear-search-btn" aria-label="Clear search" title="Clear search">
-                &times;
-              </button>
-            </div>
-
-            <!-- Category Filter Pills -->
-            <div class="filter-pills-row" role="tablist" aria-label="Project categories">
-              <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
-                All Systems <span class="filter-badge">5</span>
-              </button>
-              <button class="filter-pill" data-filter="live" role="tab" aria-selected="false">
-                🚀 Live API <span class="filter-badge">1</span>
-              </button>
-              <button class="filter-pill" data-filter="cv" role="tab" aria-selected="false">
-                🧠 Vision & Deep Learning <span class="filter-badge">2</span>
-              </button>
-              <button class="filter-pill" data-filter="agent" role="tab" aria-selected="false">
-                🤖 LLM & Vector Cache <span class="filter-badge">1</span>
-              </button>
-              <button class="filter-pill" data-filter="data" role="tab" aria-selected="false">
-                📊 NLP & Streaming Engines <span class="filter-badge">2</span>
-              </button>
-            </div>
-
-            <!-- Sort and View Controls -->
-            <div class="toolbar-controls-row">
-              <div class="results-feedback" id="results-feedback">
-                Showing <strong id="visible-projects-count">5</strong> of 5 systems
-              </div>
-              <div class="sort-wrap">
-                <label for="project-sort-select">Sort by:</label>
-                <select id="project-sort-select" class="sort-select">
-                  <option value="featured">Featured First</option>
-                  <option value="recent">Most Recent</option>
-                  <option value="name">Alphabetical (A-Z)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
           <!-- Dynamic Projects Grid -->
           <div class="projects-container" id="projects-container">
             <!-- Dynamically populated by script.js -->
@@ -1936,81 +1530,6 @@
       </div>
     </dialog>
 
-    <!-- NATIVE DIALOG: INTERACTIVE DEVELOPER TERMINAL -->
-    <dialog class="app-modal terminal-dialog" id="terminal-modal" aria-labelledby="terminal-title">
-      <div class="terminal-window">
-        <div class="terminal-titlebar">
-          <div class="terminal-dots">
-            <span class="terminal-dot dot-red" id="close-terminal-dot" title="Close terminal"></span>
-            <span class="terminal-dot dot-yellow"></span>
-            <span class="terminal-dot dot-green"></span>
-          </div>
-          <div class="terminal-title" id="terminal-title">anurag@ml-system: ~ (bash)</div>
-          <button class="close-modal-btn" id="close-terminal-btn" aria-label="Close terminal">&times;</button>
-        </div>
-        <div class="terminal-body" id="terminal-body">
-          <div class="terminal-banner">
-            <pre class="terminal-ascii">
-   ___                                 ___                 __           
-  / _ | ___  __ __ ____ ___ _ ___ _   / _ \ ___ _ ___  ___/ /___  __ __ 
- / __ |/ _ \/ // // __// _ `// _ `/  / ___// _ `// _ \/ _  // -_)/ // / 
-/_/ |_/_//_/\_,_//_/   \_,_/\_, /   /_/    \_,_//_//_/\_,_/ \__/ \_, /  
-                           /___/                                 /___/   
-            </pre>
-            <p class="terminal-welcome">
-              Welcome to Anurag Pandey's Interactive CLI v2.4.0 [Type <span class="term-hl">help</span> to view commands]
-            </p>
-          </div>
-          <div class="terminal-logs" id="terminal-logs"></div>
-          <form class="terminal-input-row" id="terminal-form" autocomplete="off">
-            <span class="terminal-prompt-user">anurag@ap-sys:~$</span>
-            <input type="text" id="terminal-input" class="terminal-input" spellcheck="false" autocomplete="off" />
-          </form>
-          <div class="terminal-quick-cmds">
-            <span class="quick-cmd-label">Quick Actions:</span>
-            <button type="button" class="term-cmd-chip" data-cmd="help">help</button>
-            <button type="button" class="term-cmd-chip" data-cmd="whoami">whoami</button>
-            <button type="button" class="term-cmd-chip" data-cmd="skills">skills</button>
-            <button type="button" class="term-cmd-chip" data-cmd="live">live</button>
-            <button type="button" class="term-cmd-chip" data-cmd="projects">projects</button>
-            <button type="button" class="term-cmd-chip" data-cmd="cat resume">cat resume</button>
-            <button type="button" class="term-cmd-chip" data-cmd="theme matrix">theme matrix</button>
-            <button type="button" class="term-cmd-chip" data-cmd="matrix">matrix</button>
-            <button type="button" class="term-cmd-chip" data-cmd="clear">clear</button>
-          </div>
-        </div>
-      </div>
-    </dialog>
-
-    <!-- NATIVE DIALOG: SPOTLIGHT COMMAND PALETTE -->
-    <dialog class="app-modal command-palette-dialog" id="command-palette-modal" aria-labelledby="palette-search-input">
-      <div class="palette-card">
-        <div class="palette-search-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input
-            type="text"
-            id="palette-search-input"
-            class="palette-search-input"
-            placeholder="Search projects, skills, or run actions..."
-            aria-label="Command Palette search"
-            autocomplete="off"
-          />
-          <button class="kbd-hint" id="close-palette-btn">Esc</button>
-        </div>
-        <div class="palette-results-list" id="palette-results-list" role="listbox">
-          <!-- Populated dynamically with keyboard navigation -->
-        </div>
-        <div class="palette-footer">
-          <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> Navigate</span>
-          <span><kbd>&crarr;</kbd> Select</span>
-          <span><kbd>Esc</kbd> Close</span>
-        </div>
-      </div>
-    </dialog>
-
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div class="toast-container" id="toast-container" aria-live="polite"></div>
     <!-- ==========================================================================
@@ -2051,22 +1570,10 @@
         <!-- Divider -->
         <div class="dock-divider" aria-hidden="true"></div>
 
-        <!-- 6. Web Audio Synthesizer Toggle -->
-        <button class="dock-item dock-btn" id="dock-sound-btn" data-tooltip="Toggle Web Audio SFX" aria-label="Toggle Audio SFX">
-          <div class="dock-icon" id="dock-sound-icon">🔇</div>
-          <span class="dock-pill">Audio</span>
-        </button>
-
-        <!-- 7. Theme Matrix -->
+        <!-- Theme Matrix -->
         <button class="dock-item dock-btn" id="dock-theme-btn" data-tooltip="Switch Cyber Theme" aria-label="Switch Theme">
           <div class="dock-icon" id="dock-theme-icon">🌌</div>
           <span class="dock-pill">Theme</span>
-        </button>
-
-        <!-- 8. Architect CLI Terminal -->
-        <button class="dock-item dock-btn" id="dock-terminal-btn" data-tooltip="Launch CLI Console (⌘K)" aria-label="Launch CLI">
-          <div class="dock-icon" style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan);">&gt;_</div>
-          <span class="dock-pill">CLI</span>
         </button>
       </div>
 
