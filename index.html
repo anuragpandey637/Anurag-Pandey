@@ -418,6 +418,21 @@
                     <button class="head-pill" data-head="3">Head 3: Semantic Context</button>
                   </div>
 
+                  <div class="bpe-tokenizer-input-wrap">
+                    <label class="studio-label">Live In-Browser BPE Tokenizer & Prompt Vectorizer:</label>
+                    <div class="bpe-input-row">
+                      <input type="text" id="bpe-input-text" class="bpe-text-field" value="Deepfake Detection CNN with MTCNN" placeholder="Enter any AI prompt or sentence to tokenize..." />
+                      <button type="button" class="btn btn-xs btn-primary" id="bpe-tokenize-btn">⚡ Tokenize & Run Attention</button>
+                    </div>
+                    <div class="bpe-presets-row">
+                      <span class="preset-label">Presets:</span>
+                      <button type="button" class="preset-chip active" data-preset="Deepfake Detection CNN with MTCNN">Deepfake CNN</button>
+                      <button type="button" class="preset-chip" data-preset="LLM Inference Gateway Redis Vector Cache">LLM Gateway</button>
+                      <button type="button" class="preset-chip" data-preset="Screen Solver AI OCR API under 320ms">Solver AI</button>
+                      <button type="button" class="preset-chip" data-preset="Resume Screening NLP Dense Embeddings">Resume Screener</button>
+                    </div>
+                  </div>
+
                   <div class="token-selector-group">
                     <label class="studio-label">Select Active Query Token ($Q_i$):</label>
                     <div class="token-chips-wrap" id="token-chips-container">
@@ -733,6 +748,94 @@
               </div>
             </div>
           </div>
+
+          <!-- LIVE TELEMETRY WIDGET (GITHUB & LEETCODE REAL-TIME STATS) -->
+          <div class="telemetry-bento-widget reveal" id="live-telemetry">
+            <div class="telemetry-widget-header">
+              <div class="t-badge-group">
+                <span class="status-indicator live"></span>
+                <span class="t-title">LIVE DEVELOPER TELEMETRY</span>
+              </div>
+              <span class="t-sync-label" id="telemetry-sync-time">⚡ Real-Time API Sync</span>
+            </div>
+
+            <div class="telemetry-cards-grid">
+              <!-- LeetCode Real-time Card -->
+              <div class="telemetry-card leetcode-telemetry-card">
+                <div class="t-card-top">
+                  <div class="t-platform-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFA116"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.794l3.774-4.04 4.542-4.86a1.375 1.375 0 0 0-.996-2.317zm3.845 8.163a1.38 1.38 0 0 0-1.951.002l-5.698 5.698a1.38 1.38 0 0 0 1.951 1.951l5.698-5.698a1.38 1.38 0 0 0 0-1.953z"/></svg>
+                    <div>
+                      <h4>LeetCode Algorithms</h4>
+                      <a href="https://leetcode.com/u/Anurag637/" target="_blank" rel="noreferrer" class="t-handle">@Anurag637 ↗</a>
+                    </div>
+                  </div>
+                  <span class="t-rank-badge" id="lc-status-pill">Active Solver</span>
+                </div>
+
+                <div class="lc-stats-body">
+                  <div class="lc-circle-wrap">
+                    <div class="lc-big-stat">
+                      <span class="lc-big-num" id="lc-total-solved">150+</span>
+                      <span class="lc-big-lbl">Problems Solved</span>
+                    </div>
+                  </div>
+
+                  <div class="lc-breakdown-list">
+                    <div class="lc-bar-row">
+                      <div class="lc-bar-label"><span>Easy</span><strong id="lc-easy-count">65</strong></div>
+                      <div class="lc-bar-track"><div class="lc-bar-fill fill-easy" id="lc-fill-easy" style="width: 45%;"></div></div>
+                    </div>
+                    <div class="lc-bar-row">
+                      <div class="lc-bar-label"><span>Medium</span><strong id="lc-med-count">75</strong></div>
+                      <div class="lc-bar-track"><div class="lc-bar-fill fill-medium" id="lc-fill-med" style="width: 60%;"></div></div>
+                    </div>
+                    <div class="lc-bar-row">
+                      <div class="lc-bar-label"><span>Hard</span><strong id="lc-hard-count">10+</strong></div>
+                      <div class="lc-bar-track"><div class="lc-bar-fill fill-hard" id="lc-fill-hard" style="width: 25%;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GitHub Real-time Activity Card -->
+              <div class="telemetry-card github-telemetry-card">
+                <div class="t-card-top">
+                  <div class="t-platform-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <div>
+                      <h4>GitHub Engineering Pulse</h4>
+                      <a href="https://github.com/Anurag637" target="_blank" rel="noreferrer" class="t-handle">@Anurag637 ↗</a>
+                    </div>
+                  </div>
+                  <span class="t-rank-badge badge-green" id="gh-status-pill">Continuous Deploy</span>
+                </div>
+
+                <div class="gh-stats-body">
+                  <div class="gh-metrics-row">
+                    <div class="gh-metric-item">
+                      <span class="gh-m-val" id="gh-repos-count">10+</span>
+                      <span class="gh-m-lbl">Public Repos</span>
+                    </div>
+                    <div class="gh-metric-item">
+                      <span class="gh-m-val" id="gh-stars-count">Top-Tier</span>
+                      <span class="gh-m-lbl">Clean Code</span>
+                    </div>
+                    <div class="gh-metric-item">
+                      <span class="gh-m-val highlight-cyan">Python / ML</span>
+                      <span class="gh-m-lbl">Primary Tech</span>
+                    </div>
+                  </div>
+
+                  <div class="gh-pulse-preview">
+                    <span class="gh-pulse-title">Recent Verified Pipeline:</span>
+                    <code class="gh-pulse-code" id="gh-latest-commit">git push origin main • ScreenSolver AI FastAPI Architecture</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </section>
 
         <!-- Experience Timeline Section -->
@@ -961,6 +1064,94 @@
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE SYSTEM ARCHITECTURE & LATENCY SIMULATOR -->
+          <div class="architecture-simulator-card reveal" id="arch-simulator">
+            <div class="sim-header">
+              <div class="sim-title-group">
+                <span class="sim-badge">INTERACTIVE ARCHITECTURE SIMULATOR</span>
+                <h4 class="sim-heading">Real-Time Microservice Dataflow & Latency Pipeline</h4>
+                <p class="sim-sub">Simulate dynamic query routing through FastAPI, Redis Semantic Vector Cache, and Upstream Models to inspect end-to-end P99 latency and compute cost trade-offs.</p>
+              </div>
+              <div class="sim-actions">
+                <button type="button" class="btn btn-sm btn-primary" id="sim-cache-hit-btn">
+                  ⚡ Simulate Cache Hit (Warm Path)
+                </button>
+                <button type="button" class="btn btn-sm btn-secondary" id="sim-cache-miss-btn">
+                  🔄 Simulate Cache Miss (Cold Path)
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive DAG Node Map -->
+            <div class="dag-container" id="dag-container">
+              <div class="dag-node" id="node-client">
+                <div class="node-icon">👤</div>
+                <div class="node-title">Client App</div>
+                <div class="node-meta">P99: 0ms</div>
+              </div>
+              <div class="dag-arrow" id="arrow-1">
+                <div class="packet" id="packet-1"></div>
+              </div>
+              <div class="dag-node" id="node-gateway">
+                <div class="node-icon">⚡</div>
+                <div class="node-title">FastAPI Gateway</div>
+                <div class="node-meta">CORS / Rate Limit</div>
+              </div>
+              <div class="dag-arrow" id="arrow-2">
+                <div class="packet" id="packet-2"></div>
+              </div>
+              <div class="dag-node" id="node-redis">
+                <div class="node-icon">🧠</div>
+                <div class="node-title">Redis Vector Cache</div>
+                <div class="node-meta">Cosine Thresh: 0.88</div>
+              </div>
+              <div class="dag-arrow" id="arrow-3">
+                <div class="packet" id="packet-3"></div>
+              </div>
+              <div class="dag-node" id="node-llm">
+                <div class="node-icon">🤖</div>
+                <div class="node-title">Upstream Model / OCR</div>
+                <div class="node-meta">Vision & Reasoning</div>
+              </div>
+            </div>
+
+            <!-- Telemetry HUD Bar -->
+            <div class="sim-telemetry-hud">
+              <div class="hud-item">
+                <span class="hud-label">SIMULATED ROUTE</span>
+                <span class="hud-val" id="sim-route-val">STANDBY</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">COSINE SIMILARITY</span>
+                <span class="hud-val" id="sim-cosine-val">--</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">MEASURED LATENCY</span>
+                <span class="hud-val highlight-cyan" id="sim-latency-val">0 ms</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">COMPUTE COST</span>
+                <span class="hud-val highlight-green" id="sim-cost-val">$0.0000</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">CACHE IMPACT</span>
+                <span class="hud-val highlight-purple" id="sim-impact-val">Ready</span>
+              </div>
+            </div>
+
+            <!-- Live cURL Playground Box -->
+            <div class="curl-playground-box">
+              <div class="curl-bar">
+                <span class="curl-method">POST</span>
+                <span class="curl-url">https://screensolver-api.onrender.com/solve</span>
+                <button type="button" class="btn btn-xs btn-outline" id="curl-test-live-btn">
+                  ▶ Send Live API Ping
+                </button>
+              </div>
+              <pre class="curl-output" id="curl-output-pre"># Response will stream here. Click "Send Live API Ping" to test the production microservice.</pre>
             </div>
           </div>
 
@@ -1822,6 +2013,55 @@
 
 
 
+
+    <!-- FLOATING ANURAG AI CO-PILOT CHAT BUTTON & DRAWER -->
+    <div class="anurag-ai-widget" id="anurag-ai-widget">
+      <button class="ai-fab-btn" id="ai-fab-btn" aria-label="Open Anurag AI Assistant" title="Chat with Anurag's AI Resume Assistant">
+        <span class="ai-fab-avatar">🤖</span>
+        <span class="ai-fab-text">Ask Anurag AI</span>
+        <span class="ai-fab-dot"></span>
+      </button>
+
+      <div class="ai-drawer" id="ai-drawer" role="dialog" aria-labelledby="ai-drawer-title" aria-hidden="true">
+        <div class="ai-drawer-header">
+          <div class="ai-drawer-title-wrap">
+            <span class="ai-bot-avatar">🤖</span>
+            <div>
+              <h4 id="ai-drawer-title">Anurag AI Co-Pilot</h4>
+              <span class="ai-status-indicator">Grounded on Authentic Resume & Systems</span>
+            </div>
+          </div>
+          <button class="ai-drawer-close-btn" id="ai-drawer-close-btn" aria-label="Close AI Chat">&times;</button>
+        </div>
+
+        <div class="ai-drawer-messages" id="ai-drawer-messages">
+          <div class="ai-msg ai-msg-bot">
+            <div class="ai-msg-bubble">
+              👋 Hi! I am <strong>Anurag AI</strong>, an intelligent assistant grounded in Anurag Pandey's real-world engineering background, 3 internships, and 5 production AI systems. How can I help you evaluate his profile today?
+            </div>
+          </div>
+        </div>
+
+        <!-- Suggested Quick Prompts -->
+        <div class="ai-quick-prompts" id="ai-quick-prompts">
+          <button type="button" class="ai-prompt-chip" data-query="Summarize Anurag's 3 internships">🏢 3 Internships</button>
+          <button type="button" class="ai-prompt-chip" data-query="Explain the Solver-Standalone flagship project">⚡ Flagship Solver</button>
+          <button type="button" class="ai-prompt-chip" data-query="What is Anurag's LeetCode & DSA background?">🐍 LeetCode & DSA</button>
+          <button type="button" class="ai-prompt-chip" data-query="Tell me about his Deepfake Detection system">🔍 Deepfake System</button>
+          <button type="button" class="ai-prompt-chip" data-query="Why should we hire Anurag as an AI Engineer?">💡 Why Hire Anurag?</button>
+        </div>
+
+        <form class="ai-drawer-input-form" id="ai-input-form">
+          <input type="text" id="ai-user-input" class="ai-input-field" placeholder="Ask anything about Anurag's AI/ML experience..." autocomplete="off" />
+          <button type="submit" class="ai-submit-btn" id="ai-send-btn" aria-label="Send message">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
 
     <!-- Application Script -->
     <script src="script.js"></script>
