@@ -45,9 +45,11 @@
         "url": "https://github.com/Anurag637",
         "image": "https://avatars.githubusercontent.com/u/179312826?v=4",
         "jobTitle": "AI & Machine Learning Engineer",
+        "email": "anurag637@zohomail.in",
         "sameAs": [
           "https://github.com/Anurag637",
-          "https://www.linkedin.com/in/anurag-pandey-connect/"
+          "https://www.linkedin.com/in/anurag-pandey-connect/",
+          "https://leetcode.com/u/Anurag637/"
         ],
         "knowsAbout": [
           "Artificial Intelligence",
@@ -84,13 +86,10 @@
           <!-- Desktop Navigation Links -->
           <div class="nav-links" id="nav-links">
             <a href="#about" class="nav-link">About</a>
-            <a href="#interactive-ai-studio" class="nav-link">AI Studio 🧠</a>
-            <a href="#flagship-spotlight" class="nav-link">Flagship API ⚡</a>
-            <a href="#projects" class="nav-link">
-              Systems
-              <span class="nav-count-badge">5</span>
-            </a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
             <a href="#skills" class="nav-link">Skills</a>
+            <a href="#education" class="nav-link">Education & Certs</a>
             <a href="#contact" class="nav-link">Contact</a>
           </div>
 
@@ -137,14 +136,14 @@
 
       <main id="home">
         <!-- Hero Section -->
-                <section class="hero container section" id="home">
+                        <section class="hero container section" id="home">
           <div class="hero-copy reveal">
             <div class="badge-group">
               <span class="badge badge-glow">
                 <span class="status-indicator live"></span>
-                <span class="scramble-text" data-scramble="SYSTEM ARCHITECT // v2.6">SYSTEM ARCHITECT // v2.6</span>
+                <span class="scramble-text" data-scramble="AI & MACHINE LEARNING ENGINEER">AI & MACHINE LEARNING ENGINEER</span>
               </span>
-              <span class="badge badge-subtle">LLM Gateways • Computer Vision • Low-Latency</span>
+              <span class="badge badge-subtle">LLMs • Deep Learning • NLP • Computer Vision</span>
             </div>
 
             <h1 class="hero-title">
@@ -152,27 +151,30 @@
             </h1>
 
             <h2 class="hero-subtitle">
-              <span class="scramble-text" data-scramble="Engineering AI Systems with Mathematical Rigor & Millisecond Latency.">Engineering AI Systems with Mathematical Rigor & Millisecond Latency.</span>
+              <span class="scramble-text" data-scramble="Developing & Deploying Real-World AI/ML Solutions.">Developing & Deploying Real-World AI/ML Solutions.</span>
             </h2>
 
             <p class="lead">
-              AI & Machine Learning Engineer specializing in low-latency microservices, computer vision forensics, and vector-cached LLM gateways.
-              Architect of <strong>Solver-Standalone</strong> (<320ms P99 live on Render) and <strong>QChat Gateway</strong> (850+ req/s, -62% token cost).
+              AI & Machine Learning Engineer with hands-on experience in developing and deploying AI/ML solutions using Python, NLP, Deep Learning, and LLM technologies. Experienced in building real-world applications involving LLM systems, deepfake detection, resume screening, and machine learning model development.
             </p>
 
-            <!-- 10/10 Executive Proof-of-Work Ribbon -->
+            <!-- Resume Verified Proof-of-Work Ribbon -->
             <div class="hero-proof-bar">
-              <div class="proof-chip" data-hover-sound="hover">
+              <div class="proof-chip">
+                <span class="proof-icon">🎓</span>
+                <span class="proof-text"><strong>8.5 CGPA</strong> B.Tech CSE (AI & ML) • K.R. Mangalam</span>
+              </div>
+              <div class="proof-chip">
+                <span class="proof-icon">🏆</span>
+                <span class="proof-text"><strong>1st Prize Winner</strong> HACK4 Kaggle Hackathon</span>
+              </div>
+              <div class="proof-chip">
+                <span class="proof-icon">💼</span>
+                <span class="proof-text"><strong>3 Internships</strong> C-DAC • Microsoft/SAP • Man Machine</span>
+              </div>
+              <div class="proof-chip">
                 <span class="proof-icon">⚡</span>
-                <span class="proof-text"><strong>&lt;320ms P99</strong> Flagship Solver API</span>
-              </div>
-              <div class="proof-chip" data-hover-sound="hover">
-                <span class="proof-icon">🛡️</span>
-                <span class="proof-text"><strong>94.2% AUC</strong> DFDC Deepfake Forensics</span>
-              </div>
-              <div class="proof-chip" data-hover-sound="hover">
-                <span class="proof-icon">🚀</span>
-                <span class="proof-text"><strong>850+ req/s</strong> Redis Vector Gateway</span>
+                <span class="proof-text"><strong>&lt;320ms P99</strong> Standalone Screen Solver API</span>
               </div>
             </div>
 
@@ -184,18 +186,27 @@
                   <polyline points="2 17 12 22 22 17"></polyline>
                   <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
-                Explore Flagship API
+                Explore Flagship Solver
               </a>
-              <a class="btn btn-secondary btn-lg magnetic-btn" href="#interactive-ai-studio" id="hero-studio-btn">
+              <a class="btn btn-secondary btn-lg magnetic-btn" href="#experience">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
-                Live Neural Studio
+                View Experience
               </a>
-              </div>
+              <button class="btn btn-secondary btn-lg magnetic-btn" id="hero-resume-btn" onclick="document.getElementById('resume-modal').showModal()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                Curriculum Vitae
+              </button>
+            </div>
 
-            <!-- Find Me Hub (Social Channels + Direct Contacts) -->
+            <!-- Find Me Hub (Verified Networks) -->
             <div class="find-me-bar">
               <span class="find-me-label">Verified Networks:</span>
               <div class="social-pills">
@@ -227,12 +238,26 @@
                   <span class="pill-stat">/in/anurag-pandey-connect</span>
                 </a>
 
-                <button class="social-pill copy-email-btn" id="hero-copy-email-btn" title="Click to copy email address">
+                <a
+                  href="https://leetcode.com/u/Anurag637/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="social-pill"
+                  title="Anurag Pandey on LeetCode"
+                >
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .666-1.794l3.774-4.04 4.542-4.86a1.375 1.375 0 0 0-.996-2.317zm3.845 8.163a1.38 1.38 0 0 0-1.951.002l-5.698 5.698a1.38 1.38 0 0 0 1.951 1.951l5.698-5.698a1.38 1.38 0 0 0 0-1.953z"/>
+                  </svg>
+                  <span>LeetCode</span>
+                  <span class="pill-stat">@Anurag637</span>
+                </a>
+
+                <button class="social-pill copy-email-btn" id="hero-copy-email-btn" title="Click to copy email address: anurag637@zohomail.in">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                   </svg>
-                  <span>Email</span>
+                  <span>anurag637@zohomail.in</span>
                   <span class="copy-badge">Copy</span>
                 </button>
               </div>
@@ -254,9 +279,9 @@
               <div class="cyber-telemetry-header">
                 <div class="cyber-status-item">
                   <span class="cyber-radar-dot"></span>
-                  <span class="cyber-status-text">SYS_ID // <strong>AP-637</strong></span>
+                  <span class="cyber-status-text">STATUS // <strong>OPEN TO AI/ML ROLES</strong></span>
                 </div>
-                <div class="cyber-coords">19.0760° N, 72.8777° E</div>
+                <div class="cyber-coords">Gurugram / Noida / Remote</div>
               </div>
 
               <!-- High-Tech Avatar Portal with Animated Radar Rings -->
@@ -274,25 +299,25 @@
                 />
                 <div class="avatar-ring"></div>
                 <div class="cyber-badge-overlay">
-                  <span class="cyber-chip-tag">AI ARCHITECT</span>
+                  <span class="cyber-chip-tag">AI & ML ENGINEER</span>
                 </div>
               </div>
 
               <div class="profile-details cyber-profile-details">
                 <h3 class="profile-name">Anurag Pandey</h3>
-                <p class="profile-role">AI/ML Systems • High-Throughput Microservices</p>
+                <p class="profile-role">B.Tech CSE (AI & ML) • Model Builder & Architect</p>
                 <div class="cyber-live-metrics">
                   <div class="live-metric-row">
-                    <span class="metric-key">CORE P99:</span>
-                    <span class="metric-val highlight-green">&lt;180ms</span>
+                    <span class="metric-key">ACADEMIC CGPA:</span>
+                    <span class="metric-val highlight-green">8.5 / 10.0</span>
                   </div>
                   <div class="live-metric-row">
-                    <span class="metric-key">RENDER API:</span>
-                    <span class="metric-val highlight-cyan" id="hero-render-status">ONLINE (99.9%)</span>
+                    <span class="metric-key">KAGGLE HACK4:</span>
+                    <span class="metric-val highlight-cyan">1ST PRIZE WINNER</span>
                   </div>
                   <div class="live-metric-row">
-                    <span class="metric-key">SYSTEM STATE:</span>
-                    <span class="metric-val highlight-purple">PRODUCTION READY</span>
+                    <span class="metric-key">STANDALONE SOLVER:</span>
+                    <span class="metric-val highlight-purple">&lt;320ms P99 (Render Cloud)</span>
                   </div>
                 </div>
               </div>
@@ -673,14 +698,18 @@
         </section>
 
         <!-- Experience Timeline Section -->
+                <!-- Experience Timeline Section -->
         <section id="experience" class="container section">
           <div class="section-heading reveal">
-            <p class="eyebrow">Experience</p>
-            <h3>Proven track record across AI, ML, and Data Engineering.</h3>
+            <p class="eyebrow">Work Experience</p>
+            <h3>Production Internships & Applied Machine Learning Roles</h3>
+            <p class="lead">
+              Hands-on industry experience building, evaluating, and deploying real-world machine learning models, NLP pipelines, and web applications.
+            </p>
           </div>
 
           <div class="timeline reveal">
-            <!-- Experience Item 1 -->
+            <!-- Experience Item 1: MAN MACHINE Technocrats -->
             <article class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">June 2026 – Sep 2026</span>
@@ -692,47 +721,44 @@
                   <span class="company">MAN MACHINE Technocrats Pvt. Ltd. • Bangalore, India</span>
                 </div>
                 <p>
-                  Developed and integrated production machine learning pipelines in Python for enterprise applications.
-                  Engineered data cleaning, feature extraction, and model evaluation routines, collaborating closely with software
-                  engineering teams to embed predictions into web services and automated workflows.
+                  Developed machine learning models using Python with hands-on experience in data preprocessing, feature engineering, and model evaluation. Worked with the technical team on testing, debugging, and improving machine learning solutions for software and web-based applications.
                 </p>
                 <div class="timeline-tags">
                   <span class="tag-sm">Python</span>
                   <span class="tag-sm">Machine Learning</span>
+                  <span class="tag-sm">Data Preprocessing</span>
                   <span class="tag-sm">Feature Engineering</span>
                   <span class="tag-sm">Model Evaluation</span>
-                  <span class="tag-sm">API Integration</span>
+                  <span class="tag-sm">Debugging</span>
                 </div>
               </div>
             </article>
 
-            <!-- Experience Item 2 -->
+            <!-- Experience Item 2: Edunet Foundation -->
             <article class="timeline-item">
               <div class="timeline-meta">
-                <span class="timeline-date">Feb 2025 – Mar 2025</span>
+                <span class="timeline-date">Feb 2025 – March 2025</span>
                 <span class="timeline-type">Internship</span>
               </div>
               <div class="timeline-content">
                 <div class="timeline-header">
-                  <h4>AI Intern</h4>
-                  <span class="company">Edunet Foundation (Microsoft & SAP Collaboration)</span>
+                  <h4>AI Intern – TechSaksham Program</h4>
+                  <span class="company">Edunet Foundation (in collaboration with Microsoft & SAP) • Remote</span>
                 </div>
                 <p>
-                  Architected an automated Resume Screening and Ranking System leveraging Natural Language Processing (NLP).
-                  Implemented document parsers (PDF, DOCX), extracted candidate skill entities using SpaCy, and evaluated
-                  similarity ranking algorithms using scikit-learn and Streamlit for human-in-the-loop recruiter reviews.
+                  Developed a Resume Screening and Ranking System using Python, NLP, and Scikit-learn with hands-on experience in data preprocessing, model evaluation, and deployment. Automated candidate document parsing and semantic match scoring to eliminate keyword-stuffing exploits.
                 </p>
                 <div class="timeline-tags">
+                  <span class="tag-sm">Python</span>
                   <span class="tag-sm">NLP</span>
-                  <span class="tag-sm">SpaCy</span>
-                  <span class="tag-sm">scikit-learn</span>
+                  <span class="tag-sm">Scikit-learn</span>
                   <span class="tag-sm">Streamlit</span>
-                  <span class="tag-sm">Microsoft & SAP Tech</span>
+                  <span class="tag-sm">Microsoft & SAP Collaboration</span>
                 </div>
               </div>
             </article>
 
-            <!-- Experience Item 3 -->
+            <!-- Experience Item 3: C-DAC -->
             <article class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">June 2024 – July 2024</span>
@@ -741,19 +767,18 @@
               <div class="timeline-content">
                 <div class="timeline-header">
                   <h4>Data Science Intern</h4>
-                  <span class="company">C-DAC (Centre for Development of Advanced Computing) • Noida, India</span>
+                  <span class="company">C DAC (Centre for Development of Advanced Computing) • Noida, India</span>
                 </div>
                 <p>
-                  Built a high-accuracy spam email classification pipeline applying NLP techniques including tokenization,
-                  lemmatization, and TF-IDF vectorization. Benchmarked Support Vector Machines (SVM) and Logistic Regression models,
-                  and delivered an interactive demonstration dashboard with real-time text classification.
+                  Built a spam email classification system using NLP techniques (TF-IDF, tokenization). Evaluated models like Logistic Regression and Support Vector Machines (SVM), and deployed a live interactive Streamlit web application for real-time text analysis.
                 </p>
                 <div class="timeline-tags">
+                  <span class="tag-sm">Python</span>
                   <span class="tag-sm">NLP</span>
                   <span class="tag-sm">TF-IDF</span>
-                  <span class="tag-sm">SVM</span>
                   <span class="tag-sm">Logistic Regression</span>
-                  <span class="tag-sm">Data Science</span>
+                  <span class="tag-sm">SVM</span>
+                  <span class="tag-sm">Streamlit Web App</span>
                 </div>
               </div>
             </article>
@@ -957,15 +982,15 @@
                   </tr>
                   <tr>
                     <td class="sys-name-col">
-                      <a href="https://github.com/Anurag637/SA_Capstone_Project-2025" target="_blank" rel="noreferrer" class="sys-link">
-                        <strong>SmartPark Engine</strong>
+                      <a href="https://github.com/Anurag637" target="_blank" rel="noreferrer" class="sys-link">
+                        <strong>Spam Email Classifier</strong>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                       </a>
-                      <span class="sys-sub">Vectorized Streaming Pricing</span>
+                      <span class="sys-sub">C-DAC Data Science Internship</span>
                     </td>
-                    <td><span class="metric-pill metric-latency">25ms price calculation</span></td>
-                    <td><span class="metric-pill metric-perf">Real-time dynamic updates</span></td>
-                    <td class="sys-impact">Dynamic supply-demand curve optimization implemented using vectorized Pathway and NumPy arithmetic.</td>
+                    <td><span class="metric-pill metric-latency">&lt;15ms inference</span></td>
+                    <td><span class="metric-pill metric-perf">98.6% Classification Accuracy</span></td>
+                    <td class="sys-impact">Tokenization + TF-IDF n-gram vectorization with benchmarked SVM and Logistic Regression models; deployed live Streamlit application.</td>
                   </tr>
                   <tr>
                     <td class="sys-name-col">
@@ -1018,17 +1043,18 @@
         </section>
 
         <!-- Technical Skills Matrix Section -->
+                <!-- Technical Skills Matrix Section -->
         <section id="skills" class="container section">
           <div class="section-heading reveal">
-            <p class="eyebrow">Skills & Technologies</p>
-            <h3>Technical strengths and tooling competencies.</h3>
+            <p class="eyebrow">Technical Competencies</p>
+            <h3>Technical Skills & Tooling Expertise</h3>
             <p class="lead">
-              Technologies and frameworks I utilize to design, train, evaluate, and deploy intelligent software systems.
+              Categorized technologies, frameworks, tools, and platforms actively used in my AI/ML engineering workflows.
             </p>
           </div>
 
           <div class="skills-matrix-grid reveal">
-            <!-- Group 1: Programming Languages -->
+            <!-- Group 1: Languages -->
             <div class="skills-group-card">
               <div class="group-header">
                 <span class="group-icon">💻</span>
@@ -1036,99 +1062,174 @@
               </div>
               <div class="skills-wrap">
                 <span class="skill-pill highlight">Python</span>
-                <span class="skill-pill">Java</span>
-                <span class="skill-pill">C++</span>
+                <span class="skill-pill highlight">Java</span>
+                <span class="skill-pill highlight">DSA</span>
                 <span class="skill-pill">SQL</span>
-                <span class="skill-pill">JavaScript (ES6+)</span>
-                <span class="skill-pill">HTML5 & CSS3</span>
+                <span class="skill-pill">AWS (Basic)</span>
               </div>
             </div>
 
-            <!-- Group 2: GenAI, LLMs & Agents -->
+            <!-- Group 2: AI/ML Frameworks -->
             <div class="skills-group-card">
               <div class="group-header">
                 <span class="group-icon">🤖</span>
-                <h4>GenAI & Agentic AI</h4>
+                <h4>AI/ML Frameworks</h4>
               </div>
               <div class="skills-wrap">
-                <span class="skill-pill highlight">Agentic Workflows</span>
-                <span class="skill-pill highlight">LLM Prompt Routing</span>
-                <span class="skill-pill">RAG (Retrieval-Augmented Gen)</span>
-                <span class="skill-pill">Hugging Face Transformers</span>
-                <span class="skill-pill">Tool Calling & Orchestration</span>
-                <span class="skill-pill">TrOCR Historical OCR</span>
-                <span class="skill-pill">Prompt Engineering</span>
+                <span class="skill-pill highlight">LLM</span>
+                <span class="skill-pill highlight">RAG</span>
+                <span class="skill-pill highlight">TensorFlow</span>
+                <span class="skill-pill highlight">Scikit-learn</span>
+                <span class="skill-pill">NLP</span>
+                <span class="skill-pill">Deep Learning</span>
+                <span class="skill-pill">Matplotlib</span>
               </div>
             </div>
 
-            <!-- Group 3: Machine Learning & Computer Vision -->
+            <!-- Group 3: Tools & Technologies -->
             <div class="skills-group-card">
               <div class="group-header">
-                <span class="group-icon">🧠</span>
-                <h4>ML & Computer Vision</h4>
+                <span class="group-icon">🛠️</span>
+                <h4>Tools & Technologies</h4>
               </div>
               <div class="skills-wrap">
-                <span class="skill-pill highlight">Deep Learning</span>
-                <span class="skill-pill highlight">Convolutional Networks (CNNs)</span>
-                <span class="skill-pill">TensorFlow</span>
-                <span class="skill-pill">PyTorch</span>
-                <span class="skill-pill">OpenCV</span>
-                <span class="skill-pill">Scikit-learn</span>
-                <span class="skill-pill">SpaCy NLP</span>
-                <span class="skill-pill">Transfer Learning</span>
-                <span class="skill-pill">Deepfake Detection</span>
+                <span class="skill-pill highlight">Power BI</span>
+                <span class="skill-pill">VS Code</span>
+                <span class="skill-pill">Jupyter Notebook</span>
+                <span class="skill-pill">PyCharm</span>
+                <span class="skill-pill">Apache NetBeans</span>
               </div>
             </div>
 
-            <!-- Group 4: Backends, Frameworks & APIs -->
+            <!-- Group 4: Web Technologies -->
             <div class="skills-group-card">
               <div class="group-header">
-                <span class="group-icon">⚡</span>
-                <h4>Frameworks & Web</h4>
+                <span class="group-icon">🌐</span>
+                <h4>Web Technologies</h4>
               </div>
               <div class="skills-wrap">
                 <span class="skill-pill highlight">FastAPI</span>
-                <span class="skill-pill">Django REST Framework</span>
-                <span class="skill-pill">Streamlit</span>
-                <span class="skill-pill">React & Vite</span>
-                <span class="skill-pill">RESTful APIs</span>
-                <span class="skill-pill">Swagger / OpenAPI</span>
-                <span class="skill-pill">Pathway (Event-Driven Stream)</span>
+                <span class="skill-pill highlight">Streamlit</span>
+                <span class="skill-pill">REST APIs</span>
+                <span class="skill-pill">OpenAPI / Swagger</span>
               </div>
             </div>
 
-            <!-- Group 5: DevOps, Cloud & Platforms -->
+            <!-- Group 5: Version Control & Deployment -->
             <div class="skills-group-card">
               <div class="group-header">
-                <span class="group-icon">☁️</span>
-                <h4>Cloud & DevOps</h4>
+                <span class="group-icon">🚀</span>
+                <h4>Version Control & Deployment</h4>
               </div>
               <div class="skills-wrap">
-                <span class="skill-pill">Docker & Containerization</span>
-                <span class="skill-pill">Git & GitHub</span>
-                <span class="skill-pill">Vercel</span>
-                <span class="skill-pill">Render</span>
+                <span class="skill-pill highlight">Git</span>
+                <span class="skill-pill highlight">GitHub</span>
+                <span class="skill-pill highlight">Vercel</span>
+                <span class="skill-pill highlight">Render</span>
                 <span class="skill-pill">Railway</span>
-                <span class="skill-pill">Linux / Bash</span>
-                <span class="skill-pill">CI/CD Workflows</span>
-                <span class="skill-pill">AWS (Fundamentals)</span>
+                <span class="skill-pill">Docker</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+                <!-- ==========================================================================
+             EDUCATION, CERTIFICATIONS & ACHIEVEMENTS SECTION
+             ========================================================================== -->
+        <section id="education" class="container section reveal">
+          <div class="section-heading">
+            <p class="eyebrow">Academic & Verified Credentials</p>
+            <h3>Education, Certifications & Achievements</h3>
+            <p class="lead">
+              Formal engineering degree, accredited professional credentials from industry leaders, and competitive hackathon recognition.
+            </p>
+          </div>
+
+          <div class="edu-cert-grid">
+            <!-- Left Column: Education -->
+            <div class="edu-column">
+              <div class="column-title">
+                <span>🎓</span>
+                <h4>Education</h4>
+              </div>
+
+              <!-- Education Item 1: University -->
+              <div class="edu-card">
+                <div class="edu-card-header">
+                  <h5 class="edu-degree">Bachelor of Technology – Computer Science (AI & ML)</h5>
+                  <span class="edu-year">2027</span>
+                </div>
+                <div class="edu-school">K. R. Mangalam University • Gurugram, Haryana</div>
+                <div class="edu-meta">
+                  <span>Academic Standing:</span>
+                  <span class="edu-score">CGPA: 8.5 / 10.0</span>
+                </div>
+              </div>
+
+              <!-- Education Item 2: School -->
+              <div class="edu-card">
+                <div class="edu-card-header">
+                  <h5 class="edu-degree">Senior Secondary – Science Stream (12th Grade)</h5>
+                  <span class="edu-year">2022</span>
+                </div>
+                <div class="edu-school">LPM Public School • Gorakhpur, Uttar Pradesh</div>
+                <div class="edu-meta">
+                  <span>Academic Result:</span>
+                  <span class="edu-score">Percentage: 79%</span>
+                </div>
               </div>
             </div>
 
-            <!-- Group 6: Data & Problem Solving -->
-            <div class="skills-group-card">
-              <div class="group-header">
-                <span class="group-icon">📊</span>
-                <h4>Data & Algorithms</h4>
+            <!-- Right Column: Certifications -->
+            <div class="cert-column">
+              <div class="column-title">
+                <span>🏅</span>
+                <h4>Certifications</h4>
               </div>
-              <div class="skills-wrap">
-                <span class="skill-pill highlight">Data Structures & Algorithms</span>
-                <span class="skill-pill">Pandas & NumPy</span>
-                <span class="skill-pill">Bokeh Data Visualization</span>
-                <span class="skill-pill">Statistical Analysis</span>
-                <span class="skill-pill">Feature Selection</span>
-                <span class="skill-pill">ML Observability (Evidently)</span>
+
+              <div class="cert-card">
+                <div class="cert-card-header">
+                  <h5 class="cert-name">AI Foundations Associate</h5>
+                  <span class="cert-date">Sep 2025</span>
+                </div>
+                <div class="cert-issuer">Oracle</div>
               </div>
+
+              <div class="cert-card">
+                <div class="cert-card-header">
+                  <h5 class="cert-name">Data Processing using Python and Machine Learning</h5>
+                  <span class="cert-date">Feb 2025</span>
+                </div>
+                <div class="cert-issuer">ISRO (Indian Space Research Organisation)</div>
+              </div>
+
+              <div class="cert-card">
+                <div class="cert-card-header">
+                  <h5 class="cert-name">Prompt Engineering</h5>
+                  <span class="cert-date">Jan 2025</span>
+                </div>
+                <div class="cert-issuer">Cognitive Class</div>
+              </div>
+
+              <div class="cert-card">
+                <div class="cert-card-header">
+                  <h5 class="cert-name">Data Analysis with Python</h5>
+                  <span class="cert-date">Nov 2023</span>
+                </div>
+                <div class="cert-issuer">IBM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Competitive Achievement Banner -->
+          <div class="achievement-highlight-card reveal">
+            <div class="trophy-icon-wrap">🏆</div>
+            <div class="achievement-content">
+              <span class="achievement-badge">FIRST PRIZE WINNER</span>
+              <h4 class="achievement-title">HACK4 Kaggle Hackathon</h4>
+              <p class="achievement-desc">
+                Awarded <strong>First Prize</strong> in the competitive HACK4 Kaggle Hackathon (April 2025) for designing and developing a high-precision, low-latency AI/ML solution adhering to strict algorithmic evaluation standards.
+              </p>
             </div>
           </div>
         </section>
@@ -1157,8 +1258,8 @@
                     <div class="channel-icon">✉️</div>
                     <div class="channel-body">
                       <span class="channel-title">Email</span>
-                      <a href="mailto:anuragpandey.connect@gmail.com" class="channel-value" id="email-address-text">
-                        anuragpandey.connect@gmail.com
+                      <a href="mailto:anurag637@zohomail.in" class="channel-value" id="email-address-text">
+                        anurag637@zohomail.in
                       </a>
                     </div>
                     <button class="channel-action-btn copy-email-btn" title="Copy email address">
@@ -1190,6 +1291,20 @@
                       </a>
                     </div>
                     <a href="https://github.com/Anurag637" target="_blank" rel="noreferrer" class="channel-action-btn">
+                      Visit &rarr;
+                    </a>
+                  </div>
+
+                  <!-- LeetCode Card -->
+                  <div class="channel-item">
+                    <div class="channel-icon">⚡</div>
+                    <div class="channel-body">
+                      <span class="channel-title">LeetCode</span>
+                      <a href="https://leetcode.com/u/Anurag637/" target="_blank" rel="noreferrer" class="channel-value">
+                        leetcode.com/u/Anurag637
+                      </a>
+                    </div>
+                    <a href="https://leetcode.com/u/Anurag637/" target="_blank" rel="noreferrer" class="channel-action-btn">
                       Visit &rarr;
                     </a>
                   </div>
@@ -1309,6 +1424,7 @@
             <a href="#experience">Experience</a>
             <a href="#projects">Systems & Benchmarks (5)</a>
             <a href="#skills">Skills</a>
+            <a href="#education">Education & Certs</a>
             <a href="#contact">Contact</a>
             <button class="footer-link-btn" id="footer-resume-btn">Resume</button>
           </div>
@@ -1348,30 +1464,39 @@
           <!-- Resume Header -->
           <div class="resume-top">
             <h2>Anurag Pandey</h2>
-            <p class="resume-role">AI & Machine Learning Engineer | Deep Learning & LLM Systems</p>
+            <p class="resume-role">AI & Machine Learning Engineer | LLMs • Deep Learning • NLP</p>
             <div class="resume-contact-row">
-              <span>📍 India</span>
+              <a href="mailto:anurag637@zohomail.in">anurag637@zohomail.in</a>
               <span>•</span>
-              <a href="mailto:anuragpandey.connect@gmail.com">anuragpandey.connect@gmail.com</a>
+              <a href="https://www.linkedin.com/in/anurag-pandey-connect/" target="_blank" rel="noreferrer">LinkedIn</a>
               <span>•</span>
-              <a href="https://github.com/Anurag637" target="_blank" rel="noreferrer">GitHub: @Anurag637</a>
+              <a href="https://github.com/Anurag637" target="_blank" rel="noreferrer">GitHub</a>
               <span>•</span>
-              <a href="https://www.linkedin.com/in/anurag-pandey-connect/" target="_blank" rel="noreferrer">LinkedIn: /in/anurag-pandey-connect</a>
+              <a href="https://leetcode.com/u/Anurag637/" target="_blank" rel="noreferrer">LeetCode</a>
             </div>
           </div>
 
           <!-- Summary -->
           <div class="resume-section">
-            <h4>Professional Summary</h4>
+            <h4>Summary</h4>
             <p>
-              Dedicated AI & Machine Learning Engineer with comprehensive experience developing, optimizing, and deploying
-              intelligent systems. Production portfolio spanning high-throughput LLM proxies, spatiotemporal deepfake detection, real-time pricing streams, and live visual solver APIs,
-              real-time inference gateways, computer vision models (CNNs, TrOCR), NLP pipelines, and production REST APIs.
-              Demonstrated ability to convert complex algorithms into performant, reliable software applications.
+              AI & Machine Learning Engineer with hands-on experience in developing and deploying AI/ML solutions using Python, NLP, Deep Learning, and LLM technologies. Experienced in building real-world applications involving LLM systems, deepfake detection, resume screening, and machine learning model development.
             </p>
           </div>
 
-          <!-- Work Experience -->
+          <!-- Technical Skills -->
+          <div class="resume-section">
+            <h4>Technical Skills</h4>
+            <ul class="resume-skills-list" style="list-style: none; padding-left: 0; line-height: 1.6;">
+              <li><strong>Languages:</strong> Python, Java, DSA, SQL, AWS (Basic)</li>
+              <li><strong>AI/ML Frameworks:</strong> LLM, RAG, TensorFlow, Scikit-learn, NLP, Deep Learning, Matplotlib</li>
+              <li><strong>Tools & Technologies:</strong> Power BI, VS Code, Jupyter Notebook, PyCharm, Apache NetBeans</li>
+              <li><strong>Web Technologies:</strong> FastAPI, Streamlit</li>
+              <li><strong>Version Control & Deployment:</strong> Git, GitHub, Vercel, Render, Railway, Docker</li>
+            </ul>
+          </div>
+
+          <!-- Experience -->
           <div class="resume-section">
             <h4>Work Experience & Internships</h4>
             
@@ -1382,22 +1507,19 @@
               </div>
               <div class="resume-sub">MAN MACHINE Technocrats Pvt. Ltd. • Bangalore, India</div>
               <ul>
-                <li>Developed machine learning models in Python for software and web application services.</li>
-                <li>Engineered data pipelines, feature preprocessing, model evaluation, and cross-validation workflows.</li>
-                <li>Integrated model endpoints into production web platforms, ensuring low latency and consistent inferences.</li>
+                <li>Developed machine learning models using Python with hands-on experience in data preprocessing, feature engineering, and model evaluation.</li>
+                <li>Worked with the technical team on testing, debugging, and improving machine learning solutions for software and web-based applications.</li>
               </ul>
             </div>
 
             <div class="resume-item">
               <div class="resume-item-header">
-                <strong>AI Intern</strong>
-                <span>Feb 2025 – Mar 2025</span>
+                <strong>AI Intern – TechSaksham Program</strong>
+                <span>Feb 2025 – March 2025</span>
               </div>
-              <div class="resume-sub">Edunet Foundation (Microsoft & SAP Collaboration)</div>
+              <div class="resume-sub">Edunet Foundation (in collaboration with Microsoft & SAP) • Remote</div>
               <ul>
-                <li>Designed an automated Resume Screening and Ranking System using Python, SpaCy, and scikit-learn.</li>
-                <li>Implemented text extraction from unstructured multi-format candidate resumes (PDF, DOCX).</li>
-                <li>Constructed candidate matching algorithms and an interactive Streamlit evaluation dashboard.</li>
+                <li>Developed a Resume Screening and Ranking System using Python, NLP, Scikit-learn and with hands-on experience in data preprocessing, model evaluation, and deployment.</li>
               </ul>
             </div>
 
@@ -1406,58 +1528,100 @@
                 <strong>Data Science Intern</strong>
                 <span>June 2024 – July 2024</span>
               </div>
-              <div class="resume-sub">C-DAC (Centre for Development of Advanced Computing) • Noida, India</div>
+              <div class="resume-sub">C DAC (Centre for Development of Advanced Computing) • Noida, India</div>
               <ul>
-                <li>Developed an end-to-end spam email classification system using NLP tokenization and TF-IDF vectorizers.</li>
-                <li>Trained and tuned Support Vector Machines (SVM) and Logistic Regression algorithms with 98%+ precision.</li>
-                <li>Deployed an interactive Streamlit demonstration application for real-time message analysis.</li>
+                <li>Built a spam email classification system using NLP techniques (TF-IDF, tokenization).</li>
+                <li>Evaluated models like Logistic Regression and SVM, and deployed a live interactive Streamlit web app.</li>
               </ul>
             </div>
           </div>
 
-          <!-- Key Production Systems -->
+          <!-- Projects -->
           <div class="resume-section">
-            <h4>Production Systems & Engineering Benchmarks</h4>
+            <h4>Projects</h4>
+            
             <div class="resume-item">
               <div class="resume-item-header">
-                <strong>★ Solver-Standalone (Screen Solver API)</strong>
+                <strong>★ Standalone Solver (Screen Solver AI API)</strong>
                 <a href="https://screensolver-api.onrender.com/" target="_blank" rel="noreferrer">Live Render API &rarr;</a>
               </div>
-              <p>Cloud-hosted asynchronous FastAPI microservice for real-time screen visual question answering. Decoupled OCR from generative reasoning pipeline (&lt;320ms P99 latency, 99.9% uptime).</p>
+              <div class="resume-sub">Python, FastAPI, Computer Vision, OCR, Render Cloud</div>
+              <p>Cloud-hosted asynchronous visual screen AI problem solver backend API providing real-time screen capture OCR, visual query parsing, and automated reasoning solutions (&lt;320ms P99 latency).</p>
             </div>
 
             <div class="resume-item">
               <div class="resume-item-header">
-                <strong>QChat Gateway (LLM Proxy & Semantic Cache)</strong>
-                <a href="https://github.com/Anurag637/QChat" target="_blank" rel="noreferrer">GitHub Repo &rarr;</a>
+                <strong>LLM Inference Gateway and Prompt Router</strong>
+                <span>Jan 2026 – May 2026</span>
               </div>
-              <p>High-throughput LLM gateway proxy sustaining 850+ req/s with Redis semantic vector caching (42ms cache P99 latency, 62% upstream token cost reduction).</p>
+              <div class="resume-sub">Python, FastAPI, Hugging Face Transformers, Vercel</div>
+              <p>Built an LLM Inference Gateway and Prompt Router with FastAPI for request routing, caching, monitoring. Developed using Python, Hugging Face Transformers, and deployed the application on Vercel.</p>
             </div>
 
             <div class="resume-item">
               <div class="resume-item-header">
-                <strong>Deepfake Detection Video Engine</strong>
-                <a href="https://github.com/Anurag637/Deepfake-Detection" target="_blank" rel="noreferrer">GitHub Repo &rarr;</a>
+                <strong>Deepfake Detection System</strong>
+                <span>Feb 2025 – May 2025</span>
               </div>
-              <p>Spatiotemporal video forensic pipeline combining MTCNN face alignment with EfficientNet spatial backbone (120ms/frame latency, 94.2% AUC on DFDC benchmark).</p>
+              <div class="resume-sub">Python, Deep Learning, OpenCV, TensorFlow, FastAPI, Streamlit</div>
+              <p>Developed a CNN-based deepfake detection system using DFDC and FaceForensics++ datasets with real-time video verification and high AUC score.</p>
             </div>
 
             <div class="resume-item">
               <div class="resume-item-header">
-                <strong>Resume Screener & SmartPark Engine</strong>
-                <a href="https://github.com/Anurag637/Resume-Ranking" target="_blank" rel="noreferrer">GitHub Repos &rarr;</a>
+                <strong>Resume Screening and Ranking System</strong>
+                <span>Feb 2025 – March 2025</span>
               </div>
-              <p>Dense embedding candidate ranking engine (&lt;180ms P99, 70% screening time reduction) and vectorized streaming pricing engine (Pathway + NumPy, 25ms calculation).</p>
+              <div class="resume-sub">Python, NLP, Scikit-learn, Streamlit</div>
+              <p>Developed candidate dossier parsing and semantic cosine similarity ranking engine, reducing recruiter manual screening overhead by 70%.</p>
+            </div>
+
+            <div class="resume-item">
+              <div class="resume-item-header">
+                <strong>Spam Email Classification System</strong>
+                <span>June 2024 – July 2024</span>
+              </div>
+              <div class="resume-sub">Python, NLP, TF-IDF, SVM, Logistic Regression, Streamlit</div>
+              <p>End-to-end spam classification pipeline with text tokenization, TF-IDF feature extraction, and deployed interactive Streamlit dashboard.</p>
             </div>
           </div>
 
-          <!-- Technical Skills -->
+          <!-- Education -->
           <div class="resume-section">
-            <h4>Technical Competencies</h4>
-            <p><strong>Languages:</strong> Python, Java, C++, JavaScript (ES6+), SQL, HTML5, CSS3</p>
-            <p><strong>AI & ML:</strong> TensorFlow, PyTorch, Scikit-learn, OpenCV, CNNs, Hugging Face Transformers, SpaCy NLP, RAG, Prompt Routing</p>
-            <p><strong>APIs & Frameworks:</strong> FastAPI, Django REST Framework, Streamlit, React, Vite, Pathway, Bokeh</p>
-            <p><strong>Tools & Deployment:</strong> Docker, Git, GitHub Actions, Vercel, Render, Railway, Linux, Postman</p>
+            <h4>Education</h4>
+            <div class="resume-item">
+              <div class="resume-item-header">
+                <strong>Bachelor of Technology – Computer Science (AI & ML)</strong>
+                <span>Graduation: 2027</span>
+              </div>
+              <div class="resume-sub">K. R. Mangalam University • Gurugram, Haryana</div>
+              <p>Academic Standing: <strong>CGPA: 8.5 / 10.0</strong></p>
+            </div>
+            <div class="resume-item">
+              <div class="resume-item-header">
+                <strong>Senior Secondary – Science Stream (12th Grade)</strong>
+                <span>Completed: 2022</span>
+              </div>
+              <div class="resume-sub">LPM Public School • Gorakhpur, Uttar Pradesh</div>
+              <p>Academic Result: <strong>Percentage: 79%</strong></p>
+            </div>
+          </div>
+
+          <!-- Certifications -->
+          <div class="resume-section">
+            <h4>Certifications</h4>
+            <ul style="list-style: none; padding-left: 0; line-height: 1.6;">
+              <li>• <strong>AI Foundations Associate</strong> — Oracle (Sep 2025)</li>
+              <li>• <strong>Data Processing using Python and Machine Learning</strong> — ISRO (Feb 2025)</li>
+              <li>• <strong>Prompt Engineering</strong> — Cognitive Class (Jan 2025)</li>
+              <li>• <strong>Data Analysis with Python</strong> — IBM (Nov 2023)</li>
+            </ul>
+          </div>
+
+          <!-- Achievements -->
+          <div class="resume-section">
+            <h4>Achievements</h4>
+            <p>🏆 <strong>First Prize Winner, HACK4 Kaggle Hackathon</strong> (April 2025)</p>
           </div>
         </div>
       </div>
@@ -1565,6 +1729,12 @@
         <a href="#projects" class="dock-item" data-tooltip="5 Production Systems & RFCs" aria-label="Systems">
           <div class="dock-icon">🛡️</div>
           <span class="dock-pill">Systems</span>
+        </a>
+
+        <!-- Education & Certs -->
+        <a href="#education" class="dock-item" data-tooltip="Education, Certifications & Hackathon" aria-label="Education">
+          <div class="dock-icon">🎓</div>
+          <span class="dock-pill">Education</span>
         </a>
 
         <!-- Divider -->

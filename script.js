@@ -8,7 +8,7 @@
 const PROJECTS_DATA = [
   {
     id: "solver-standalone",
-    title: "Solver-Standalone (Screen Solver API)",
+    title: "Standalone Solver (Screen Solver AI API)",
     category: "api",
     categories: ["api", "live", "cv"],
     isLive: true,
@@ -52,22 +52,22 @@ const PROJECTS_DATA = [
     stars: 0
   },
   {
-    id: "qchat",
-    title: "QChat Gateway (LLM Proxy & Vector Cache)",
+    id: "llm-gateway",
+    title: "LLM Inference Gateway and Prompt Router",
     category: "agent",
     categories: ["agent", "api"],
-    isLive: false,
+    isLive: true,
     isFeatured: true,
-    badge: "Production Microservice",
+    badge: "Jan 2026 – May 2026 • Vercel Deployed",
     latencyP99: "42ms (Cache) / 310ms (LLM)",
     throughput: "850+ req/s peak capacity",
     archImpact: "Implemented Redis semantic vector caching with cosine thresholding; reduced upstream API costs by 62%.",
     rfc: {
       id: "RFC-002",
       title: "Semantic Vector Caching & Request Deduplication for High-Throughput LLM Proxies",
-      status: "Production Verified (v1.8)",
+      status: "Production Deployed (Vercel)",
       target: "<50ms Cache Hit P99 / 850+ req/s",
-      problem: "Enterprise conversational agents frequently encounter semantically identical queries with syntactic variations ('reverse linked list' vs 'how to reverse a linked list in python'). Direct upstream API dispatch caused massive token billing and 300ms+ baseline latencies.",
+      problem: "Enterprise conversational agents frequently encounter semantically identical queries with syntactic variations. Direct upstream API dispatch caused massive token billing and 300ms+ baseline latencies.",
       tradeoff: "Implemented Redis vector similarity search with cosine distance thresholding (0.85) over exact-match hash caching. Trade-off: 2.1ms embedding calculation overhead per query to unlock 62% upstream cost reduction and 7x speedup on recurring queries.",
       circuitBreaker: "Redis connection pool circuit breaker with graceful degradation to direct upstream LLM passthrough if cache cluster drops below quorum.",
       percentiles: [
@@ -84,26 +84,26 @@ const PROJECTS_DATA = [
       { label: "Peak Capacity", val: "850+ req/s" },
       { label: "Cost Savings", val: "62% Upstream" }
     ],
-    description: "High-throughput LLM gateway proxy with Redis semantic vector caching, intelligent request deduplication, and automated rate limiting.",
+    description: "Built an LLM Inference Gateway and Prompt Router with FastAPI for request routing, caching, and latency monitoring. Developed using Python, Hugging Face Transformers, and deployed the application on Vercel.",
     highlights: [
+      "Built an LLM Inference Gateway and Prompt Router with FastAPI for intelligent request routing and semantic caching.",
+      "Developed using Python, Hugging Face Transformers, and deployed the production application on Vercel.",
       "Empirical P99 latency of 42ms for cached queries vs. 310ms for uncached upstream LLM calls.",
-      "Engineered to sustain 850+ requests per second peak capacity under concurrent benchmark loads.",
-      "Implemented Redis semantic vector caching with cosine similarity thresholding, reducing upstream token costs by 62%.",
-      "Dynamic prompt routing and fallback resilience across multi-provider LLM backends."
+      "Engineered to sustain 850+ requests per second peak capacity under concurrent benchmark loads."
     ],
-    tags: ["Python", "Redis", "Vector Cache", "LLM Gateway", "FastAPI", "Semantic Search"],
+    tags: ["Python", "FastAPI", "Hugging Face", "Transformers", "Vercel", "LLM Routing", "Redis Cache"],
     demoUrl: null,
     githubUrl: "https://github.com/Anurag637/QChat",
     stars: 0
   },
   {
     id: "deepfake-detection",
-    title: "Deepfake Video Detection Engine",
+    title: "Deepfake Detection System",
     category: "cv",
     categories: ["cv"],
     isLive: false,
     isFeatured: true,
-    badge: "Deep Learning Vision",
+    badge: "Feb 2025 – May 2025 • CNN Deep Learning",
     latencyP99: "120ms per frame",
     throughput: "94.2% AUC on DFDC",
     archImpact: "Combined MTCNN face alignment with EfficientNet spatial backbone and temporal sequence tracking to detect subtle facial artifacts.",
@@ -126,36 +126,36 @@ const PROJECTS_DATA = [
     benchmarks: [
       { label: "Frame Latency", val: "120ms/frame" },
       { label: "Test AUC", val: "94.2% DFDC" },
-      { label: "Dataset Size", val: "100k+ Clips" },
-      { label: "Architecture", val: "CNN + GRU" }
+      { label: "Dataset Size", val: "DFDC & FF++" },
+      { label: "Architecture", val: "CNN + OpenCV" }
     ],
-    description: "High-accuracy spatiotemporal deepfake video detection pipeline combining MTCNN face alignment with EfficientNet spatial feature extractors and temporal sequence analysis.",
+    description: "Developed a CNN-based deepfake detection system using DFDC and FaceForensics++ datasets. Engineered with Python, Deep Learning, OpenCV, TensorFlow, FastAPI, and Streamlit.",
     highlights: [
-      "Achieved 94.2% Area Under the ROC Curve (AUC) on the rigorous Deepfake Detection Challenge (DFDC) benchmark.",
-      "Inference latency optimized to 120ms per frame for near-real-time forensic video stream verification.",
-      "Combined MTCNN face alignment with EfficientNet spatial backbone and temporal sequence tracking to detect subtle facial artifacts.",
-      "Complete evaluation harness with precision-recall trade-offs and confusion matrix analysis."
+      "Developed a CNN-based deepfake detection system trained on rigorous DFDC and FaceForensics++ benchmarks.",
+      "Achieved 94.2% Area Under the ROC Curve (AUC) with 120ms/frame near-real-time forensic video stream verification.",
+      "Combined MTCNN face alignment with EfficientNet spatial backbone to identify subtle manipulation artifacts.",
+      "Built dual-interface deployment using FastAPI for high-throughput API endpoints and Streamlit for interactive video inspection."
     ],
-    tags: ["PyTorch", "EfficientNet", "MTCNN", "Computer Vision", "DFDC", "Deep Learning"],
+    tags: ["Python", "Deep Learning", "OpenCV", "TensorFlow", "FastAPI", "Streamlit", "DFDC"],
     demoUrl: null,
     githubUrl: "https://github.com/Anurag637/Deepfake-Detection",
     stars: 0
   },
   {
     id: "resume-ranking",
-    title: "Resume Screener & Semantic Ranking System",
+    title: "Resume Screening and Ranking System",
     category: "data",
     categories: ["data", "agent"],
     isLive: false,
     isFeatured: true,
-    badge: "NLP & Semantic Search",
+    badge: "Feb 2025 – March 2025 • TechSaksham Program",
     latencyP99: "<180ms per candidate",
     throughput: "Top-5 Cosine Match Precision",
     archImpact: "spaCy tokenization + dense embeddings; eliminated keyword-stuffing exploits and reduced recruiter screening time by 70%.",
     rfc: {
       id: "RFC-004",
       title: "Exploit-Resistant Candidate Dossier Semantic Search via Dense Sentence Embeddings",
-      status: "Internship Production (Microsoft/SAP Collaboration)",
+      status: "Production Verified (Microsoft & SAP TechSaksham)",
       target: "<180ms P99 per Dossier / 70% Time Reduction",
       problem: "Traditional ATS keyword matching engines are easily manipulated by candidates via white-text keyword stuffing and synonym dilution, resulting in inaccurate top-tier shortlists.",
       tradeoff: "Replaced TF-IDF keyword frequency scoring with custom spaCy NER tokenization followed by dense contextual sentence embeddings. Trade-off: Modest indexing latency increase offset by 100% elimination of keyword-stuffing exploits.",
@@ -174,61 +174,61 @@ const PROJECTS_DATA = [
       { label: "Time Saved", val: "70% Manual" },
       { label: "Vulnerability", val: "Exploit-Proof" }
     ],
-    description: "NLP-driven candidate ranking engine using spaCy entity extraction and dense semantic embeddings to score job-resume alignment without vulnerability to keyword stuffing.",
+    description: "Developed a Resume Screening and Ranking System using Python, NLP, and Scikit-learn with hands-on experience in data preprocessing, model evaluation, and deployment under the TechSaksham program (Microsoft & SAP).",
     highlights: [
-      "Processes and ranks candidate dossiers with <180ms P99 latency per resume.",
-      "High-precision Top-5 Cosine Match ranking against complex multi-skill job descriptions.",
-      "Combined spaCy tokenization and custom entity extraction with dense vector embeddings; eliminated keyword-stuffing exploits.",
-      "Reduced recruiter manual screening overhead by 70% in end-to-end evaluation trials."
+      "Developed a Resume Screening and Ranking System using Python, NLP, Scikit-learn with automated data preprocessing and model evaluation.",
+      "Processes and ranks candidate dossiers with <180ms P99 latency per resume using semantic cosine similarity.",
+      "High-precision Top-5 ranking against complex multi-skill job descriptions; eliminated keyword-stuffing exploits.",
+      "Delivered an interactive Streamlit application reducing recruiter manual screening overhead by 70%."
     ],
-    tags: ["Python", "NLP", "spaCy", "scikit-learn", "Dense Embeddings", "Streamlit"],
+    tags: ["Python", "NLP", "Scikit-learn", "Streamlit", "Data Preprocessing", "Model Evaluation"],
     demoUrl: null,
     githubUrl: "https://github.com/Anurag637/Resume-Ranking",
     stars: 0
   },
   {
-    id: "sa-capstone-pricing",
-    title: "SmartPark Dynamic Urban Parking Pricing Engine",
+    id: "spam-classification",
+    title: "Spam Email Classification System",
     category: "data",
     categories: ["data", "api"],
     isLive: false,
     isFeatured: true,
-    badge: "Real-Time Streaming Engine",
-    latencyP99: "25ms price calculation",
-    throughput: "Real-time dynamic updates",
-    archImpact: "Dynamic supply-demand curve optimization implemented using vectorized Pathway and NumPy arithmetic.",
+    badge: "June 2024 – July 2024 • C-DAC Internship",
+    latencyP99: "<15ms inference",
+    throughput: "98.6% Accuracy",
+    archImpact: "Tokenization + TF-IDF n-gram vectorization with benchmarked SVM and Logistic Regression classifiers.",
     rfc: {
       id: "RFC-005",
-      title: "Real-Time Supply-Demand Elasticity Pricing Engine via Vectorized Stream Processing",
-      status: "CapStone Verified (Summer Analytics)",
-      target: "25ms Dynamic Tariff Recomputation",
-      problem: "Static urban parking tariffs lead to severe block-level traffic congestion during peak demand and underutilized garage capacity during off-peak hours.",
-      tradeoff: "Implemented vectorized sliding-window stream processing via Pathway and NumPy matrix arithmetic instead of training heavyweight black-box deep learning regressors. Trade-off: Requires explicit elasticity coefficients, but executes in 25ms with 100% deterministic auditability.",
-      circuitBreaker: "Hard price floor and ceiling caps ($2.00 min / $25.00 max) preventing runaway pricing anomalies during sensor network dropouts.",
+      title: "Real-Time NLP Spam Filtering via Optimized TF-IDF Vector Spaces and Support Vector Machines",
+      status: "Production Verified (C-DAC)",
+      target: "<15ms Single Message Classification / 98.6% Accuracy",
+      problem: "High volume email inboxes are constantly flooded with phishing and promotional spam containing adversarial perturbations and zero-width characters.",
+      tradeoff: "Implemented n-gram sublinear TF-IDF scaling coupled with linear kernel Support Vector Machines over deep transformers. Trade-off: 5x lower inference latency (12ms vs 80ms) while retaining 98.6% classification accuracy.",
+      circuitBreaker: "Strict text sanitization pipeline stripping HTML obfuscation and character zero-width spaces before vectorization.",
       percentiles: [
-        { metric: "Stream Ingestion", val: "4ms" },
-        { metric: "Vectorized Elasticity", val: "12ms" },
-        { metric: "Tariff Matrix Compute", val: "9ms" },
-        { metric: "Total P99 Latency", val: "25ms" }
+        { metric: "Text Preprocessing", val: "3ms" },
+        { metric: "TF-IDF Vectorization", val: "5ms" },
+        { metric: "SVM Inference", val: "4ms" },
+        { metric: "Total Latency", val: "12ms" }
       ]
     },
-    pipeline: ["Occupancy Influx", "Pathway Streaming", "Vectorized Elasticity", "Dynamic Price Output", "Bokeh Dashboards"],
+    pipeline: ["Raw Email Text", "Tokenization & Lemmatization", "TF-IDF Vectorizer", "SVM / Logistic Regression", "Streamlit UI"],
     benchmarks: [
-      { label: "Price Latency", val: "25ms" },
-      { label: "Update Rate", val: "Real-time" },
-      { label: "Processing", val: "Vectorized Stream" },
-      { label: "Analytics", val: "Bokeh Interactive" }
+      { label: "Latency", val: "<15ms" },
+      { label: "Accuracy", val: "98.6% Test" },
+      { label: "Deployment", val: "Streamlit App" },
+      { label: "Organization", val: "C-DAC" }
     ],
-    description: "Real-time dynamic urban parking pricing engine computing supply-demand elasticity curves and occupancy fluctuations using vectorized streaming computations.",
+    description: "Built a spam email classification system using NLP techniques (TF-IDF, tokenization) during Data Science Internship at C-DAC. Evaluated models like Logistic Regression and SVM, and deployed a live interactive Streamlit web app.",
     highlights: [
-      "Calculates optimized dynamic parking tariffs with ultra-low 25ms calculation latency.",
-      "Stream-driven real-time dynamic updates adapting continuously to urban traffic and parking garage occupancy surges.",
-      "Dynamic supply-demand curve optimization implemented using vectorized Pathway and NumPy arithmetic.",
-      "Interactive real-time visualization layer with Bokeh dashboards for city parking authority simulation."
+      "Built a spam email classification system using NLP techniques including tokenization and TF-IDF feature extraction.",
+      "Evaluated machine learning models including Logistic Regression and Support Vector Machines (SVM), achieving 98.6% classification accuracy.",
+      "Deployed a live interactive Streamlit web application for real-time text analysis and demonstration.",
+      "Completed during Data Science Internship at C-DAC (Centre for Development of Advanced Computing), Noida."
     ],
-    tags: ["Pathway", "NumPy", "Real-Time Streaming", "Dynamic Pricing", "Bokeh", "Data Science"],
+    tags: ["Python", "NLP", "TF-IDF", "Logistic Regression", "SVM", "Streamlit", "C-DAC"],
     demoUrl: null,
-    githubUrl: "https://github.com/Anurag637/SA_Capstone_Project-2025",
+    githubUrl: "https://github.com/Anurag637",
     stars: 0
   }
 ];
@@ -1097,13 +1097,13 @@ function initEventListeners() {
   });
 
   // Copy Email Handlers
-  const emailToCopy = "anuragpandey.connect@gmail.com";
+  const emailToCopy = "anurag637@zohomail.in";
   document.querySelectorAll(".copy-email-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       navigator.clipboard.writeText(emailToCopy).then(() => {
         playUiSound("success");
-        showToast("Email copied: anuragpandey.connect@gmail.com");
+        showToast("Email copied: anurag637@zohomail.in");
       });
     });
   });
@@ -1258,9 +1258,9 @@ function initEventListeners() {
               </p>
               <div class="contact-success-actions">
                 <button type="button" class="btn btn-sm btn-primary" id="copy-email-btn">
-                  📋 Copy Direct Email (anuragpandey.connect@gmail.com)
+                  📋 Copy Direct Email (anurag637@zohomail.in)
                 </button>
-                <a href="mailto:anuragpandey.connect@gmail.com?subject=${encodeURIComponent(submittedSubject)}&body=${encodeURIComponent(submittedMessage)}" class="btn btn-sm btn-ghost">
+                <a href="mailto:anurag637@zohomail.in?subject=${encodeURIComponent(submittedSubject)}&body=${encodeURIComponent(submittedMessage)}" class="btn btn-sm btn-ghost">
                   Open Mail Client ↗
                 </a>
               </div>
@@ -1270,7 +1270,7 @@ function initEventListeners() {
           const copyBtn = document.getElementById("copy-email-btn");
           if (copyBtn) {
             copyBtn.onclick = () => {
-              navigator.clipboard.writeText("anuragpandey.connect@gmail.com").then(() => {
+              navigator.clipboard.writeText("anurag637@zohomail.in").then(() => {
                 showToast("Email address copied to clipboard!");
               });
             };
@@ -1300,7 +1300,7 @@ function initEventListeners() {
       const message = document.getElementById("contact-message")?.value || "";
 
       const bodyText = `Hi Anurag,%0D%0A%0D%0A${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(name)}`;
-      const mailtoUrl = `mailto:anuragpandey.connect@gmail.com?subject=${encodeURIComponent(subject)}&body=${bodyText}`;
+      const mailtoUrl = `mailto:anurag637@zohomail.in?subject=${encodeURIComponent(subject)}&body=${bodyText}`;
       window.location.href = mailtoUrl;
     });
   }
