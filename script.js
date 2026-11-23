@@ -376,6 +376,26 @@ function playUiSound(type = "click") {
   }
 }
 
+function showToast(message, duration = 2800) {
+  const container = document.getElementById("toast-container");
+  if (!container) return;
+  const toast = document.createElement("div");
+  toast.className = "toast-message";
+  toast.innerHTML = `<span class="toast-icon">✨</span> <span>${message}</span>`;
+  container.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.add("visible");
+  });
+
+  setTimeout(() => {
+    toast.classList.remove("visible");
+    setTimeout(() => {
+      toast.remove();
+    }, 300);
+  }, duration);
+}
+
 function toggleSound() {
   soundEnabled = !soundEnabled;
   localStorage.setItem("ap_sound_enabled", String(soundEnabled));
@@ -1345,8 +1365,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initAttentionStudio();
   initMagneticCursor();
   renderProjects();
-  initLiveClock();
-  initAmbientGlow();
   initEventListeners();
 });
 
