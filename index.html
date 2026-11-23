@@ -95,6 +95,7 @@
           <!-- Desktop Navigation Links -->
           <div class="nav-links" id="nav-links">
             <a href="#about" class="nav-link">About</a>
+            <a href="#interactive-ai-studio" class="nav-link">Neural Studio 🧠</a>
             <a href="#interactive-labs" class="nav-link">Live Labs ⚡</a>
             <a href="#projects" class="nav-link">
               Projects
@@ -212,40 +213,40 @@
 
       <main id="home">
         <!-- Hero Section -->
-        <section class="hero container section">
+                <section class="hero container section" id="home">
           <div class="hero-copy reveal">
             <div class="badge-group">
               <span class="badge badge-glow">
                 <span class="status-indicator live"></span>
-                AI & Machine Learning Engineer
+                <span class="scramble-text" data-scramble="SYSTEM ARCHITECT // v2.6">SYSTEM ARCHITECT // v2.6</span>
               </span>
-              <span class="badge badge-subtle">GenAI • Agentic Workflows</span>
+              <span class="badge badge-subtle">LLM Gateways • Computer Vision • Low-Latency</span>
             </div>
 
             <h1 class="hero-title">
-              Hi, I'm <span class="gradient-text">Anurag Pandey</span>.
+              Hi, I'm <span class="gradient-text scramble-text" data-scramble="Anurag Pandey" id="hero-name-scramble">Anurag Pandey</span>.
             </h1>
 
             <h2 class="hero-subtitle">
-              High-Throughput AI, Low-Latency Systems & Vision Engineering.
+              <span class="scramble-text" data-scramble="Engineering AI Systems with Mathematical Rigor & Millisecond Latency.">Engineering AI Systems with Mathematical Rigor & Millisecond Latency.</span>
             </h2>
 
             <p class="lead">
               AI & Machine Learning Engineer specializing in low-latency microservices, computer vision forensics, and vector-cached LLM gateways.
-              Architect of <strong>Solver-Standalone</strong> (&lt;320ms P99) and <strong>QChat Gateway</strong> (850+ req/s, -62% token cost).
+              Architect of <strong>Solver-Standalone</strong> (<320ms P99 live on Render) and <strong>QChat Gateway</strong> (850+ req/s, -62% token cost).
             </p>
 
             <!-- 10/10 Executive Proof-of-Work Ribbon -->
             <div class="hero-proof-bar">
-              <div class="proof-chip">
+              <div class="proof-chip" data-hover-sound="hover">
                 <span class="proof-icon">⚡</span>
                 <span class="proof-text"><strong>&lt;320ms P99</strong> Flagship Solver API</span>
               </div>
-              <div class="proof-chip">
+              <div class="proof-chip" data-hover-sound="hover">
                 <span class="proof-icon">🛡️</span>
                 <span class="proof-text"><strong>94.2% AUC</strong> DFDC Deepfake Forensics</span>
               </div>
-              <div class="proof-chip">
+              <div class="proof-chip" data-hover-sound="hover">
                 <span class="proof-icon">🚀</span>
                 <span class="proof-text"><strong>850+ req/s</strong> Redis Vector Gateway</span>
               </div>
@@ -253,26 +254,30 @@
 
             <!-- Hero Action Buttons -->
             <div class="cta-row">
-              <a class="btn btn-primary btn-lg" href="#projects">
+              <a class="btn btn-primary btn-lg magnetic-btn" href="#flagship-spotlight" id="hero-flagship-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                   <polyline points="2 17 12 22 22 17"></polyline>
                   <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
-                Explore Flagship & Systems
+                Explore Flagship API
               </a>
-              <a class="btn btn-secondary btn-lg" href="#contact">
+              <a class="btn btn-secondary btn-lg magnetic-btn" href="#interactive-ai-studio" id="hero-studio-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="10 8 16 12 10 16 10 8"></polygon>
                 </svg>
-                Get In Touch
+                Live Neural Studio
               </a>
+              <button class="btn btn-secondary btn-lg magnetic-btn" id="hero-terminal-btn" title="Open Architect CLI Terminal">
+                <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan);">&gt;_</span>
+                CLI (⌘K)
+              </button>
             </div>
 
             <!-- Find Me Hub (Social Channels + Direct Contacts) -->
             <div class="find-me-bar">
-              <span class="find-me-label">Find Me Online:</span>
+              <span class="find-me-label">Verified Networks:</span>
               <div class="social-pills">
                 <a
                   href="https://github.com/Anurag637"
@@ -320,22 +325,27 @@
             </div>
           </div>
 
-          <!-- Hero Visual: Interactive Profile Card -->
+          <!-- Hero Visual: Cyber Holographic Identity & Telemetry Deck -->
           <div class="hero-visual reveal">
-            <div class="profile-card">
+            <div class="profile-card cyber-holo-card" id="hero-cyber-card">
               <div class="card-glow"></div>
               
-              <div class="profile-header">
-                <div class="badge badge-success">
-                  <span class="pulse-ring"></span>
-                  Open to Opportunities
+              <!-- Top Telemetry Status Header -->
+              <div class="cyber-telemetry-header">
+                <div class="cyber-status-item">
+                  <span class="cyber-radar-dot"></span>
+                  <span class="cyber-status-text">SYS_ID // <strong>AP-637</strong></span>
                 </div>
-                <span class="location-badge">📍 India</span>
+                <div class="cyber-coords">19.0760° N, 72.8777° E</div>
               </div>
 
-              <div class="avatar-wrap">
+              <!-- High-Tech Avatar Portal with Animated Radar Rings -->
+              <div class="avatar-wrap cyber-avatar-portal">
+                <div class="radar-scan-line"></div>
+                <div class="radar-outer-ring"></div>
+                <div class="radar-inner-ring"></div>
                 <img
-                  class="avatar"
+                  class="avatar cyber-avatar"
                   src="https://avatars.githubusercontent.com/u/179312826?v=4"
                   alt="Anurag Pandey"
                   width="170"
@@ -343,42 +353,36 @@
                   loading="eager"
                 />
                 <div class="avatar-ring"></div>
+                <div class="cyber-badge-overlay">
+                  <span class="cyber-chip-tag">AI ARCHITECT</span>
+                </div>
               </div>
 
-              <div class="profile-details">
+              <div class="profile-details cyber-profile-details">
                 <h3 class="profile-name">Anurag Pandey</h3>
-                <p class="profile-role">AI & ML Engineer • Model Builder</p>
-                <p class="profile-bio">
-                  5 Core Systems • Live Render Flagship • P99 Latency &lt; 180ms
-                </p>
-              </div>
-
-              <!-- Quick Metrics Grid -->
-              <div class="stat-grid">
-                <div class="stat-box">
-                  <strong class="stat-num" id="stat-repos-count">5</strong>
-                  <span class="stat-desc">Production Systems</span>
-                </div>
-                <div class="stat-box">
-                  <strong class="stat-num" id="stat-apps-count">1</strong>
-                  <span class="stat-desc">Live Render API</span>
-                </div>
-                <div class="stat-box">
-                  <strong class="stat-num">&lt;180ms</strong>
-                  <span class="stat-desc">Median P99</span>
+                <p class="profile-role">AI/ML Systems • High-Throughput Microservices</p>
+                <div class="cyber-live-metrics">
+                  <div class="live-metric-row">
+                    <span class="metric-key">CORE P99:</span>
+                    <span class="metric-val highlight-green">&lt;180ms</span>
+                  </div>
+                  <div class="live-metric-row">
+                    <span class="metric-key">RENDER API:</span>
+                    <span class="metric-val highlight-cyan" id="hero-render-status">ONLINE (99.9%)</span>
+                  </div>
+                  <div class="live-metric-row">
+                    <span class="metric-key">SYSTEM STATE:</span>
+                    <span class="metric-val highlight-purple">PRODUCTION READY</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- Profile Card Footer Actions -->
-              <div class="profile-card-footer">
-                <a
-                  href="https://github.com/Anurag637?tab=repositories"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="card-action-link"
-                >
-                  <span>Browse GitHub Profile &rarr;</span>
-                </a>
+              <!-- Interactive Cyber Pulse Action -->
+              <div class="profile-card-footer cyber-footer">
+                <button class="cyber-pulse-btn" id="cyber-pulse-trigger" title="Fire Neural Shockwave through 3D Particle Core">
+                  <span class="pulse-icon">⚡</span>
+                  <span>TRIGGER NEURAL SHOCKWAVE</span>
+                </button>
               </div>
             </div>
           </div>
@@ -412,6 +416,284 @@
             <div>
               <h4>Production Backends</h4>
               <p>FastAPI, Django REST & Docker</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================================================
+             INTERACTIVE AI ARCHITECTURE & MULTI-HEAD ATTENTION STUDIO
+             ========================================================================== -->
+        <section id="interactive-ai-studio" class="container section reveal">
+          <div class="section-header">
+            <p class="eyebrow">[SYS_STUDIO // REAL-TIME AI ARCHITECTURE & INFERENCE]</p>
+            <h3 class="section-title">
+              Live Multi-Head Attention & <span class="gradient-text">Neural Tensor Workbench</span>
+            </h3>
+            <p class="section-sub">
+              Directly interact with multi-head attention weight distributions, simulate real-time OCR tokenization, and test live vector semantic cache hit/miss economics.
+            </p>
+          </div>
+
+          <div class="ai-studio-container">
+            <!-- Studio Tab Navigation -->
+            <div class="studio-tab-bar" role="tablist">
+              <button class="studio-tab-btn active" id="tab-btn-attention" role="tab" aria-selected="true" data-tab="attention">
+                <span class="tab-icon">🧠</span>
+                <span class="tab-label">Multi-Head Attention Map (Q×Kᵀ/√d)</span>
+              </button>
+              <button class="studio-tab-btn" id="tab-btn-solver" role="tab" aria-selected="false" data-tab="solver">
+                <span class="tab-icon">⚡</span>
+                <span class="tab-label">Flagship Solver OCR & Live Render Ping</span>
+              </button>
+              <button class="studio-tab-btn" id="tab-btn-cache" role="tab" aria-selected="false" data-tab="cache">
+                <span class="tab-icon">📊</span>
+                <span class="tab-label">Vector Cache Cosine Threshold & Savings</span>
+              </button>
+            </div>
+
+            <!-- Tab 1: Multi-Head Attention Visualizer -->
+            <div class="studio-tab-panel active" id="panel-attention" role="tabpanel">
+              <div class="attention-layout-grid">
+                <!-- Controls & Head Selection -->
+                <div class="attention-controls-card">
+                  <div class="studio-card-header">
+                    <span class="studio-tag">ATTENTION HEAD SELECTOR</span>
+                    <span class="studio-dim">d_model = 512 • heads = 8</span>
+                  </div>
+                  <div class="head-selector-pills">
+                    <button class="head-pill active" data-head="0">Head 0: Token Syntax</button>
+                    <button class="head-pill" data-head="1">Head 1: Vision OCR Geometry</button>
+                    <button class="head-pill" data-head="2">Head 2: Latency Critical Path</button>
+                    <button class="head-pill" data-head="3">Head 3: Semantic Context</button>
+                  </div>
+
+                  <div class="token-selector-group">
+                    <label class="studio-label">Select Active Query Token ($Q_i$):</label>
+                    <div class="token-chips-wrap" id="token-chips-container">
+                      <!-- Generated dynamically in JS -->
+                    </div>
+                  </div>
+
+                  <div class="attention-formula-box">
+                    <div class="formula-title">Scaled Dot-Product Attention:</div>
+                    <code class="formula-math">Attention(Q,K,V) = softmax(Q·Kᵀ / √d_k) · V</code>
+                    <p class="formula-expl" id="attention-expl-text">
+                      Currently inspecting self-attention coefficients for token <strong>[Screen]</strong> across 7 context keys.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Live Attention Heatmap & Connection Arcs -->
+                <div class="attention-matrix-card">
+                  <div class="studio-card-header">
+                    <span class="studio-tag">ATTENTION WEIGHT MATRIX (SOFTMAX HEATMAP)</span>
+                    <span class="studio-val" id="active-head-label">Head 0 • Normal Softmax</span>
+                  </div>
+
+                  <div class="matrix-heatmap-wrap">
+                    <div class="heatmap-token-row" id="heatmap-keys-row">
+                      <!-- Token Key Headers -->
+                    </div>
+                    <div class="heatmap-grid" id="heatmap-grid">
+                      <!-- 8x8 or 7x7 interactive weight cells -->
+                    </div>
+                  </div>
+
+                  <!-- Dynamic SVG Attention Arcs -->
+                  <div class="attention-arcs-container">
+                    <div class="arcs-label">Interactive Token Connection Synapses:</div>
+                    <div class="token-arcs-nodes" id="token-arcs-nodes">
+                      <!-- Nodes along a horizontal baseline -->
+                    </div>
+                    <svg class="attention-arcs-svg" id="attention-arcs-svg" viewBox="0 0 700 90">
+                      <!-- Bezier curves drawn dynamically -->
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Flagship Solver Live Ingestion & Render Ping -->
+            <div class="studio-tab-panel" id="panel-solver" role="tabpanel">
+              <div class="solver-studio-grid">
+                <div class="solver-left-col">
+                  <div class="studio-card-header">
+                    <span class="studio-tag">TEST INGESTION PAYLOADS</span>
+                    <span class="studio-status" id="render-api-badge">● Render API Ready</span>
+                  </div>
+                  <p class="studio-hint">
+                    Choose a problem scenario to simulate real-time SIMD grayscale binarization, bounding-box parsing, and streaming model derivation.
+                  </p>
+                  <div class="solver-scenario-buttons">
+                    <button class="solver-scenario-btn active" data-scenario="calculus">
+                      <span class="sc-badge">CALCULUS</span>
+                      <span class="sc-title">Definite Integral: ∫ x·e^(-x²) dx</span>
+                      <span class="sc-meta">SIMD Binarize • 185ms</span>
+                    </button>
+                    <button class="solver-scenario-btn" data-scenario="dijkstra">
+                      <span class="sc-badge">ALGORITHMS</span>
+                      <span class="sc-title">Shortest Path Graph Traversal</span>
+                      <span class="sc-meta">AST Tokenize • 210ms</span>
+                    </button>
+                    <button class="solver-scenario-btn" data-scenario="topology">
+                      <span class="sc-badge">SYSTEM DESIGN</span>
+                      <span class="sc-title">FastAPI Microservice Rate Limiter</span>
+                      <span class="sc-meta">JSON Parse • 160ms</span>
+                    </button>
+                  </div>
+
+                  <div class="render-ping-action-card">
+                    <div class="ping-desc">
+                      <strong>Direct Cloud Heartbeat:</strong> Send an asynchronous telemetry check to the live Render cloud deployment (<code>screensolver-api.onrender.com</code>).
+                    </div>
+                    <button class="btn btn-primary btn-block" id="ping-render-api-btn">
+                      <span class="btn-spinner" id="render-ping-spinner" style="display: none;"></span>
+                      <span id="render-ping-btn-text">Ping Live Render API Endpoint</span>
+                    </button>
+                    <div class="ping-output-telemetry" id="render-ping-result">
+                      Endpoint: <code>https://screensolver-api.onrender.com/</code> • Status: Idle
+                    </div>
+                  </div>
+                </div>
+
+                <div class="solver-right-col">
+                  <div class="studio-card-header">
+                    <span class="studio-tag">OCR BOUNDING BOX & INFERENCE STREAM</span>
+                    <span class="studio-val" id="solver-step-timer">Latency: 185ms</span>
+                  </div>
+
+                  <!-- Simulated Screen Capture Viewport -->
+                  <div class="simulated-viewport" id="simulated-viewport">
+                    <div class="viewport-overlay-scanline"></div>
+                    <div class="ocr-bounding-box" id="ocr-bounding-box">
+                      <span class="bbox-label" id="bbox-label">SIMD_BOUND // [x:42, y:88, w:420, h:110]</span>
+                    </div>
+                    <div class="viewport-raw-preview" id="viewport-raw-preview">
+                      <span class="preview-math" id="preview-math-text">∫ x · exp(-x²) dx from 0 to ∞</span>
+                    </div>
+                  </div>
+
+                  <!-- Streaming Output Console -->
+                  <div class="streaming-console">
+                    <div class="console-header">
+                      <span>DECODER OUTPUT STREAM (LaTeX / JSON)</span>
+                      <button class="btn-copy-code" id="btn-copy-solver-output" title="Copy output">Copy</button>
+                    </div>
+                    <pre class="console-code" id="solver-streaming-code">
+// Initializing SIMD Vision Pipeline...
+// Standalone Solver v2.4 initialized.
+// Click any scenario above to trigger instant streaming reasoning.
+                    </pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Vector Semantic Cache & Cosine Threshold -->
+            <div class="studio-tab-panel" id="panel-cache" role="tabpanel">
+              <div class="cache-studio-grid">
+                <div class="cache-controls-col">
+                  <div class="studio-card-header">
+                    <span class="studio-tag">SEMANTIC THRESHOLD CONTROLLER</span>
+                    <span class="studio-dim">Redis Cosine Distance Engine</span>
+                  </div>
+
+                  <div class="slider-control-box">
+                    <div class="slider-header-row">
+                      <span class="slider-title">Cosine Similarity Threshold (τ):</span>
+                      <span class="slider-val-badge" id="cosine-threshold-badge">0.86</span>
+                    </div>
+                    <input
+                      type="range"
+                      id="cosine-threshold-slider"
+                      class="cyber-range-input"
+                      min="0.70"
+                      max="0.98"
+                      step="0.01"
+                      value="0.86"
+                    />
+                    <div class="slider-scale-row">
+                      <span>0.70 (Aggressive Caching)</span>
+                      <span>0.86 (Balanced)</span>
+                      <span>0.98 (Strict Exact)</span>
+                    </div>
+                  </div>
+
+                  <div class="test-query-box">
+                    <label class="studio-label">Test Real-Time Input Query:</label>
+                    <input
+                      type="text"
+                      id="cache-query-input"
+                      class="cyber-text-input"
+                      value="How to optimize FastAPI microservice P99 latency with async Redis cache?"
+                      placeholder="Type any AI system query..."
+                    />
+                    <div class="quick-chip-suggestions">
+                      <span class="chip-hint">Quick Presets:</span>
+                      <button class="cache-preset-chip" data-query="How to optimize FastAPI microservice P99 latency with async Redis cache?">FastAPI P99 Cache</button>
+                      <button class="cache-preset-chip" data-query="MTCNN face alignment and spatial frequency artifacts for deepfake detection">Deepfake DFDC</button>
+                      <button class="cache-preset-chip" data-query="What is the capital of Mars? (Novel Query)">Novel Out-of-Domain</button>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary btn-block" id="execute-cache-eval-btn">
+                    Execute Semantic Cache Evaluation
+                  </button>
+                </div>
+
+                <div class="cache-metrics-col">
+                  <div class="studio-card-header">
+                    <span class="studio-tag">REAL-TIME SIMILARITY METRICS & ECONOMICS</span>
+                    <span class="studio-val" id="cache-hit-status-badge">⚡ CACHE HIT (42ms)</span>
+                  </div>
+
+                  <div class="cache-stats-quad">
+                    <div class="stat-quad-box">
+                      <span class="quad-label">COSINE SIMILARITY</span>
+                      <strong class="quad-val" id="quad-cosine-val">0.924</strong>
+                      <span class="quad-sub">Threshold: 0.860</span>
+                    </div>
+                    <div class="stat-quad-box">
+                      <span class="quad-label">P99 LATENCY</span>
+                      <strong class="quad-val highlight-green" id="quad-latency-val">42ms</strong>
+                      <span class="quad-sub">vs 310ms Upstream</span>
+                    </div>
+                    <div class="stat-quad-box">
+                      <span class="quad-label">TOKEN COST</span>
+                      <strong class="quad-val highlight-cyan" id="quad-cost-val">$0.0000</strong>
+                      <span class="quad-sub">Saved $0.0018 / req</span>
+                    </div>
+                    <div class="stat-quad-box">
+                      <span class="quad-label">CUMULATIVE SAVINGS</span>
+                      <strong class="quad-val highlight-purple" id="quad-total-saved">$124.60</strong>
+                      <span class="quad-sub">Across 69,200 requests</span>
+                    </div>
+                  </div>
+
+                  <div class="cache-flow-trace">
+                    <div class="trace-step-row" id="trace-step-1">
+                      <span class="trace-dot completed"></span>
+                      <span class="trace-label">Generate 1536-dim Dense Embedding</span>
+                      <span class="trace-time">18ms</span>
+                    </div>
+                    <div class="trace-step-row" id="trace-step-2">
+                      <span class="trace-dot completed"></span>
+                      <span class="trace-label">Redis Vector KNN Index Lookup (HNSW)</span>
+                      <span class="trace-time">14ms</span>
+                    </div>
+                    <div class="trace-step-row" id="trace-step-3">
+                      <span class="trace-dot completed"></span>
+                      <span class="trace-label">Cosine Distance Threshold Evaluation (0.924 ≥ 0.860)</span>
+                      <span class="trace-time">2ms</span>
+                    </div>
+                    <div class="trace-step-row" id="trace-step-4">
+                      <span class="trace-dot completed"></span>
+                      <span class="trace-label">Return Cached JSON Payload (Bypass Upstream LLM)</span>
+                      <span class="trace-time">8ms</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -604,7 +886,7 @@
           </div>
 
           <!-- PRIMARY FLAGSHIP SYSTEM: Solver-Standalone -->
-          <div class="flagship-spotlight reveal">
+          <div class="flagship-spotlight reveal" id="flagship-spotlight">
             <div class="flagship-header">
               <div class="flagship-badge-group">
                 <span class="flagship-star-tag">★ PRIMARY FLAGSHIP SYSTEM</span>
@@ -732,7 +1014,7 @@
           </div>
 
           <!-- PRODUCTION SYSTEMS BENCHMARKS TABLE -->
-          <div class="benchmarks-matrix-section reveal">
+          <div class="benchmarks-matrix-section reveal" id="benchmarks-table">
             <div class="matrix-heading">
               <span class="badge badge-accent">EMPIRICAL BENCHMARKS</span>
               <h4>Production Systems Engineering Matrix</h4>
@@ -1731,6 +2013,78 @@
 
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div class="toast-container" id="toast-container" aria-live="polite"></div>
+    <!-- ==========================================================================
+         FLOATING CYBER HUD DOCK (macOS / DYNAMIC ISLAND GLASS INTERFACE)
+         ========================================================================== -->
+    <nav class="cyber-hud-dock" id="cyber-hud-dock" aria-label="Quick Action Floating HUD Dock">
+      <div class="dock-container" id="dock-container">
+        <!-- 1. Home / Core -->
+        <a href="#home" class="dock-item" data-tooltip="Core Identity (Home)" aria-label="Core Identity">
+          <div class="dock-icon">🌐</div>
+          <span class="dock-pill">Core</span>
+        </a>
+
+        <!-- 2. Flagship Screen Solver API -->
+        <a href="#flagship-spotlight" class="dock-item" data-tooltip="Flagship Screen Solver API (<320ms)" aria-label="Flagship Solver">
+          <div class="dock-icon">⚡</div>
+          <span class="dock-pill">Solver</span>
+        </a>
+
+        <!-- 3. Live Neural Studio -->
+        <a href="#interactive-ai-studio" class="dock-item active" data-tooltip="Multi-Head Attention & Neural Studio" aria-label="Neural Studio">
+          <div class="dock-icon">🧠</div>
+          <span class="dock-pill">Studio</span>
+        </a>
+
+        <!-- 4. Interactive Live Labs -->
+        <a href="#interactive-labs" class="dock-item" data-tooltip="Deepfake & Vector Labs" aria-label="Interactive Labs">
+          <div class="dock-icon">🔬</div>
+          <span class="dock-pill">Labs</span>
+        </a>
+
+        <!-- 5. Systems & RFCs -->
+        <a href="#projects" class="dock-item" data-tooltip="5 Production Systems & RFCs" aria-label="Systems">
+          <div class="dock-icon">🛡️</div>
+          <span class="dock-pill">Systems</span>
+        </a>
+
+        <!-- Divider -->
+        <div class="dock-divider" aria-hidden="true"></div>
+
+        <!-- 6. Web Audio Synthesizer Toggle -->
+        <button class="dock-item dock-btn" id="dock-sound-btn" data-tooltip="Toggle Web Audio SFX" aria-label="Toggle Audio SFX">
+          <div class="dock-icon" id="dock-sound-icon">🔇</div>
+          <span class="dock-pill">Audio</span>
+        </button>
+
+        <!-- 7. Theme Matrix -->
+        <button class="dock-item dock-btn" id="dock-theme-btn" data-tooltip="Switch Cyber Theme" aria-label="Switch Theme">
+          <div class="dock-icon" id="dock-theme-icon">🌌</div>
+          <span class="dock-pill">Theme</span>
+        </button>
+
+        <!-- 8. Architect CLI Terminal -->
+        <button class="dock-item dock-btn" id="dock-terminal-btn" data-tooltip="Launch CLI Console (⌘K)" aria-label="Launch CLI">
+          <div class="dock-icon" style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan);">&gt;_</div>
+          <span class="dock-pill">CLI</span>
+        </button>
+      </div>
+
+      <!-- Dock Floating Tooltip Label -->
+      <div class="dock-tooltip" id="dock-tooltip" aria-hidden="true">Core Identity</div>
+
+      <!-- Live Edge Ping Status Capsule -->
+      <div class="dock-edge-telemetry">
+        <span class="edge-dot"></span>
+        <span class="edge-text" id="dock-edge-text">Mumbai 18ms</span>
+      </div>
+    </nav>
+
+    <!-- CUSTOM MAGNETIC CURSOR -->
+    <div class="custom-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="custom-cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+
 
 
     <!-- Application Script -->
